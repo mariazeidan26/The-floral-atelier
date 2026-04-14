@@ -1,0 +1,11 @@
+.container-fluid{
+    background-color: #9E3B3B !important;
+}
+
+nav a {
+    color: #FFFDEB !important;
+}
+
+nav a:hover {
+    color: #E8DBB3 !important
+}
