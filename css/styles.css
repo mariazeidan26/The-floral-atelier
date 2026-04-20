@@ -1,5 +1,5 @@
 .container-fluid {
-    background-color: #66001F;
+    background-color: #800020;
 }
 
 body {
@@ -47,9 +47,10 @@ nav a:hover {
 }
 
 #myCarousel .item img {
+    height: 500px !important;
     width: 100%;
     height: 500px;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .categories {
@@ -94,4 +95,9 @@ nav a:hover {
     .category-btn {
         width: 80%;
     }
+}
+
+.category-btn.active {
+    background-color: #DCDCDC !important;
+    color: #800020 !important;
 }
