@@ -1,5 +1,5 @@
 .container-fluid {
-    background-color: #800020;
+    background-color: #A10035;
 }
 
 body {
@@ -11,7 +11,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #D8C3A5 !important;
+    color: #FFE7BF !important;
 }
 
 .navbar-brand {
@@ -24,12 +24,12 @@ nav a:hover {
 
 .navbar-form .form-control:focus {
     outline: none;
-    box-shadow: 0 0 8px #D8C3A5;
+    box-shadow: 0 0 8px #FFE7BF;
 }
 
 .navbar-form .btn {
     border-radius: 50%;
-    background-color: #D8C3A5;
+    background-color: #FFE7BF;
     color: #fff;
     border: none;
     width: 35px;
@@ -66,15 +66,14 @@ nav a:hover {
 }
 
 .category-btn {
-    background-color: #800020 !important;
+    background-color: #A10035 !important;
     color: #F5E6D3 !important;
-    border: 2px solid #800020 !important;
+    border: 2px solid #A10035 !important;
     border-radius: 30px !important;
     padding: 14px 24px !important;
     font-size: 18px !important;
     font-family: 'Playfair Display', serif !important;
     transition: all 0.35s ease;
-    box-shadow: #DCDCDC/*soft shadow*/
 }
 
 
@@ -82,7 +81,7 @@ nav a:hover {
 
 .category-btn:hover {
     background-color: #DCDCDC!important;
-    color: #800020 !important;
+    color: #A10035 !important;
     transform: translateY(-4px);
     box-shadow: #DCDCDC;
 }
@@ -99,5 +98,138 @@ nav a:hover {
 
 .category-btn.active {
     background-color: #DCDCDC !important;
-    color: #800020 !important;
+    color: #A10035 !important;
+}
+
+.product {
+    width: 250px;
+    border: 1px solid #DCDCDC;
+    padding: 15px;
+    margin: 15px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: fill;
+}
+
+.product-section {
+    display: none;
+}
+
+.product-section.active {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.buttons button {
+    border: none;
+    padding: 8px 14px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #A10035;
+    color: #FFF;
+    border-radius: 12px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.buttons .row {
+    display: flex;
+    gap: 8px;
+}
+
+#services .buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 18px 0;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 19px !important;
+}
+
+.info-btn {
+    border: none;
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.description {
+    display: none;
+    font-size: 15px;
+}
+
+.rate-contact {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.section-title {
+    margin: 20px 0;
+    font-size: 24px;
+}
+
+
+/*rating dropdown*/
+
+.rating {
+    width: 200px;
+    padding: 8px;
+    margin: 10px auto;
+    display: block;
+    border: 1px solid #FFF;
+    border-radius: 6px;
+}
+
+.feedback {
+    width: 450px;
+    line-height: 60px;
+    padding: 8px;
+    margin: 15px auto;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #fff;
+    resize: none;
+}
+
+
+/*submit button*/
+
+.btn {
+    margin-top: 0px;
+    padding: 10px 20px;
+    background: #A10035;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 120px;
+}
+
+.whatsapp-btn,
+.gmail-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 20px;
+    background: #A10035;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
 }
