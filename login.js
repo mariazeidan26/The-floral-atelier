@@ -7,6 +7,7 @@ function goToSignup() {
     window.location.href = "signup.html";
 }
 function validateLogin() {
+    event.preventDefault();
     var email = document.getElementById("email").value.trim();
     var pass = document.getElementById("password").value.trim();
     var error = document.getElementById("error");
