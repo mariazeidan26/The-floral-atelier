@@ -34,7 +34,7 @@ function validateLogin() {
     }
     window.location.href = "index.html";
 }
-function validateSignUp(){
+/*function validateSignUp(){
     alert("clicked");
     var email=document.getElementById("email").value;
     var pass=document.getElementById("pass").value;
@@ -67,7 +67,12 @@ function validateSignUp(){
         return false;
     }
     window.location.href = "index.html";
+}*/
+    function validateSignUp(){
+    alert("before redirect");
+    window.location.href = "index.html";
 }
+
 
 function viewCart(){
     window.location.href="cart.html";
