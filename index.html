@@ -57,16 +57,12 @@
                 </form>
 
                 <ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
-                    <li> <a href="#" class="nav-link" onclick="viewCart()"> 🛒 <span id="cartcount"></span> </a> </li>
-=======
                     <li> <a class="nav-link" href="cart.html"> 🛒 <span id="cartcount"></span> </a> </li>
->>>>>>> b01ddbd082d6c5de4ac6d64aed41db5c32557e50
                     <li>
                         <a href="signup.html" > <span class="glyphicon glyphicon-user"></span> Sign up </a>
                     </li>
                     <li>
-                        <a href="login.html" > <span class="glyphicon glyphicon-log-in"></span> Login </a>
+                        <a href="login.html"> <span class="glyphicon glyphicon-log-in"></span> Login </a>
                     </li>
                 </ul>
             </div>
@@ -106,14 +102,14 @@
         </div>
 
         <!-- left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev ">
+            <span class="glyphicon glyphicon-chevron-left "></span>
+            <span class="sr-only ">Previous</span>
         </a>
 
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
+        <a class="right carousel-control " href="#myCarousel" data-slide="next ">
+            <span class="glyphicon glyphicon-chevron-right "></span>
+            <span class="sr-only ">Next</span>
         </a>
     </div>
 
@@ -144,70 +140,26 @@
                         <button class="buy"> Buy</button>
                         <button class="plant"> Plant</button>
                     </div>
-                    <button class="customize"> Add to your bouquet</button>
+                    <button class="customize"> Customize your bouquet</button>
                 </div>
             </div>
         </div>
 
         <!-- Bouquets-->
         <div id="bouquets" class="product-section">
+            <div class="product">
+                <img src="css/bouquet1.jpeg">
+                <h4> Pink Harmony <button class="info-btn" onclick="toggleInfo(this)"> i </button></h4>
+                <p>40$</p>
+                <input type="number" min="1" value="1">
 
-            <div class="bouquets-grid">
-                <div class="left">
-
-                    <div class="product">
-                        <img src="css/bouquet1.jpeg">
-                        <h4> Pink Harmony <button class="info-btn" onclick="toggleInfo(this)"> i </button></h4>
-                        <p>40$</p>
-                        <input type="number" min="1" value="1">
-
-                        <div class="buttons">
-                            <div class="row">
-                                <button class="buy"> Buy</button>
-                            </div>
-
-                        </div>
-
+                <div class="buttons">
+                    <div class="row">
+                        <button class="buy"> Buy</button>
                     </div>
+                    <button class="customize"> Customize your bouquet</button>
                 </div>
-                <div class="right">
-                    <div class="cart-item">
-                        <h3 class="title">Customise your own bouquet</h3>
-                        <br>
-                        <table class="bouquet-table">
-                            <tr>
-                                <th>Flower</th>
-                                <th>quantity</th>
-                                <th>Price per one</th>
-                                <th>remove</th>
-                            </tr>
-
-                            <tr>
-                                <td class="flower-o"><img src="css/whiteOrchid.jpeg"> White Orchid</td>
-                                <td> <input type="number" value="1" min="1"> </td>
-                                <td>3$</td>
-                                <td><button class="remove">X</button></td>
-                            </tr>
-                        </table>
-
-                        <!--<div class="cart-item">
-                             <p>White Orchid <input type="number" value="1" min="1"> <button class="remove">X</button> <span class="price">5$</span></p> -->
-
-
-                    </div>
-                    <button class="buy">create bouquet</button>
-                </div>
-
-
             </div>
-
-
-
-        </div>
-
-        </div>
-
-
         </div>
 
 
@@ -235,11 +187,8 @@
         <!--services -->
         <div id="services" class="product-section">
             <div class="buttons services-buttons">
-                <button class="service-btn"> Book a planting service </button>
-
-
-                <button class="service-btn"> Book a maintenance service </button>
-
+                <button class="service-btn" onclick="goToPlanting()"> Book a planting service </button>
+                <button class="service-btn" onclick="goToMaintenance()"> Book a maintenance service </button>
             </div>
 
         </div>
@@ -261,20 +210,10 @@
         <button class="btn">Submit</button>
 
         <h2 class="section-title">Contact us</h2>
-        <a href="https://wa.me/" target="_blank" class="whatsapp-btn"> Whatsapp</a>
+        <a href="https://wa.me/96181024067" target="_blank" class="whatsapp-btn"> Whatsapp</a>
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=example@gmail.com" target="_blank" class="gmail-btn">Gmail</a>
 
     </section>
-    <footer>
-
-
-        <div class="footer-bottom">
-            <p>📍 Lebanon</p>
-            <p>© 2026 The Floral Atelier. All rights deserved.</p>
-
-        </div>
-    </footer>
-
 
 
 
