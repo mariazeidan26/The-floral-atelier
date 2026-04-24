@@ -74,6 +74,7 @@ function viewCart() {
     window.location.href = "cart.html";
 }
 function goToPlanting(){
+    alert("js is working");
     window.location.href="planting.html";
 }
 function goToMaintenance(){
