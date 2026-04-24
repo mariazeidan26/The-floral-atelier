@@ -6,11 +6,12 @@ function goToLogin() {
 function goToSignup() {
     window.location.href = "signup.html";
 }
-/*function validateLogin() {
+   function validateLogin(event) {
+    event.preventDefault();
     var email = document.getElementById("email").value.trim();
     var pass = document.getElementById("password").value.trim();
     var error = document.getElementById("error");
-    error.innerHTML="";
+    error.innerHTML = "";
     if (!email || !pass) {
         error.innerHTML = "Error. Both field are required";
         return false;
@@ -33,19 +34,14 @@ function goToSignup() {
         return false;
     }
     window.location.href = "index.html";
-}*/
-function validateLogin(event) {
-    event.preventDefault();
-    alert("LOGIN FUNCTION TRIGGERED");
-    window.location.href = "index.html";
 }
-function validateSignUp(){
-    var email=document.getElementById("email").value;
-    var pass=document.getElementById("pass").value;
-    var pass2=document.getElementById("confirmpass").value;
-    var error=document.getElementById("error");
-    error.innerHTML="";
-    if (!email || !pass||!pass2) {
+function validateSignUp() {
+    var email = document.getElementById("email").value;
+    var pass = document.getElementById("pass").value;
+    var pass2 = document.getElementById("confirmpass").value;
+    var error = document.getElementById("error");
+    error.innerHTML = "";
+    if (!email || !pass || !pass2) {
         error.innerHTML = "Error. Both field are required";
         return false;
     }
@@ -66,14 +62,14 @@ function validateSignUp(){
         error.innerHTML = "Password too short.";
         return false;
     }
-    if(pass!==pass2){
-        error.innerHTML="Passwords do not match.";
+    if (pass !== pass2) {
+        error.innerHTML = "Passwords do not match.";
         return false;
     }
     window.location.href = "index.html";
 }
 
 
-function viewCart(){
-    window.location.href="cart.html";
+function viewCart() {
+    window.location.href = "cart.html";
 }
