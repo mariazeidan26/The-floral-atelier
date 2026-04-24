@@ -6,8 +6,7 @@ function goToLogin() {
 function goToSignup() {
     window.location.href = "signup.html";
 }
-function validateLogin() {
-    event.preventDefault();
+/*function validateLogin() {
     var email = document.getElementById("email").value.trim();
     var pass = document.getElementById("password").value.trim();
     var error = document.getElementById("error");
@@ -34,6 +33,10 @@ function validateLogin() {
         return false;
     }
     window.location.href = "index.html";
+}*/
+function validateLogin(event) {
+    event.preventDefault();
+    alert("LOGIN FUNCTION TRIGGERED");
 }
 function validateSignUp(){
     var email=document.getElementById("email").value;
