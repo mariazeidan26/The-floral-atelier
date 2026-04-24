@@ -11,7 +11,7 @@ function validateLogin() {
     var pass = document.getElementById("password").value.trim();
     var error = document.getElementById("error");
     error.innerHTML="";
-    if (email === "" || pass === "") {
+    if (!email || !pass) {
         error.innerHTML = "Error. Both field are required";
         return false;
     }
