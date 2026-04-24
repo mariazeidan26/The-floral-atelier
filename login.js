@@ -22,7 +22,7 @@ function goToSignup() {
     }
     let emailsub = email.substring(email.indexOf("@") + 1);
     if (emailsub !== "gmail.com") {
-        error.innerHTML = "Invalid email";
+        error.innerHTML = "Please use a gmail account.";
         return false;
     }
 
