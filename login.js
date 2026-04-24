@@ -35,6 +35,7 @@ function validateLogin() {
     window.location.href = "index.html";
 }
 function validateSignUp(){
+    console.log("clicked");
     var email=document.getElementById("email").value;
     var pass=document.getElementById("pass").value;
     var pass2=document.getElementById("confirmpass").value;
@@ -65,7 +66,6 @@ function validateSignUp(){
         error.innerHTML="Passwords do not match.";
         return false;
     }
-    console.log("Validation passed");
     window.location.href = "index.html";
 }
 
