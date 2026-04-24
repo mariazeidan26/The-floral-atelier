@@ -65,6 +65,7 @@ function validateSignUp(){
         error.innerHTML="Passwords do not match.";
         return false;
     }
+    console.log("Validation passed");
     window.location.href = "index.html";
 }
 
