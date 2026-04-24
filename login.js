@@ -37,6 +37,7 @@ function goToSignup() {
 function validateLogin(event) {
     event.preventDefault();
     alert("LOGIN FUNCTION TRIGGERED");
+    window.location.href = "index.html";
 }
 function validateSignUp(){
     var email=document.getElementById("email").value;
