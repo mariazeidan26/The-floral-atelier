@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            background-color: #f7f3ee;
+        }
+        
+        .sidebar {
+            width: 240px;
+            height: 100%;
+            background: lightcoral;
+            color: white;
+            padding: 20px;
+            position: fixed;
+        }
+        
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar a {
+            display: block;
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar a:hover {
+            background-color: #f7f3ee;
+            color: black;
+        }
+        
+        .main {
+            margin-left: 260px;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: lightgrey;
+        }
+        
+        .card h3 {
+            margin-bottom: 15px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+        
+        .status {
+            padding: 5px 10px;
+            border-radius: 6px;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .available {
+            background: green;
+        }
+        
+        .out {
+            background: red;
+        }
+        
+        .pending {
+            background: orange;
+        }
+        
+        .shipped,
+        .completed {
+            background: blue;
+        }
+        
+        .btn {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 2px;
+        }
+        
+        .add {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .edit {
+            background: #3498db;
+            color: white;
+        }
+        
+        .delete {
+            background: #A10035;
+            color: white;
+        }
+        
+        .card input,
+        .card select {
+            width: 100%;
+            padding: 6px;
+            margin: 5px 0;
+        }
+        
+        .details {
+            background: #f1f2f6;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        
+        @media (max-width:600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <a href="#">Products</a>
+        <a href="#">Orders</a>
+        <a href="#">Customers</a>
+        <a href="#">Marketing</a>
+        <a href="#">Payments</a>
+        <a href="#">Returns</a>
+        <a href="#">Security</a>
+    </div>
+
+
+    <div class="main">
+
+        <div class="grid">
+
+            <!-- PRODUCTS -->
+            <div class="card">
+                <h3>Products</h3>
+
+                <input type="text" placeholder="Product name">
+                <input type="number" placeholder="Price">
+                <select>
+                    <option>Available</option>
+                    <option>Out of Stock</option>
+                </select>
+                <button class="btn add">Add Product</button>
+
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+
+                    <tr>
+                        <td>White Orchid</td>
+                        <td>$10</td>
+                        <td><span class="status available">Available</span></td>
+                        <td>
+                            <button class="btn edit">Edit</button>
+                            <button class="btn delete">Remove</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Ruffled Fan Palm</td>
+                        <td>$15</td>
+                        <td><span class="status available">Available</span></td>
+                        <td>
+                            <button class="btn edit">Edit</button>
+                            <button class="btn delete">Remove</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Pink Harmony</td>
+                        <td>$40</td>
+                        <td><span class="status available">Available</span></td>
+                        <td>
+                            <button class="btn edit">Edit</button>
+                            <button class="btn delete">Remove</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+
+            <!-- SERVICES -->
+            <div class="card">
+                <h3>Services</h3>
+
+                <input type="text" placeholder="Service type">
+                <input type="number" placeholder="Price">
+
+                <button class="btn add">Add service</button>
+
+                <table>
+                    <tr>
+                        <th>type</th>
+                        <th>Price</th>
+
+                        <th>Actions</th>
+                    </tr>
+
+                    <tr>
+                        <td>Planting</td>
+                        <td>$15</td>
+
+                        <td>
+                            <button class="btn edit">Edit</button>
+                            <button class="btn delete">Remove</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Maintenance</td>
+                        <td>$40</td>
+
+                        <td>
+                            <button class="btn edit">Edit</button>
+                            <button class="btn delete">Remove</button>
+                        </td>
+                    </tr>
+
+
+
+                </table>
+            </div>
+
+
+
+            <!-- ORDERS -->
+            <div class="card">
+                <h3>Order Fulfilment</h3>
+
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                    </tr>
+
+                    <tr>
+                        <td>#101</td>
+                        <td>Lea</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td>
+                            <select>
+                                <option>Pending</option>
+                                <option>Shipped</option>
+                                <option>Delivered</option>
+                            </select>
+                            <button class="btn edit">Update</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>#102</td>
+                        <td>Johnny</td>
+                        <td><span class="status shipped">Shipped</span></td>
+                        <td>
+                            <select>
+                                <option>Pending</option>
+                                <option selected>Shipped</option>
+                                <option>Delivered</option>
+                            </select>
+                            <button class="btn edit">Update</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CUSTOMERS -->
+            <div class="card">
+                <h3>Customer Database</h3>
+
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <button class="btn add">Add User</button>
+
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+
+                    <tr>
+                        <td>Lea</td>
+                        <td>Lea@gmail.com</td>
+                        <td>
+                            <button class="btn edit">Profile</button>
+                            <button class="btn delete">Remove</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            <div class="details">
+                                <strong>Registration:</strong> April 2026<br>
+                                <strong>Total Orders:</strong>2<br>
+                                <strong>Order History:</strong><br> - #101 (Pending)<br> - #082 (Delivered)
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- MARKETING -->
+            <div class="card">
+                <h3>Marketing & Promotions</h3>
+                <input type="text" placeholder="Discount code">
+                <input type="number" placeholder="%">
+                <button class="btn add">Create Promotion</button>
+                <br>
+                <br>
+                <table>
+                    <tr>
+                        <th>Code</th>
+                        <th>Discount</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td>Staff50</td>
+                        <td>50%</td>
+                        <td> <button class="btn edit">Edit</button>
+                            <button class="btn delete">Remove</button> </td>
+
+                    </tr>
+                </table>
+            </div>
+
+            <!-- PAYMENTS -->
+            <div class="card">
+                <h3>Payments</h3>
+
+                <table>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+
+                    <tr>
+                        <td>#101</td>
+                        <td>Lea</td>
+                        <td>$10</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>#083</td>
+                        <td>Layla</td>
+                        <td>$20</td>
+                        <td><span class="status completed">Completed</span></td>
+                    </tr>
+                </table>
+
+
+            </div>
+
+            <!-- RETURNS -->
+            <div class="card">
+                <h3>Returns and Refunds</h3>
+
+                <table>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                    <tr>
+                        <td>#083</td>
+                        <td>Layla</td>
+                        <td>Damaged item</td>
+                        <td><span class="status pending">Pending</span></td>
+                        <td>
+                            <button class="btn edit">view</button>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>#102</td>
+                        <td>Johnny</td>
+                        <td>Wrong item</td>
+                        <td><span class="status shipped">Refunded</span></td>
+                        <td>
+                            <button class="btn edit">view</button>
+                        </td>
+                    </tr>
+                </table>
+
+                <br>
+                <h4>Process refund</h4>
+                <input type="text" placeholder="Order ID">
+                <input type="text" placeholder="Reason">
+                <select>
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+                </select>
+                <button class="btn add">Submit</button>
+
+
+            </div>
+
+            <!--Reviews and feedbacks-->
+            <div class="card">
+
+                <h3>Reviews and feedbacks</h3>
+                <table>
+                    <tr>
+                        <th>user</th>
+                        <th>rating</th>
+                        <th>feedback</th>
+                    </tr>
+
+                    <tr>
+                        <td> clara </td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                        <td>The service was amazing and fast</td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <!-- SECURITY -->
+            <div class="card">
+                <h3>Security</h3>
+                <p><strong>Access:</strong>Admin</p>
+                <br>
+                <h4> Recent Activity:</h4>
+                <ul>
+                    <li>updated products</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

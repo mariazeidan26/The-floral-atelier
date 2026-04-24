@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;900&family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Maintenance service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        body {
+            background-color: aliceblue;
+            color: black;
+        }
+        
+        .hero {
+            height: 140px;
+            background-color: #2c532c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        p,
+        .info-box {
+            opacity: 0.8 !important;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 25px;
+            margin-bottom: 20px;
+            color: #2f4f2f;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px #eee;
+        }
+        
+        th,
+        td {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #d8ead9;
+            color: #2f4f2f;
+        }
+        
+        input,
+        select {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .info-box {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        
+        .price,
+        .plants-nb {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #3c6e47;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2c532c;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="hero">
+        <div>
+            <h1>Maintenance Service Booking</h1>
+            <br>
+            <p>We bring your space to life</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+
+        <h2 class="section-title">Choose date and time</h2>
+        <div class="form-grid">
+            <select>
+                <option>weekly</option>
+                <option>Monthly</option>
+
+            </select>
+            <select>
+                <option>Monday</option>
+                <option>Tuesday</option>
+                <option>Wednesday</option>
+                <option>Thursday</option>
+                <option>Friday</option>
+            </select>
+            <select>
+                <option>8:00 AM</option>
+                <option>9:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>12:00 PM</option>
+                <option>1:00 PM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
+                <option>4:00 PM</option>
+                <option>5:00 PM</option>
+            </select>
+        </div>
+
+
+        <h2 class="section-title" style="margin-top: 40px;">Our maintenance service includes:</h2>
+        <div class="info-box">
+            Watering <br> Pruning and plant shaping<br>Pest prevention<br> enriching soil with compost<br>plant support
+        </div>
+        <br>
+        <div class="plant-nb">
+            <label> Enter your plants number:</label>
+            <input type="number" min="1" value="1">
+        </div>
+
+        <div class="price">
+
+            <h3>Price</h3>
+            <p>$</p>
+        </div>
+
+
+        <button class="btn">Add to cart</button>
+
+
+    </div>
+
+
+</body>
+
+</html>

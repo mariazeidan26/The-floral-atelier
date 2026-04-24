@@ -11,7 +11,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #FFE7BF !important;
+    color: antiquewhite !important;
 }
 
 .navbar-brand {
@@ -24,16 +24,16 @@ nav a:hover {
 
 .navbar-form .form-control:focus {
     outline: none;
-    box-shadow: 0 0 8px #FFE7BF;
+    box-shadow: 0 0 8px #f7f3ee;
 }
 
 .navbar-form .btn {
     border-radius: 50%;
-    background-color: #FFE7BF;
-    color: #fff;
+    background-color: #f7f3ee;
+    color: #A10035;
     border: none;
     width: 35px;
-    height: 35px;
+    height: 34px;
 }
 
 .navbar {
@@ -67,7 +67,7 @@ nav a:hover {
 
 .category-btn {
     background-color: #A10035 !important;
-    color: #F5E6D3 !important;
+    color: #f7f3ee!important;
     border: 2px solid #A10035 !important;
     border-radius: 30px !important;
     padding: 14px 24px !important;
@@ -80,7 +80,7 @@ nav a:hover {
 /*hover*/
 
 .category-btn:hover {
-    background-color: #DCDCDC!important;
+    background-color: #f7f3ee!important;
     color: #A10035 !important;
     transform: translateY(-4px);
     box-shadow: #DCDCDC;
@@ -97,7 +97,7 @@ nav a:hover {
 }
 
 .category-btn.active {
-    background-color: #DCDCDC !important;
+    background-color: #f7f3ee !important;
     color: #A10035 !important;
 }
 
@@ -137,6 +137,17 @@ nav a:hover {
     border-radius: 12px;
 }
 
+.buttons :active {
+    background-color: #f7f3ee!important;
+    color: #A10035 !important;
+}
+
+.buttons :hover {
+    background-color: #f7f3ee!important;
+    color: #A10035 !important;
+    transition-duration: 0.3s;
+}
+
 .buttons {
     display: flex;
     flex-direction: column;
@@ -162,7 +173,7 @@ nav a:hover {
 
 .info-btn {
     border: none;
-    background: #fff;
+    background: white;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -216,11 +227,22 @@ nav a:hover {
     margin-top: 0px;
     padding: 10px 20px;
     background: #A10035;
-    color: white;
+    color: #f7f3ee;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     width: 120px;
+}
+
+.btn :active {
+    background-color: #f7f3ee!important;
+    color: #A10035 !important;
+}
+
+.btn :hover {
+    background-color: #f7f3ee!important;
+    color: #A10035 !important;
+    transition-duration: 0.3s;
 }
 
 .whatsapp-btn,
@@ -229,7 +251,109 @@ nav a:hover {
     margin-top: 12px;
     padding: 10px 20px;
     background: #A10035;
-    color: #fff;
+    color: #f7f3ee;
     text-decoration: none;
     border-radius: 6px;
+}
+
+.service-form button {
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+}
+
+#bouquets .bouquets-grid {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 30px;
+    align-items: start;
+}
+
+#bouquet.left {
+    display: block;
+}
+
+.bouquet-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#bouquets .right {
+    background-color: antiquewhite;
+    padding: 20px;
+    border-radius: 10px;
+    /*display: flex;
+    flex-direction: column;
+    gap: 15px;*/
+}
+
+.bouquet-table th,
+.bouquet-table td {
+    text-align: center;
+    padding: 10px;
+}
+
+.flower-o {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.flower-o img {
+    width: 40px;
+    height: 40px;
+}
+
+@media (max-width:600px) {
+    #bouquets .bouquets-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+#bouquets.product-section.active {
+    display: block !important;
+}
+
+.bouquet-cart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.remove {
+    background-color: lightcoral;
+    color: #f7f3ee;
+    border: none;
+    cursor: pointer;
+}
+
+#bouquets .right .buy {
+    background-color: #f7f3ee !important;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    font-weight: 200;
+}
+
+.title {
+    font-style: italic;
+    font-weight: 200;
+}
+
+.bouquet-table th {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.footer {
+    background-color: #fff;
+    margin-top: 50px;
+}
+
+.footer-bottom {
+    text-align: center;
 }

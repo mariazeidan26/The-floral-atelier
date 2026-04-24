@@ -6,15 +6,15 @@
     <style>
         body {
             margin-top: 20px;
-            background-color: rgb(105, 33, 33);
+            background-color: antiquewhite;
         }
-
+        
         .card {
             margin-bottom: 24px;
             -webkit-box-shadow: 0 2px 3px #e4e8f0;
             box-shadow: 0 2px 3px #e4e8f0;
         }
-
+        
         .card {
             position: relative;
             display: -webkit-box;
@@ -31,76 +31,76 @@
             border: 1px solid #eff0f2;
             border-radius: 1rem;
         }
-
+        
         .activity-checkout {
             list-style: none
         }
-
+        
         .activity-checkout .checkout-icon {
             position: absolute;
             top: -4px;
             left: -24px
         }
-
+        
         .activity-checkout .checkout-item {
             position: relative;
             padding-bottom: 24px;
             padding-left: 35px;
             border-left: 2px solid #f5f6f8
         }
-
+        
         .activity-checkout .checkout-item:first-child {
             border-color: red;
         }
-
+        
         .activity-checkout .checkout-item:first-child:after {
             background-color: red;
         }
-
+        
         .activity-checkout .checkout-item:last-child {
             border-color: red
         }
-
+        
         .activity-checkout .checkout-item.crypto-activity {
             margin-left: 50px
         }
-
+        
         .activity-checkout .checkout-item .crypto-date {
             position: absolute;
             top: 3px;
             left: -65px
         }
-
+        
         .avatar-xs {
             height: 1rem;
             width: 1rem
         }
-
+        
         .avatar-sm {
             height: 2rem;
             width: 2rem
         }
-
+        
         .avatar {
             height: 3rem;
             width: 3rem
         }
-
+        
         .avatar-md {
             height: 4rem;
             width: 4rem
         }
-
+        
         .avatar-lg {
             height: 5rem;
             width: 5rem
         }
-
+        
         .avatar-xl {
             height: 6rem;
             width: 6rem
         }
-
+        
         .avatar-title {
             -webkit-box-align: center;
             -ms-flex-align: center;
@@ -117,7 +117,7 @@
             justify-content: center;
             width: 100%
         }
-
+        
         .avatar-group {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -126,7 +126,7 @@
             flex-wrap: wrap;
             padding-left: 8px
         }
-
+        
         .avatar-group .avatar-group-item {
             margin-left: -8px;
             border: 2px solid #fff;
@@ -134,13 +134,13 @@
             -webkit-transition: all .2s;
             transition: all .2s
         }
-
+        
         .avatar-group .avatar-group-item:hover {
             position: relative;
             -webkit-transform: translateY(-2px);
             transform: translateY(-2px)
         }
-
+        
         .card-radio {
             background-color: whitesmoke;
             border: 2px solid #eff0f2;
@@ -151,15 +151,15 @@
             white-space: nowrap;
             display: block
         }
-
+        
         .card-radio:hover {
             cursor: pointer
         }
-
+        
         .card-radio-label {
             display: block
         }
-
+        
         .edit-btn {
             width: 35px;
             height: 35px;
@@ -169,29 +169,29 @@
             right: 25px;
             margin-top: -50px
         }
-
+        
         .card-radio-input {
             display: none
         }
-
+        
         .card-radio-input:checked+.card-radio {
             border-color: #3b76e1 !important
         }
-
+        
         .font-size-16 {
             font-size: 16px !important;
         }
-
+        
         .text-truncate {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-
+        
         a {
             text-decoration: none !important;
         }
-
+        
         .form-control {
             display: block;
             width: 100%;
@@ -212,7 +212,7 @@
             transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
         }
-
+        
         .edit-btn {
             width: 35px;
             height: 35px;
@@ -222,7 +222,7 @@
             right: 25px;
             margin-top: -50px;
         }
-
+        
         .ribbon {
             position: absolute;
             right: -26px;
@@ -240,9 +240,7 @@
 </head>
 
 <body>
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
-        integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <div class="container">
@@ -269,35 +267,27 @@
                                                     <div class="row">
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
-                                                                <label class="form-label"
-                                                                    for="billing-name">Name</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="billing-name" placeholder="Enter name">
+                                                                <label class="form-label" for="billing-name">Name</label>
+                                                                <input type="text" class="form-control" id="billing-name" placeholder="Enter name">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
-                                                                <label class="form-label"
-                                                                    for="billing-email-address">Email Address</label>
-                                                                <input type="email" class="form-control"
-                                                                    id="billing-email-address"
-                                                                    placeholder="Enter email">
+                                                                <label class="form-label" for="billing-email-address">Email Address</label>
+                                                                <input type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
-                                                                <label class="form-label"
-                                                                    for="billing-phone">Phone</label>
-                                                                <input type="text" class="form-control"
-                                                                    id="billing-phone" placeholder="Enter Phone no.">
+                                                                <label class="form-label" for="billing-phone">Phone</label>
+                                                                <input type="text" class="form-control" id="billing-phone" placeholder="Enter Phone number">
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="mb-3">
                                                         <label class="form-label" for="billing-address">Address</label>
-                                                        <textarea class="form-control" id="billing-address" rows="3"
-                                                            placeholder="Enter full address"></textarea>
+                                                        <textarea class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
                                                     </div>
 
                                                     <div class="row">
@@ -317,9 +307,9 @@
                                                             </div>
                                                         </div>
                                             </form>
+                                            </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
                             </li>
                             <li class="checkout-item">
                                 <div class="avatar checkout-icon p-1">
@@ -333,8 +323,7 @@
                                                     <div data-bs-toggle="collapse">
 
                                                         <div class="edit-btn bg-light  rounded">
-                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top"
-                                                                title="" data-bs-original-title="Edit">
+                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit">
                                                                 <i class="bx bx-pencil font-size-16"></i>
                                                             </a>
                                                         </div>
@@ -345,8 +334,7 @@
                                                     <div>
 
                                                         <div class="edit-btn bg-light  rounded">
-                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top"
-                                                                title="" data-bs-original-title="Edit">
+                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit">
                                                                 <i class="bx bx-pencil font-size-16"></i>
                                                             </a>
                                                         </div>
@@ -402,193 +390,189 @@
                                 </div>
                             </li>
                         </ol>
-                    </div>
-                </div>
-
-                <div class="row my-4">
-                    <div class="col">
-                        <a href="ecommerce-products.html" class="btn btn-link text-muted">
-                            <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
-                    </div>
-                    <!-- end col -->
-                    <div class="col">
-                        <div class="text-end mt-2 mt-sm-0">
-                            <a href="#" class="btn btn-success">
-                                <i class="mdi mdi-cart-outline me-1"></i> Procced </a>
                         </div>
-                    </div>
-                    <!-- end col -->
-                </div>
-                <!-- end row-->
-            </div>
-            <div class="col-xl-4">
-                <div class="card checkout-order-summary">
-                    <div class="card-body">
-                        <div class="p-3 bg-light mb-3">
-                            <h5 class="font-size-16 mb-0">Order Summary </h5>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table table-centered mb-0 table-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th class="border-top-0" style="width: 110px;" scope="col">Product</th>
-                                        <th class="border-top-0" scope="col">Product Description</th>
-                                        <th class="border-top-0" scope="col">Price</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row"><img src="css/whiteOrchid.jpeg" alt="product-img"
-                                                title="product-img" class="avatar-lg rounded"></th>
-                                        <td>
-                                            <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark"> White
+                        <div class="row my-4">
+                            <div class="col">
+                                <a href="ecommerce-products.html" class="btn btn-link text-muted">
+                                    <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
+                            </div>
+                            <!-- end col -->
+                            <div class="col">
+                                <div class="text-end mt-2 mt-sm-0">
+                                    <a href="#" class="btn btn-success">
+                                        <i class="mdi mdi-cart-outline me-1"></i> Proceed </a>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row-->
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="card checkout-order-summary">
+                            <div class="card-body">
+                                <div class="p-3 bg-light mb-3">
+                                    <h5 class="font-size-16 mb-0">Order Summary <span class="float-end ms-2">#101</span></h5>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-centered mb-0 table-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-top-0" style="width: 110px;" scope="col">Product</th>
+                                                <th class="border-top-0" scope="col">Product Description</th>
+                                                <th class="border-top-0" scope="col">Price</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row"><img src="css/whiteOrchid.jpeg" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
+                                                <td>
+                                                    <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark"> White
                                                     Orchid</a></h5>
 
 
-                                            <a href="#" class="text-muted px-1">
-                                                <input type="number" min="1" value="1">
+                                                    <a href="#" class="text-muted px-1">
+                                                        <input type="number" min="1" value="1">
 
-                                                <i class="mdi mdi-trash-can-outline"> </i>
-                                            </a>
-                                            <p class="text-muted mb-0 mt-1">$ 10 x 2</p>
-                                        </td>
-                                        <td>$ 20</td>
+                                                        <i class="mdi mdi-trash-can-outline"> </i>
+                                                    </a>
+                                                    <p class="text-muted mb-0 mt-1">$ 10 x 2</p>
+                                                </td>
+                                                <td>$ 20</td>
 
 
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><img src="css/ruffledFanPalm.jpeg" alt="product-img"
-                                                title="product-img" class="avatar-lg rounded"></th>
-                                        <td>
-                                            <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Ruffled
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><img src="css/ruffledFanPalm.jpeg" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
+                                                <td>
+                                                    <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Ruffled
                                                     Fan Palm</a></h5>
-                                            <a href="#" class="text-muted px-1">
-                                                <input type="number" min="1" value="1">
+                                                    <a href="#" class="text-muted px-1">
+                                                        <input type="number" min="1" value="1">
 
-                                                <i class="mdi mdi-trash-can-outline"> </i>
-                                            </a>
-                                            <p class="text-muted mb-0 mt-1">$ 15 x 2</p>
-
-
-                                        </td>
-
-                                        </td>
-                                        <td>$ 30</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <h5 class="font-size-14 m-0">Sub Total :</h5>
-                                        </td>
-                                        <td>
-                                            $ 50
-                                        </td>
-                                    </tr>
+                                                        <i class="mdi mdi-trash-can-outline"> </i>
+                                                    </a>
+                                                    <p class="text-muted mb-0 mt-1">$ 15 x 2</p>
 
 
-                                    <tr>
-                                        <td colspan="2">
-                                            <h5 class="font-size-14 m-0">Shipping Charge :</h5>
-                                        </td>
-                                        <td>
-                                            $ 3
-                                        </td>
-                                    </tr>
+                                                </td>
+
+                                                </td>
+                                                <td>$ 30</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <h5 class="font-size-14 m-0">Sub Total :</h5>
+                                                </td>
+                                                <td>
+                                                    $ 50
+                                                </td>
+                                            </tr>
 
 
-                                    <tr class="bg-light">
-                                        <td colspan="2">
-                                            <h5 class="font-size-14 m-0">Total:</h5>
-                                        </td>
-                                        <td>
-                                            $ 53
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <h5 class="font-size-14 m-0">Shipping Charge :</h5>
+                                                </td>
+                                                <td>
+                                                    $ 3
+                                                </td>
+                                            </tr>
 
+
+                                            <tr class="bg-light">
+                                                <td colspan="2">
+                                                    <h5 class="font-size-14 m-0">Total:</h5>
+                                                </td>
+                                                <td>
+                                                    $ 53
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
                         </div>
+                        <div class="card checkout-order-summary">
+                            <div class="card-body">
+                                <div class="p-3 bg-light mb-3">
+                                    <h5 class="font-size-16 mb-0"> Services booking Summary </h5>
+
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-centered mb-0 table-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th class="border-top-0" style="width: 110px;" scope="col">service</th>
+
+                                                <th class="border-top-0" scope="col">Price</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+
+                                                <td>
+                                                    <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Planting service</a></h5>
+
+                                                    <a href="#" class="text-muted px-1">
+
+
+                                                        <i class="mdi mdi-trash-can-outline"> </i>
+                                                    </a>
+
+                                                </td>
+                                                <td>$ 15</td>
+
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>
+                                                    <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Maintenance service </a></h5>
+                                                    <a href="#" class="text-muted px-1">
+
+
+                                                        <i class="mdi mdi-trash-can-outline"> </i>
+                                                    </a>
+
+                                                </td>
+                                                <td>$ 40</td>
+
+
+                                                </td>
+
+                                            </tr>
+
+
+
+
+
+                                            <tr class="bg-light">
+                                                <td colspan="2">
+                                                    <h5 class="font-size-14 m-0">Total:</h5>
+                                                </td>
+                                                <td>
+                                                    55 $
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
-                <div class="card checkout-order-summary">
-                    <div class="card-body">
-                        <div class="p-3 bg-light mb-3">
-                            <h5 class="font-size-16 mb-0"> Services booking Summary </h5>
-
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-centered mb-0 table-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th class="border-top-0" style="width: 110px;" scope="col">service</th>
-
-                                        <th class="border-top-0" scope="col">Price</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-
-                                        <td>
-                                            <h5 class="font-size-16 text-truncate"><a href="#"
-                                                    class="text-dark">Planting service</a></h5>
-
-                                            <a href="#" class="text-muted px-1">
-
-
-                                                <i class="mdi mdi-trash-can-outline"> </i>
-                                            </a>
-                                            <p class="text-muted mb-0 mt-1">$ </p>
-                                        </td>
-                                        <td>$ 15</td>
-
-
-                                    </tr>
-                                    <tr>
-
-                                        <td>
-                                            <h5 class="font-size-16 text-truncate"><a href="#"
-                                                    class="text-dark">Maintenance service </a></h5>
-                                            <a href="#" class="text-muted px-1">
-
-
-                                                <i class="mdi mdi-trash-can-outline"> </i>
-                                            </a>
-                                            <p class="text-muted mb-0 mt-1">$ </p>
-                                        </td>
-                                        <td>$ 40</td>
-
-
-                                        </td>
-
-                                    </tr>
-
-
-
-
-
-                                    <tr class="bg-light">
-                                        <td colspan="2">
-                                            <h5 class="font-size-14 m-0">Total:</h5>
-                                        </td>
-                                        <td>
-                                            55 $
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
+                <!-- end row -->
 
             </div>
-
-        </div>
-        <!-- end row -->
-
-    </div>
 </body>
 
 </html>
