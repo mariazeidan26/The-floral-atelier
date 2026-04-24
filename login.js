@@ -73,3 +73,9 @@ function validateSignUp() {
 function viewCart() {
     window.location.href = "cart.html";
 }
+function goToPlanting(){
+    window.location.href="planting.html";
+}
+function goToMaintenance(){
+    window.location.href="maintenance.html";
+}
