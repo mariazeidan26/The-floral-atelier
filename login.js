@@ -35,7 +35,7 @@ function validateLogin() {
     window.location.href = "index.html";
 }
 function validateSignUp(){
-    console.log("clicked");
+    alert("clicked");
     var email=document.getElementById("email").value;
     var pass=document.getElementById("pass").value;
     var pass2=document.getElementById("confirmpass").value;
