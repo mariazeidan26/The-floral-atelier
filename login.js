@@ -34,14 +34,14 @@ function validateLogin() {
     }
     window.location.href = "index.html";
 }
-/*function validateSignUp(){
+function validateSignUp(){
     alert("clicked");
     var email=document.getElementById("email").value;
     var pass=document.getElementById("pass").value;
     var pass2=document.getElementById("confirmpass").value;
     var error=document.getElementById("error");
     error.innerHTML="";
-    if (email === "" || pass === ""||pass2=== "") {
+    if (!email || !pass||!pass2) {
         error.innerHTML = "Error. Both field are required";
         return false;
     }
@@ -66,10 +66,6 @@ function validateLogin() {
         error.innerHTML="Passwords do not match.";
         return false;
     }
-    window.location.href = "index.html";
-}*/
-    function validateSignUp(){
-    alert("before redirect");
     window.location.href = "index.html";
 }
 
