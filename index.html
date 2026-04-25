@@ -187,7 +187,7 @@
         <!--services -->
         <div id="services" class="product-section">
             <div class="buttons services-buttons">
-                <button class="service-btn" onclick="alert('clicked')"> Book a planting service </button>
+                <button class="service-btn" onclick="goToPlanting()"> Book a planting service </button>
                 <button class="service-btn" onclick="goToMaintenance()"> Book a maintenance service </button>
             </div>
 
@@ -227,22 +227,22 @@
             const section = document.getElementById(sectionId);
             const isActive = section.classList.contains("active");
 
-            // hide all sections first
+            
             document.querySelectorAll(".product-section").forEach(sec => {
                 sec.classList.remove("active");
             });
 
-            // remove active buttons
+            
             document.querySelectorAll(".category-btn").forEach(b => {
                 b.classList.remove("active");
             });
 
-            // if it was already active → just close it
+           
             if (isActive) {
                 return;
             }
 
-            // otherwise open it
+            
             section.classList.add("active");
             btn.classList.add("active");
         }
