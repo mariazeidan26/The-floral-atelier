@@ -70,7 +70,6 @@ function validateSignUp() {
 }
 
 function goToPlanting(){
-    alert("JS LOADED");
     window.location.href="planting.html";
 }
 function goToMaintenance(){
