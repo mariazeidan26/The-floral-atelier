@@ -179,6 +179,8 @@ nav a:hover {
     border-radius: 50%;
     font-size: 15px;
     cursor: pointer;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .description {
