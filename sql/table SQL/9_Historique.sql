@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS Statistique_Prix (
+    ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    ID_Plante INT UNSIGNED NOT NULL,
+    prix_historique DECIMAL(10, 2) UNSIGNED NOT NULL DEFAULT 0.00,
+    motif ENUM('Changement Admin', 'Promo Activée', 'Promo Expirée') DEFAULT 'Promo Activée',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk__Statistique_Prix__Plante FOREIGN KEY (ID_Plante) REFERENCES Plante (ID) ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS Statistique_stock (
+    ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    ID_Plante INT UNSIGNED NOT NULL,
+    stock_historique INT UNSIGNED NOT NULL DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk__Statistique_Stock__Plante FOREIGN KEY (ID_Plante) REFERENCES Plante (ID) ON DELETE CASCADE
+);

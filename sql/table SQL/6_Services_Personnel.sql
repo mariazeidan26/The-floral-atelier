@@ -30,6 +30,6 @@ CREATE TABLE IF NOT EXISTS Rendez_Vous (
     date_debut DATETIME,
     date_fin DATETIME,
     compte_rendu TEXT,
-    CONSTRAINT fk__Rendez_Vous__Prestation FOREIGN KEY (ID_User) REFERENCES User (ID),
-    CONSTRAINT fk__Rendez_Vous__Prestation FOREIGN KEY (ID_Type_Service) REFERENCES Type_Service (ID)
+    CONSTRAINT fk__Rendez_Vous__Prestation FOREIGN KEY (ID_Prestation) REFERENCES User (ID) ON DELETE CASCADE,
+    CONSTRAINT fk__Rendez_Vous__Prestation FOREIGN KEY (ID_Employe) REFERENCES Type_Service (ID)
 );
