@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Type_Service (
     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
     description_generale TEXT,
-    prix_horaire DECIMAL(10, 2) UNSIGNED NOT NULL DEFAULT 0.00
+    prix_horaire DECIMAL(9, 2) UNSIGNED NOT NULL DEFAULT 0.00
 );
 CREATE TABLE IF NOT EXISTS Prestation (
     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -30,6 +30,6 @@ CREATE TABLE IF NOT EXISTS Rendez_Vous (
     date_debut DATETIME,
     date_fin DATETIME,
     compte_rendu TEXT,
-    CONSTRAINT fk__Rendez_Vous__Prestation FOREIGN KEY (ID_Prestation) REFERENCES User (ID) ON DELETE CASCADE,
-    CONSTRAINT fk__Rendez_Vous__Prestation FOREIGN KEY (ID_Employe) REFERENCES Type_Service (ID)
+    CONSTRAINT fk__Rendez_Vous__Prestation FOREIGN KEY (ID_Prestation) REFERENCES Prestation (ID) ON DELETE CASCADE,
+    CONSTRAINT fk__Rendez_Vous__Prestation FOREIGN KEY (ID_Employe) REFERENCES Employe (ID)
 );

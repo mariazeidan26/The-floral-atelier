@@ -6,7 +6,7 @@ Log_Activite (ID, ID_user, date_heure, type_action, adresse_ip)
 
 🌱 Catalogue Produits
 
-Categorie (ID, nom)
+Categorie (ID, nom, details)
 Plante (ID, nom, ID_categorie, details, prix, statut(disponible, archive), quantite)
 Image_Plante (ID, ID_Plante, url_image)
 

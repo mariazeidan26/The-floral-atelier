@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS Adresse (
     ville VARCHAR(255) NOT NULL,
     code_postal VARCHAR(10) NOT NULL,
     telephone_contact VARCHAR(20),
-    latitude DECIMAL(10, 8),
-    longitude DECIMAL(10, 8),
+    --latitude DECIMAL(10, 8),
+    --longitude DECIMAL(10, 8),
     instructions TEXT,
     est_defaut BOOLEAN DEFAULT FALSE,
     -- OU est_defaut TINYINT(1) DEFAULT 0 en ca erreur

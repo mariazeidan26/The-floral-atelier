@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS Promotion(
     code VARCHAR(255) NULL UNIQUE, -- a modifier a 191 selon la version de mysql ou mariadb
     nom VARCHAR(100) NOT NULL,
     details TEXT,
-    valeur_reduction DECIMAL(5, 2) DEFAULT 0.00,
+    valeur_reduction DECIMAL(6, 2) DEFAULT 0.00,
     type_reduction ENUM('pourcentage', 'fixe') DEFAULT 'fixe',
     date_debut DATETIME DEFAULT CURRENT_TIMESTAMP,
     date_expiration DATETIME NOT NULL,

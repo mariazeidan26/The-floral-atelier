@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Ligne_Panier (
     ID_Plante INT UNSIGNED NOT NULL,
     quantite INT UNSIGNED NOT NULL DEFAULT 1,
     ID_Promotion_Unitaire INT UNSIGNED NULL,
-    prix_achat_historique DECIMAL(10, 2) UNSIGNED NOT NULL DEFAULT 0.00,
+    prix_achat_historique DECIMAL(7, 2) UNSIGNED NOT NULL DEFAULT 0.00,
     CONSTRAINT fk__Ligne_Panier__Plante FOREIGN KEY (ID_Plante) REFERENCES Plante (ID),
     CONSTRAINT fk__Ligne_Panier__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID) ON DELETE CASCADE,
     CONSTRAINT fk__Ligne_Panier__Promotion FOREIGN KEY (ID_Promotion_Unitaire) REFERENCES Promotion (ID) ON DELETE SET NULL
