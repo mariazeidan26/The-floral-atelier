@@ -6,6 +6,7 @@
     <title>Planting Service Booking</title>
     <!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
     <!-- Bootstrap Script -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -40,7 +41,7 @@
         
         header {
             height: 400px;
-            background-image: url(l.jpeg);
+            background-image: url(css/l.jpeg);
             border-radius: 20px;
             background-repeat: no-repeat;
             background-size: 50%;
@@ -50,13 +51,11 @@
         }
         
         h1 {
-            margin: 0;
             font-family: serif;
             /*font-style: italic;*/
             letter-spacing: 2px;
             font-weight: 400;
             font-size: 70px !important;
-            text-shadow: #1c1b1a;
             margin-left: 60px;
         }
         
@@ -147,7 +146,7 @@
         }
         
         .container {
-            max-width: 1100px;
+            max-width: 100%;
             margin: auto;
             padding: 40px 0;
         }
@@ -157,7 +156,6 @@
             border-collapse: collapse;
             background-color: white;
             border-radius: 12px;
-            overflow: hidden;
             box-shadow: 0 8px 20px #eee;
         }
         
@@ -184,7 +182,6 @@
             color: lightcoral;
             border: none;
             padding: 6px 10px;
-            border: 8px;
             cursor: pointer;
         }
         
@@ -231,7 +228,7 @@
             margin-left: 80px;
         }
         
-        .form row {
+        .form-row {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
@@ -241,8 +238,6 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            flex: 1;
-            min-width: 180px;
             gap: 6px;
         }
         
@@ -271,11 +266,10 @@
         }
         
         .btn-book:hover {
-            background-color: #7a0027;
+            background-color: #A10035;
         }
         
         .form-group select {
-            border: 1.5px solid #ddd;
             border-radius: 10px;
             padding: 10px 14px;
             font-size: 15px;
@@ -287,7 +281,7 @@
         }
         
         .form-group select:focus {
-            border-color: #A10035;
+            border-color: #1c1b1a;
         }
         
         .booking-step.locked {
@@ -298,6 +292,39 @@
         
         .footer-bottom {
             text-align: center;
+        }
+        /*why us section*/
+        
+        .why-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .why-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 24px;
+            width: 220px;
+            text-align: center;
+        }
+        
+        .why-card i {
+            font-size: 32px;
+            color: #A10035;
+            margin-bottom: 16px;
+        }
+        
+        .why-card h4 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .why-card p {
+            font-size: 14px;
+            color: #888;
         }
     </style>
 
@@ -337,10 +364,35 @@
         </div>
     </nav>
     <header>
-        <h1> <br>PLANTING <br> SERVICES </h1>
+        <h1> <br>PLANTING <br> SERVICE </h1>
     </header>
     <section>
         <h2>Why choose us?</h2>
+        <hr>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <i class="glyphicon glyphicon-user"></i>
+                <h4>Expert Planters</h4>
+                <p>Our team brings years of expertise to every project.</p>
+            </div>
+            <div class="why-card">
+                <i class="fa-solid fa-handshake"></i>
+                <h4>Free Consultation</h4>
+                <p>We visit your space first, plan the design, and make sure everything is right.</p>
+            </div>
+            <div class="why-card">
+                <i class="fa fa-leaf"></i>
+                <h4>Tailored to You</h4>
+                <p></p>
+            </div>
+            <div class="why-card">
+                <i class="glyphicon glyphicon-star"></i>
+                <h4>Premium Quality</h4>
+                <p></p>
+            </div>
+        </div>
+
     </section>
     <hr>
 
@@ -443,6 +495,7 @@
                         <td>White Orchid</td>
                         <td> <input type="number" value="1" min="1"> </td>
                         <td><button class="remove">X</button></td>
+                        <td>$0.00</td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -456,33 +509,34 @@
 
             </table>
 
-
+        </div>
 
     </section>
     <br>
     <br>
+    <form method="POST" action="consultation.php" id="consultation-form">
 
-    <div class="booking-section">
-        <div class="booking-step" id="step1">
-            <span class="steps">Step 1</span>
-            <h2>Book your free consultation</h2>
-            <p class="t">Our team will visit your space and plan the perfect planting design --all for free.</p>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Enter yoour location</label>
-                    <input type="text" id="p-address">
+        <div class="booking-section">
+            <div class="booking-step" id="step1">
+                <span class="steps">Step 1</span>
+                <h2>Book your free consultation</h2>
+                <p class="t">Our team will visit your space and plan the perfect planting design --all for free.</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Enter yoour location</label>
+                        <input type="text" id="c-address">
+                    </div>
+
                 </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Pick a date</label>
+                        <input type="date" id="c-date">
+                    </div>
 
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Pick a date</label>
-                    <input type="date" id="c-date">
-                </div>
-
-                <div class="form-group">
-                    <label>Preferred time</label>
-                    <select id="c-time">
+                    <div class="form-group">
+                        <label>Preferred time</label>
+                        <select id="c-time">
                     <option>8:00 AM</option>
                     <option>9:00 AM</option>
                     <option>10:00 AM</option>
@@ -494,53 +548,61 @@
                     <option>4:00 PM</option>
                     <option>5:00 PM</option>
                 </select>
+                    </div>
                 </div>
-            </div>
-            <button class="booking-btn" onclick="bookConsultation()">Book free consultation</button>
+                <button class="booking-btn" type="button" onclick="bookConsultation()">Book free consultation</button>
 
+            </div>
         </div>
 
-        <div class="booking-step locked" id="step2">
-            <span class="step-label">Step 2</span>
-            <h3>Book your planting service</h3>
-            <p class="t">After your consultation, confirm the planting date with our team.</p>
+    </form>
+    <form method="POST" action="booking.php" id="booking-form">
+        <div class="booking-section">
+            <div class="booking-step locked" id="step2">
+                <span class="steps">Step 2</span>
+                <h3>planting service booking</h3>
+                <p class="t">After your consultation, confirm the planting date with our team.</p>
 
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Enter your location</label>
-                    <input type="text" id="p-address" disabled placeholder="Auto-filled from consultation">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Enter the address</label>
+                        <input type="text" id="p-address" disabled placeholder="Auto-filled from consultation">
+                    </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Pick a date</label>
+                        <input type="date" id="p-date" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred time</label>
+                        <select id="p-time" disabled>
+                            <option>8:00 AM</option>
+                            <option>9:00 AM</option>
+                            <option>10:00 AM</option>
+                            <option>11:00 AM</option>
+                            <option>12:00 PM</option>
+                            <option>1:00 PM</option>
+                            <option>2:00 PM</option>
+                            <option>3:00 PM</option>
+                            <option>4:00 PM</option>
+                            <option>5:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <button class="booking-btn" type="submit" disabled>Confirm booking</button>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Pick a date</label>
-                    <input type="date" id="p-date" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Preferred time</label>
-                    <select id="p-time" disabled>
-                    <option>8:00 AM</option>
-                    <option>9:00 AM</option>
-                    <option>10:00 AM</option>
-                    <option>11:00 AM</option>
-                    <option>12:00 PM</option>
-                    <option>1:00 PM</option>
-                    <option>2:00 PM</option>
-                    <option>3:00 PM</option>
-                    <option>4:00 PM</option>
-                    <option>5:00 PM</option>
-                </select>
-                </div>
-            </div>
 
 
 
-            <button class="booking-btn" disabled>Confirm booking</button>
         </div>
+    </form>
 
 
-    </div>
 
 
     </section>
