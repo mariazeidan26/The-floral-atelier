@@ -90,5 +90,19 @@ function addToCart(productId) {
     .catch(error => {
         console.error(error);
     });
-    alert("Product added to cart!");
+}
+function removeFromCart(productId) {
+    fetch("remove_from_cart.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "id=" + productId
+    })
+    .then(res => res.text())
+    .then(data => {
+        alert("Removed from cart!");
+        console.log(data);
+    })
+    .catch(err => console.error(err));
 }
