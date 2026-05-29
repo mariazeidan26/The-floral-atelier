@@ -90,4 +90,5 @@ function addToCart(productId) {
     .catch(error => {
         console.error(error);
     });
+    alert("Product added to cart!");
 }
