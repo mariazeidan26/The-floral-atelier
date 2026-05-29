@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li><a href="#"> Home </a> </li>
-                    <li><a href="#"> Categories </a> </li>
+                    <li><a href="#categories"> Categories </a> </li>
                 </ul>
 
 
@@ -113,7 +113,7 @@
         </a>
     </div>
 
-    <section class="categories ">
+    <section id="categories ">
         <div class="categories-container">
             <button class="category-btn" onclick="showSection('flowers',this) ">Flowers</button>
             <button class="category-btn" onclick="showSection('bouquets',this) ">Bouquets</button>
@@ -158,7 +158,8 @@
 
                         <div class="buttons">
                             <div class="row">
-                                <button class="buy"> Buy</button>
+                                <!-- Removed PHP from .html file; use JavaScript-only call. Add an ID via data-id if needed. -->
+                                <button class="buy" onclick="addTocart(1)"> Buy</button>
                             </div>
 
                         </div>
