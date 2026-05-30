@@ -1,3 +1,39 @@
+<?php
+session_start();
+include 'connection.php';
+
+if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = 'select * from users where email = $email';
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0){
+        ?>
+        <script>
+            alert("Email already exists");
+            </script>
+        <?php
+                header('Location: login.html');
+    } else {
+        $sql = "insert into users (nom, email, mot_de_passe) values ('$name', '$email', '$password')";
+        ?>
+        <script>
+            alert("Account created successfully");
+        </script>
+        <?php
+        $sql = 'select * from users where email = $email';
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $id = $result->fetch_assoc()['ID'];
+            $_SESSION['user_id'] = $id;
+            header('Location: index.html');
+        }
+    }
+}
+?>
+
 <html>
 
 <head>
@@ -38,20 +74,20 @@
                             <div class="card-body p-5">
                                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                                <form>
+                                <form method="POST" action='signup.php' onsubmit="return validateSignUp()">
 
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                                        <input type="text" name='name' id="form3Example1cg" class="form-control form-control-lg" />
                                         <label class="form-label" for="form3Example1cg">Your Name</label>
                                     </div>
 
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <input type="email" id="email" class="form-control form-control-lg" />
+                                        <input type="email" name='email' id="email" class="form-control form-control-lg" />
                                         <label class="form-label" for="email">Your Email</label>
                                     </div>
 
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <input type="password" id="pass" class="form-control form-control-lg" />
+                                        <input type="password" name='password' id="pass" class="form-control form-control-lg" />
                                         <label class="form-label" for="pass">Password</label>
                                     </div>
 
@@ -61,7 +97,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center">
-                                        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onclick="validateSignUp()">Signup</button>
+                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Signup</button>
                                     </div>
                                     <div>
                                         <p id="error" style="color:red; text-align:center;"></p>

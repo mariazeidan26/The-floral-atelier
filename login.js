@@ -33,7 +33,6 @@ function goToSignup() {
         error.innerHTML = "Password too short.";
         return false;
     }
-    window.location.href = "index.html";
 }
 function validateSignUp() {
     var email = document.getElementById("email").value;
@@ -66,7 +65,6 @@ function validateSignUp() {
         error.innerHTML = "Passwords do not match.";
         return false;
     }
-    window.location.href = "index.html";
 }
 
 function goToPlanting(){

@@ -426,7 +426,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <?php
+                                            include 'connection.php';
+                                            session_start();
+
+                                            $user_id = $_SESSION['user_id'];
+                                            $sql = "SELECT * FROM cart WHERE user_id = $user_id";
+                                            $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    ?>
+                                                    <tr>
                                                 <th scope="row"><img src="css/whiteOrchid.jpeg" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
                                                 <td>
                                                     <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark"> White
@@ -444,6 +454,12 @@
 
 
                                             </tr>
+                                                    <?php
+                                                }
+                                            } else {
+                                                echo '<tr><td colspan="3">Your cart is empty.</td></tr>';
+                                            }
+                                            ?>
                                             <tr>
                                                 <th scope="row"><img src="css/ruffledFanPalm.jpeg" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
                                                 <td>
