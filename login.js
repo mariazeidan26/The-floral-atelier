@@ -6,7 +6,25 @@ function goToLogin() {
 function goToSignup() {
     window.location.href = "signup.html";
 }
-   function validateLogin(event) {
+function logout() {
+    var sure = confirm("Are you sure you want to logout?");
+    if (sure) {
+        window.location.href = "logout.php";
+    }
+}
+function confirmRedirectBuy() {
+    var sure = confirm("Please log in to make a purchase, do you want to go to login now?");
+    if (sure) {
+        window.location.href = "login.php";
+    }
+}
+function confirmRedirectOther() {
+    var sure = confirm("Please log in to proceed, do you want to go to login now?");
+    if (sure) {
+        window.location.href = "login.php";
+    }
+}
+function validateLogin(event) {
     event.preventDefault();
     var email = document.getElementById("email").value.trim();
     var pass = document.getElementById("password").value.trim();
@@ -23,14 +41,6 @@ function goToSignup() {
     let emailsub = email.substring(email.indexOf("@") + 1);
     if (emailsub !== "gmail.com") {
         error.innerHTML = "Please use a gmail account.";
-        return false;
-    }
-
-    if (pass.length > 12) {
-        error.innerHTML = "Password too long.";
-        return false;
-    } else if (pass.length < 6) {
-        error.innerHTML = "Password too short.";
         return false;
     }
 }

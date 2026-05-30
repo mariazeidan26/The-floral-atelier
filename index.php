@@ -1,3 +1,7 @@
+<?php
+    include 'connection.php';
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,12 +62,22 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li> <a class="nav-link" href="cart.html"> 🛒 <span id="cartcount"></span> </a> </li>
+                    <?php
+                    if (!isset($_SESSION['user_id'])) {
+                        ?>
                     <li>
                         <a href="signup.php"> <span class="glyphicon glyphicon-user"></span> Sign up </a>
                     </li>
                     <li>
                         <a href="login.php"> <span class="glyphicon glyphicon-log-in"></span> Login </a>
                     </li>
+                    <?php
+                    } else {
+                        ?>
+                        <a onclick='logout()'> <span class="glyphicon glyphicon-log-out"></span> Logout </a>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -137,8 +151,16 @@
 
                 <div class="buttons">
                     <div class="row">
-                        <button class="buy"> Buy</button>
-
+                        <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                                <button class="buy"> Buy</button>
+                            <?php
+                        }
+                        else {
+                            include "buyDisabled.php";
+                        }
+                        ?>
                     </div>
                     <button class="customize"> Add to your bouquet</button>
                 </div>
@@ -159,7 +181,16 @@
                         <div class="buttons">
                             <div class="row">
                                 <!-- Removed PHP from .html file; use JavaScript-only call. Add an ID via data-id if needed. -->
-                                <button class="buy" onclick="addTocart(1)"> Buy</button>
+                                <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                                <button class="buy"> Buy</button>
+                            <?php
+                        }
+                        else {
+                            include "buyDisabled.php";
+                        }
+                        ?>
                             </div>
 
                         </div>
@@ -209,7 +240,16 @@
 
             <div class="buttons">
                 <div class="row">
-                    <button class="buy"> Buy</button>
+                    <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                                <button class="buy"> Buy</button>
+                            <?php
+                        }
+                        else {
+                            include "buyDisabled.php";
+                        }
+                        ?>
 
                 </div>
             </div>
@@ -221,8 +261,20 @@
     <!--services -->
     <div id="services" class="product-section">
         <div class="buttons services-buttons">
+            <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
             <button class="service-btn" onclick="goToPlanting()"> Book a planting service </button>
             <button class="service-btn" onclick="goToMaintenance()"> Book a maintenance service </button>
+                            <?php
+                        }
+                        else {
+                            ?>
+            <button class="service-btn" onclick="confirmRedirectOther()"> Book a planting service </button>
+            <button class="service-btn" onclick="confirmRedirectOther()"> Book a maintenance service </button>
+            <?php
+                        }
+                        ?>
         </div>
 
     </div>
@@ -230,18 +282,31 @@
 
 
     <section class="rate-contact">
+        <form>
         <h2 class="section-title">Rate your experience</h2>
 
-        <select class="rating">
-            <option>⭐</option>
-            <option>⭐⭐</option>
-            <option>⭐⭐⭐</option>
-            <option>⭐⭐⭐⭐</option>
-            <option>⭐⭐⭐⭐⭐</option>
+        <select class="rating" name="rating">
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
         </select>
 
-        <textarea class="feedback" placeholder="Your feedback help us grow"></textarea>
-        <button class="btn">Submit</button>
+        <textarea class="feedback" name="feedback" placeholder="Your feedback help us grow" required></textarea>
+        <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                                    <input type="submit" class="btn" value="Submit">
+                            <?php
+                        }
+                        else {
+                            ?>
+                                    <button class="btn" onclick="confirmRedirectOther()">Submit</button>
+            <?php
+                        }
+                        ?>
+        </form>
 
         <h2 class="section-title">Contact us</h2>
         <a href="https://wa.me/" target="_blank" class="whatsapp-btn"> Whatsapp</a>
@@ -304,7 +369,7 @@
             }
         }
     </script>
-    <script src="login.js"></script>
+    <script src="login.js?v=2"></script>
 
 
 

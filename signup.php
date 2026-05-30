@@ -7,28 +7,19 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = 'select * from users where email = $email';
+    $sql = "select * from user where email = '$email'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0){
-        ?>
-        <script>
-            alert("Email already exists");
-            </script>
-        <?php
-                header('Location: login.html');
+        $alreadyExist = true;
     } else {
-        $sql = "insert into users (nom, email, mot_de_passe) values ('$name', '$email', '$password')";
-        ?>
-        <script>
-            alert("Account created successfully");
-        </script>
-        <?php
-        $sql = 'select * from users where email = $email';
+        $sql = "insert into user (nom, email, mot_de_passe) values ('$name', '$email', '$password')";
+        $conn->query($sql);
+        $accountCreated = true;
+        $sql = "select * from user where email = '$email'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             $id = $result->fetch_assoc()['ID'];
             $_SESSION['user_id'] = $id;
-            header('Location: index.html');
         }
     }
 }
@@ -100,7 +91,11 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
                                         <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Signup</button>
                                     </div>
                                     <div>
-                                        <p id="error" style="color:red; text-align:center;"></p>
+                                        <?php if (isset($alreadyExist)) { ?>
+                                            <p style="color: red; margin-top: 10px;">An account with this email already exists. <a href="login.php">Login instead</a></p>
+                                        <?php } elseif (isset($accountCreated)) { ?>
+                                            <p style="color: green; margin-top: 10px;">Account created successfully! <a href="index.php">Go to main page</a></p>
+                                        <?php } ?>
                                     </div>
 
                                 </form>
@@ -112,7 +107,6 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
             </div>
         </div>
     </section>
-
 
     <script src="login.js"></script>
 </body>

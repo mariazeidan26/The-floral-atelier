@@ -1,3 +1,23 @@
+<?php
+session_start();
+include 'connection.php';
+
+if (isset($_POST['email'], $_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "select * from user where email = '$email' and mot_de_passe = '$password'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0){
+        $id = $result->fetch_assoc()['ID'];
+        $_SESSION['user_id'] = $id;
+        $loggedIn = true;
+    } else {
+        $invalidMail = true;
+    }
+}
+?>
+
 <html>
 
 <head>
@@ -33,20 +53,28 @@ height: 100vh; color: black;" class="vh-100 gradient-custom">
                                 <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                 <p class="text-black-50 mb-5" style="color:black;">Please enter your Email and Password!
                                 </p>
-                                <form onsubmit="return validateLogin(event)">
+                                <form method="POST" action="login.php">
                                     <div data-mdb-input-init class="form-outline form-black mb-4">
-                                        <input type="email" id="email" class="form-control form-control-lg" />
+                                        <input type="email" id="email" name="email" class="form-control form-control-lg" />
                                         <label class="form-label" for="email" style="color: black;">Email</label>
                                     </div>
 
                                     <div data-mdb-input-init class="form-outline form-black mb-4">
-                                        <input type="password" id="password" class="form-control form-control-lg" />
+                                        <input type="password" id="password" name="password" class="form-control form-control-lg" />
                                         <label class="form-label" for="password" style="color: black;">Password</label>
                                     </div>
 
                                     <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit" style="color: black;">Login</button>
                                     <div>
-                                        <p id="error" style="color:red; text-align:center;"></p>
+                                         <p id="error" style="color:red; text-align:center;"></p>
+                                        <?php
+                                        if (isset($invalidMail)) {
+                                            echo '<p style="color: red; margin-top: 10px;">Invalid email or password</p>';
+                                        }
+                                        if (isset($loggedIn)) {
+                                            echo '<p style="color: green; margin-top: 10px;">Logged in successfully <a href="index.php">Go to main page</a></p>';
+                                        }   
+                                        ?>
                                     </div>
                                 </form>
                                 <div class="d-flex justify-content-center text-center mt-4 pt-1">
@@ -67,7 +95,7 @@ height: 100vh; color: black;" class="vh-100 gradient-custom">
             </div>
         </div>
     </section>
-    <script src="login.js" defer></script>
+    <script src="login.js?v=1" defer></script>
 
 
 

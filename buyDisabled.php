@@ -1,0 +1,1 @@
+<button class="buy" onclick="confirmRedirectBuy()"> Buy</button>
