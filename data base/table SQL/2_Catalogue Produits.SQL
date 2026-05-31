@@ -9,10 +9,11 @@ CREATE TABLE IF NOT EXISTS Plante(
     ID_Categorie INT UNSIGNED NOT NULL,
     details TEXT,
     prix DECIMAL(7, 2) UNSIGNED NOT NULL DEFAULT 0.00,
-    statut ENUM('disponible', 'archive') NOT NULL DEFAULT 'disponible',
+    statut ENUM('Available', 'Out of Stock') NOT NULL DEFAULT 'Available',
     quantite INT UNSIGNED NOT NULL DEFAULT 0,
     CONSTRAINT fk__Plante__Categorie FOREIGN KEY (ID_Categorie) REFERENCES Categorie (ID)
 );
+
 CREATE TABLE IF NOT EXISTS Image_Plante(
     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ID_Plante INT UNIQUE UNSIGNED,

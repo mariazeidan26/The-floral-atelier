@@ -1,27 +1,29 @@
-CREATE TABLE IF NOT EXISTS Panier (
-    ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    ID_User INT UNSIGNED NOT NULL,
-    date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
-    ID_Plante_Promotion INT UNSIGNED NULL,
-    est_actif BOOLEAN DEFAULT TRUE,
-    CONSTRAINT fk__Panier__User FOREIGN KEY (ID_User) REFERENCES User (ID) ON DELETE CASCADE,
-    CONSTRAINT fk__Panier__Promotion FOREIGN KEY (ID_Plante_Promotion) REFERENCES Promotion (ID) ON DELETE SET NULL
-);
-CREATE TABLE IF NOT EXISTS Ligne_Panier (
-    ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    ID_Panier INT UNSIGNED NOT NULL,
-    ID_Plante INT UNSIGNED NOT NULL,
-    quantite INT UNSIGNED NOT NULL DEFAULT 1,
-    ID_Promotion_Unitaire INT UNSIGNED NULL,
-    prix_achat_historique DECIMAL(7, 2) UNSIGNED NOT NULL DEFAULT 0.00,
-    CONSTRAINT fk__Ligne_Panier__Plante FOREIGN KEY (ID_Plante) REFERENCES Plante (ID),
-    CONSTRAINT fk__Ligne_Panier__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID) ON DELETE CASCADE,
-    CONSTRAINT fk__Ligne_Panier__Promotion FOREIGN KEY (ID_Promotion_Unitaire) REFERENCES Promotion (ID) ON DELETE SET NULL
-);
-CREATE TABLE IF NOT EXISTS Commande (
-    ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    ID_Panier INT UNSIGNED,
-    date_commande DATETIME DEFAULT CURRENT_TIMESTAMP,
-    statut_global VARCHAR(255) DEFAULT 'Preparation',
-    CONSTRAINT fk__Commande__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID)
-);
+-- CREATE TABLE IF NOT EXISTS Panier (
+--     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     ID_User INT UNSIGNED NOT NULL,
+--     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     --ID_Plante_Promotion INT UNSIGNED NULL,
+--     est_actif BOOLEAN DEFAULT TRUE,
+--     CONSTRAINT fk__Panier__User FOREIGN KEY (ID_User) REFERENCES User (ID) ON DELETE CASCADE,
+--     --CONSTRAINT fk__Panier__Promotion FOREIGN KEY (ID_Plante_Promotion) REFERENCES Promotion (ID) ON DELETE SET NULL
+-- );
+-- CREATE TABLE IF NOT EXISTS Ligne_Panier (
+--     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     ID_Panier INT UNSIGNED NOT NULL,
+--     ID_Plante INT UNSIGNED NOT NULL,
+--     quantite INT UNSIGNED NOT NULL DEFAULT 1,
+--     --ID_Promotion_Unitaire INT UNSIGNED NULL,
+--     prix_achat_historique DECIMAL(7, 2) UNSIGNED NOT NULL DEFAULT 0.00,
+--     CONSTRAINT fk__Ligne_Panier__Plante FOREIGN KEY (ID_Plante) REFERENCES Plante (ID),
+--     CONSTRAINT fk__Ligne_Panier__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID) ON DELETE CASCADE,
+--     --CONSTRAINT fk__Ligne_Panier__Promotion FOREIGN KEY (ID_Promotion_Unitaire) REFERENCES Promotion (ID) ON DELETE SET NULL
+-- );
+
+-- CREATE TABLE IF NOT EXISTS Commande (
+--     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+--     ID_Panier INT UNSIGNED,
+--     date_commande DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     statut_global VARCHAR(255) DEFAULT 'Preparation',
+--     CONSTRAINT fk__Commande__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID)
+-- );
+

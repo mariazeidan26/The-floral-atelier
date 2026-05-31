@@ -1,19 +1,27 @@
 <?php
 session_start();
 include 'connection.php';
-
+require_once 'functions.php';
+$loggedIn = false;
+$loginerror = false;
 if (isset($_POST['email'], $_POST['password'])) {
-    $email = $_POST['email'];
+    $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    $sql = "select * from user where email = '$email' and mot_de_passe = '$password'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0){
-        $id = $result->fetch_assoc()['ID'];
-        $_SESSION['user_id'] = $id;
-        $loggedIn = true;
+    $sql = $conn->prepare("select * from user where email = ?");
+    $sql->bind_param("s", $email);
+    $sql->execute();
+    $result = $sql->get_result();
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        if (password_verify($password, $user['mot_de_passe'])) {
+            $_SESSION['user_id'] = $user['ID'];
+            $loggedIn = true;
+        } else {
+            $loginerror = true;
+        }
     } else {
-        $invalidMail = true;
+        $loginerror = true;
     }
 }
 ?>
@@ -68,7 +76,7 @@ height: 100vh; color: black;" class="vh-100 gradient-custom">
                                     <div>
                                          <p id="error" style="color:red; text-align:center;"></p>
                                         <?php
-                                        if (isset($invalidMail)) {
+                                        if (isset($loginerror)) {
                                             echo '<p style="color: red; margin-top: 10px;">Invalid email or password</p>';
                                         }
                                         if (isset($loggedIn)) {

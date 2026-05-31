@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS Paiement (
     ID_Commande INT UNSIGNED NULL,
     ID_Prestation INT UNSIGNED NULL,
     montant DECIMAL(9, 2) DEFAULT 0.00,
-    type_paiement ENUM('pourcentage', 'fixe') DEFAULT 'fixe',
+    -- type_paiement ENUM('pourcentage', 'fixe') DEFAULT 'fixe',
     methode_paiement ENUM('cart', 'cash') DEFAULT 'cash',
     is_pay BOOLEAN DEFAULT TRUE,
     CONSTRAINT chk__exclusion_mutuelle_paiement CHECK (

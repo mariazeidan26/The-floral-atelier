@@ -266,7 +266,7 @@
     <div id="services" class="product-section">
         <div class="buttons services-buttons">
             <?php
-                        if (isset($_SESSION['user_id'])) {
+                        if (isset($_SESSION['user_id'])||true) {
                             ?>
             <button class="service-btn" onclick="goToPlanting()"> Book a planting service </button>
             <button class="service-btn" onclick="goToMaintenance()"> Book a maintenance service </button>
