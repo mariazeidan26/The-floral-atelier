@@ -39,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                <a class="navbar-brand" href="#"> The floral atelier </a>
+                <p class="navbar-brand"> The floral atelier </p>
             </div>
 
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -71,6 +71,7 @@
                     <li>
                         <a href="login.php"> <span class="glyphicon glyphicon-log-in"></span> Login </a>
                     </li>
+                    <li>
                     <?php
                     } else {
                         ?>
@@ -78,6 +79,7 @@
                         <?php
                     }
                     ?>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -161,6 +163,7 @@
                             include "buyDisabled.php";
                         }
                         ?>
+                        <button class="plant"> Plant</button>
                     </div>
                     <button class="customize"> Add to your bouquet</button>
                 </div>
@@ -191,6 +194,7 @@
                             include "buyDisabled.php";
                         }
                         ?>
+                        
                             </div>
 
                         </div>
@@ -250,7 +254,7 @@
                             include "buyDisabled.php";
                         }
                         ?>
-
+                    <button class="plant"> Plant</button>
                 </div>
             </div>
         </div>
@@ -319,7 +323,7 @@
 
         <div class="footer-bottom">
             <p>📍 Lebanon</p>
-            <p>© 2026 The Floral Atelier. All rights deserved.</p>
+            <p> &copy; 2026 The Floral Atelier. All rights deserved.</p>
 
         </div>
     </footer>

@@ -64,6 +64,7 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: lightgrey;
+            margin-bottom: 20px;
         }
         
         .card h3 {
@@ -101,7 +102,7 @@
             background: orange;
         }
         
-        .shipped,
+        .delivered,
         .completed {
             background: blue;
         }
@@ -153,6 +154,15 @@
                 display: none;
             }
         }
+        
+        .grid {
+            display: block;
+        }
+        
+        th,
+        td {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -187,6 +197,7 @@
                     <option>Available</option>
                     <option>Out of Stock</option>
                 </select>
+
                 <button class="btn add">Add Product</button>
 
                 <table>
@@ -194,13 +205,15 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Stock</th>
-                        <th>Actions</th>
+                        <th>Stock</th>
+
                     </tr>
 
                     <tr>
                         <td>White Orchid</td>
                         <td>$10</td>
                         <td><span class="status available">Available</span></td>
+
                         <td>
                             <button class="btn edit">Edit</button>
                             <button class="btn delete">Remove</button>
@@ -221,6 +234,7 @@
                         <td>Pink Harmony</td>
                         <td>$40</td>
                         <td><span class="status available">Available</span></td>
+
                         <td>
                             <button class="btn edit">Edit</button>
                             <button class="btn delete">Remove</button>
@@ -235,21 +249,17 @@
             <div class="card">
                 <h3>Services</h3>
 
-                <input type="text" placeholder="Service type">
-                <input type="number" placeholder="Price">
-
-                <button class="btn add">Add service</button>
 
                 <table>
                     <tr>
-                        <th>type</th>
+                        <th>Type</th>
                         <th>Price</th>
 
                         <th>Actions</th>
                     </tr>
 
                     <tr>
-                        <td>Planting</td>
+                        <td>Planting service</td>
                         <td>$15</td>
 
                         <td>
@@ -259,7 +269,7 @@
                     </tr>
 
                     <tr>
-                        <td>Maintenance</td>
+                        <td>Maintenance service</td>
                         <td>$40</td>
 
                         <td>
@@ -294,7 +304,7 @@
                         <td>
                             <select>
                                 <option>Pending</option>
-                                <option>Shipped</option>
+                                
                                 <option>Delivered</option>
                             </select>
                             <button class="btn edit">Update</button>
@@ -304,11 +314,11 @@
                     <tr>
                         <td>#102</td>
                         <td>Johnny</td>
-                        <td><span class="status shipped">Shipped</span></td>
+                        <td><span class="status delivered">delivered</span></td>
                         <td>
                             <select>
                                 <option>Pending</option>
-                                <option selected>Shipped</option>
+                                
                                 <option>Delivered</option>
                             </select>
                             <button class="btn edit">Update</button>
@@ -320,10 +330,10 @@
             <!-- CUSTOMERS -->
             <div class="card">
                 <h3>Customer database</h3>
-
                 <input type="text" placeholder="Name">
                 <input type="email" placeholder="Email">
                 <button class="btn add">Add User</button>
+
 
                 <table>
                     <tr>
@@ -370,7 +380,7 @@
                     <tr>
                         <td>Staff50</td>
                         <td>50%</td>
-                        <td> <button class="btn edit">Edit</button>
+                        <td>
                             <button class="btn delete">Remove</button> </td>
 
                     </tr>
@@ -387,6 +397,7 @@
                         <th>User</th>
                         <th>Amount</th>
                         <th>Status</th>
+                        <th>Update</th>
                     </tr>
 
                     <tr>
@@ -394,6 +405,14 @@
                         <td>Lea</td>
                         <td>$10</td>
                         <td><span class="status pending">Pending</span></td>
+                        <td>
+                            <select>
+                                <option>Pending</option>
+                                <option>completed</option>
+                                
+                            </select>
+                            <button class="btn edit">Update</button>
+                        </td>
                     </tr>
 
                     <tr>
@@ -401,6 +420,14 @@
                         <td>Layla</td>
                         <td>$20</td>
                         <td><span class="status completed">Completed</span></td>
+                        <td>
+                            <select>
+                                <option>Pending</option>
+                                <option>completed</option>
+                                
+                            </select>
+                            <button class="btn edit">Update</button>
+                        </td>
                     </tr>
                 </table>
 
@@ -426,7 +453,7 @@
                         <td>Damaged item</td>
                         <td><span class="status pending">Pending</span></td>
                         <td>
-                            <button class="btn edit">view</button>
+                            <button class="btn edit">Edit</button>
 
                         </td>
                     </tr>
@@ -435,9 +462,9 @@
                         <td>#102</td>
                         <td>Johnny</td>
                         <td>Wrong item</td>
-                        <td><span class="status shipped">Refunded</span></td>
+                        <td><span class="status delivered">Refunded</span></td>
                         <td>
-                            <button class="btn edit">view</button>
+                            <button class="btn edit">Edit</button>
                         </td>
                     </tr>
                 </table>

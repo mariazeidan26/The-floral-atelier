@@ -289,6 +289,12 @@
                                                         <label class="form-label" for="billing-address">Address</label>
                                                         <textarea class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
                                                     </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="billing-name">Discount code</label>
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
 
                                                     <div class="row">
                                                         <div class="col-lg-4">
