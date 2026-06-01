@@ -1,7 +1,7 @@
 INSERT INTO Categorie (nom, details) VALUES 
 ('Plant', 'To bring greenery back into your apartment or to give as a luxurious gift.'),
 ('bouquet', 'Looking to express your feelings? This beautiful cocktail of colors will be absolutely perfect.'),
-('flower', 'Why perfume your apartment if Mother Nature can do it for you? Perfect for your living room, bedroom, or balcony.');
+('flower', 'Why perfume your apartment if Mother Nature can do it for you? Perfect for your living room, bedroom, or balcony.'),
 ('flower custom', 'for custom bouquet');
 
 INSERT INTO Plante (nom, ID_Categorie, details, prix, quantite) VALUES
@@ -9,7 +9,7 @@ INSERT INTO Plante (nom, ID_Categorie, details, prix, quantite) VALUES
 ('Bamboo', 1, 'Minimalist and calming. You can use it as a natural room divider or garden element - bamboo brings harmony and lightness.', 98.54, 3216),
 ('Blooming charm', 2, ' ', 27.35 ,172),
 ('Blue hydrangea', 3, 'it brings a calming and serene beauty to any room, symbolizing gratitude and grace.', 52.74, 732),
-('Blue hydrangea', 4, '', 5.28, 732)
+('Blue hydrangea', 4, '', 5.28, 732),
 ('Cactus flower', 1, 'it symbolizes endurance and strength. When in bloom, these resilient plants surprise with incredibly vibrant and often fragrant blossoms.', 18.53, 3846),
 ('Dendrobium', 3, 'known for its starry, cascading blossoms. It symbolizes beauty and wisdom.', 34.95, 1344),
 ('Dendrobium', 4, '', 3.50, 1344),
@@ -20,7 +20,7 @@ INSERT INTO Plante (nom, ID_Categorie, details, prix, quantite) VALUES
 ('lilac love', 2, ' ', 31 ,205),
 ('Pink clouds', 2, ' ', 47 ,268),
 ('Red roses', 2, ' ', 39.6 ,638),
-('White orchid', 3, 'soft and graceful, the white orchid adds a peaceful charm to any setting.', 89.99,2895);
+('White orchid', 3, 'soft and graceful, the white orchid adds a peaceful charm to any setting.', 89.99,2895),
 ('White orchid', 4, '', 8.9,2895);
 
 INSERT INTO Image_Plante (ID_Plante, url_image) VALUES
@@ -38,5 +38,5 @@ INSERT INTO Image_Plante (ID_Plante, url_image) VALUES
 (12, 'assets/img/plant/lilac love.jpeg'),
 (13, 'assets/img/plant/Pink clouds.jpeg'),
 (14, 'assets/img/plant/Red roses.jpeg'),
-(15, 'assets/img/plant/White orchid.jpeg');
+(15, 'assets/img/plant/White orchid.jpeg'),
 (16, 'assets/img/plant/White orchid.jpeg');

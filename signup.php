@@ -1,27 +1,27 @@
 <?php
 session_start();
-require 'connection.php';
-require_once 'functions.php';
-$alreadyExist = false;
-$accountCreated = false;
+include 'connection.php';
+
 if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
-    $name = trim($_POST['name']);
-    $email = trim($_POST['email']);
+    $name = $_POST['name'];
+    $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $sql = $conn->prepare("select * from user where email = ?");
-    $sql->bind_param("s", $email);
-    $sql->execute();
-    $result = $sql->get_result();
-    if ($result->num_rows > 0) {
+    $sql = "select * from users where email = '$email'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0){
         $alreadyExist = true;
     } else {
-        $sql = $conn->prepare("insert into user (nom, email, mot_de_passe) values (?,?,?)");
-        $sql->bind_param("sss", $name,$email,$password);
-        $sql->execute();
-        $id=$conn->insert_id;
-        $_SESSION['user_id'] = $id;
+        $sql = "insert into users (nom, email, mot_de_passe) values ('$name', '$email', '$password')";
+        $conn->query($sql);
         $accountCreated = true;
+        $sql = "select * from users where email = '$email'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $id = $result->fetch_assoc()['ID'];
+            $_SESSION['user_id'] = $id;
+            header('Location: index.php');
+        }
     }
 }
 ?>
@@ -109,6 +109,7 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
         </div>
     </section>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js'></script>
     <script src="login.js"></script>
 </body>
 

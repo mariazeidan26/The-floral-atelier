@@ -2,13 +2,11 @@
 session_start();
 include 'connection.php';
 require_once 'functions.php';
-$loggedIn = false;
-$loginerror = false;
 if (isset($_POST['email'], $_POST['password'])) {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    $sql = $conn->prepare("select * from user where email = ?");
+    $sql = $conn->prepare("select * from users where email = ?");
     $sql->bind_param("s", $email);
     $sql->execute();
     $result = $sql->get_result();
@@ -72,12 +70,12 @@ height: 100vh; color: black;" class="vh-100 gradient-custom">
                                         <label class="form-label" for="password" style="color: black;">Password</label>
                                     </div>
 
-                                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit" style="color: black;">Login</button>
+                                    <input class="btn btn-outline-light btn-lg px-5" type="submit" style="color: black;" value='Login'>
                                     <div>
                                          <p id="error" style="color:red; text-align:center;"></p>
                                         <?php
                                         if (isset($loginerror)) {
-                                            echo '<p style="color: red; margin-top: 10px;">Invalid email or password</p>';
+                                            echo '<p style="color: red; margin-top: 10px;">Invalid email or password. <a href="forgetform.php">Forgot password?</a></p>';
                                         }
                                         if (isset($loggedIn)) {
                                             echo '<p style="color: green; margin-top: 10px;">Logged in successfully <a href="index.php">Go to main page</a></p>';
@@ -91,7 +89,7 @@ height: 100vh; color: black;" class="vh-100 gradient-custom">
                                     <a href="#!" class="text-black"><i class="fab fa-google fa-lg"></i></a>
                                 </div>
                                 <div>
-                                    <p class="mb-0 mt-2">Don't have an account? <a href="signup.html" class="text-gray-50 fw-bold">Sign Up</a>
+                                    <p class="mb-0 mt-2">Don't have an account? <a href="signup.php" class="text-gray-50 fw-bold">Sign Up</a>
                                     </p>
                                 </div>
 
@@ -106,7 +104,7 @@ height: 100vh; color: black;" class="vh-100 gradient-custom">
     <script src="login.js?v=1" defer></script>
 
 
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js'></script>
 </body>
 
 </html>

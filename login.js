@@ -77,11 +77,11 @@ function validateSignUp() {
     }
 }
 
-function goToPlanting(){
-    window.location.href="planting.html";
+function goToPlanting() {
+    window.location.href = "planting.php";
 }
-function goToMaintenance(){
-    window.location.href="maintenance.html";
+function goToMaintenance() {
+    window.location.href = "maintenance.php";
 }
 function addToCart(productId) {
     fetch("add_to_cart.php", {
@@ -91,13 +91,13 @@ function addToCart(productId) {
         },
         body: "id=" + productId
     })
-    .then(response => response.text())
-    .then(data => {
-        alert("Product added to cart!");
-    })
-    .catch(error => {
-        console.error(error);
-    });
+        .then(response => response.text())
+        .then(data => {
+            alert("Product added to cart!");
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
 function removeFromCart(productId) {
     fetch("remove_from_cart.php", {
@@ -107,10 +107,126 @@ function removeFromCart(productId) {
         },
         body: "id=" + productId
     })
-    .then(res => res.text())
-    .then(data => {
-        alert("Removed from cart!");
-        console.log(data);
-    })
-    .catch(err => console.error(err));
+        .then(res => res.text())
+        .then(data => {
+            alert("Removed from cart!");
+            console.log(data);
+        })
+        .catch(err => console.error(err));
+}
+
+function addToBouquet(id, quantity) {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "bouquetFrame";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "addToBouquet.php";
+    form.target = ifr.name;
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "id";
+    input.value = id;
+    form.append(input);
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "quantity";
+    input.value = quantity;
+    form.append(input);
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
+
+    displayBouquet();
+}
+
+function removeFromBouquet(bouquet_id) {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "bouquetFrame";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "removeFromBouquet.php";
+    form.target = ifr.name;
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "bouquet_id";
+    input.value = bouquet_id;
+    form.append(input);
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
+
+    displayBouquet();
+}
+
+function displayBouquet() {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "bouquetFrame2";
+    ifr.id = "bouquetIFrame2";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "bouquetTable.php";
+    form.target = ifr.name;
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
+}
+
+function addToPlanting(id, quantity) {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "plantingFrame";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "addToPlanting.php";
+    form.target = ifr.name;
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "id";
+    input.value = id;
+    form.append(input);
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "quantity";
+    input.value = quantity;
+    form.append(input);
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
+}
+
+function removeFromPlanting(planting_id) {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "plantingFrame";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "removeFromPlanting.php";
+    form.target = ifr.name;
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "planting_id";
+    input.value = planting_id;
+    form.append(input);
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
+
+    displayPlanting();
+}
+
+function displayPlanting() {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "plantingFrame2";
+    ifr.id = "plantingIFrame2";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "plantingTable.php";
+    form.target = ifr.name;
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
 }

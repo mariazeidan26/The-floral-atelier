@@ -9,7 +9,7 @@
     <!--GOOGLE FONTS-->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;900&family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=1">
 
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
@@ -30,60 +30,9 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                <p class="navbar-brand"> The floral atelier </p>
-            </div>
-
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="#"> Home </a> </li>
-                    <li><a href="#categories"> Categories </a> </li>
-                </ul>
-
-
-                <form class="navbar-form navbar-left" action="/action_page.php">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="search" name="search">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                        </div>
-                    </div>
-                </form>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li> <a class="nav-link" href="cart.html"> 🛒 <span id="cartcount"></span> </a> </li>
-                    <?php
-                    if (!isset($_SESSION['user_id'])) {
-                        ?>
-                    <li>
-                        <a href="signup.php"> <span class="glyphicon glyphicon-user"></span> Sign up </a>
-                    </li>
-                    <li>
-                        <a href="login.php"> <span class="glyphicon glyphicon-log-in"></span> Login </a>
-                    </li>
-                    <li>
-                    <?php
-                    } else {
-                        ?>
-                        <a onclick='logout()'> <span class="glyphicon glyphicon-log-out"></span> Logout </a>
-                        <?php
-                    }
-                    ?>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php
+    include 'nav.php';
+    ?>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -142,11 +91,17 @@
     <section id="products">
         <!-- flowers-->
         <div id="flowers" class="product-section">
-            <div class="product">
-                <img src="css/whiteOrchid.jpeg">
-                <h4> White Orchid <button class="info-btn" onclick="toggleInfo(this)"> i </button> </h4>
-                <p>10$</p>
-                <p class="description"> Soft and graceful, the white orchid adds a peaceful charm to any setting. </p>
+            <?php
+            $sql = "SELECT * from plante where ID_Categorie = 3";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    ?>
+<div class="<?php echo $row['statut'] == 'Available' ? 'product' : 'product unavailable' ?>">
+                <img src="<?php echo $row['img'] ?>">
+                <h4> <?php echo $row['nom'] ?> <button class="info-btn" onclick="toggleInfo(this)"> i </button> </h4>
+                <p><?php echo $row['prix'] ?>$</p>
+                <p class="description"> <?php echo $row['details'] ?> </p>
 
                 <input type="number" min="1" value="1">
 
@@ -163,11 +118,17 @@
                             include "buyDisabled.php";
                         }
                         ?>
-                        <button class="plant"> Plant</button>
+                        <button class="plant" onclick="addToPlanting(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Plant</button>
                     </div>
-                    <button class="customize"> Add to your bouquet</button>
+                    <button class="customize" onclick="addToBouquet(<?php echo $row['ID'] ?>, this.parentNode.parentNode.querySelector('input[type=number]').value)"> Add to your bouquet</button>
                 </div>
+
+                <p> <?php echo $row['statut'] ?> </p>
             </div>
+                    <?php
+                }
+            }
+            ?>
         </div>
 
         <!-- Bouquets-->
@@ -175,16 +136,24 @@
             <div class="bouquets-grid">
                 <div class="left">
 
-                    <div class="product">
-                        <img src="css/bouquet1.jpeg">
-                        <h4> Pink Harmony </h4>
-                        <p>40$</p>
-                        <input type="number" min="1" value="1">
+                    <?php
+            $sql = "SELECT * from plante where ID_Categorie = 2";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    ?>
+<div class="<?php echo $row['statut'] == 'Available' ? 'product' : 'product unavailable' ?>">
+                <img src="<?php echo $row['img'] ?>">
+                <h4> <?php echo $row['nom'] ?> <button class="info-btn" onclick="toggleInfo(this)"> i </button> </h4>
+                <p><?php echo $row['prix'] ?>$</p>
+                <p class="description"> <?php echo $row['details'] ?> </p>
 
-                        <div class="buttons">
-                            <div class="row">
-                                <!-- Removed PHP from .html file; use JavaScript-only call. Add an ID via data-id if needed. -->
-                                <?php
+                <input type="number" min="1" value="1">
+
+
+                <div class="buttons">
+                    <div class="row">
+                        <?php
                         if (isset($_SESSION['user_id'])) {
                             ?>
                                 <button class="buy"> Buy</button>
@@ -194,31 +163,21 @@
                             include "buyDisabled.php";
                         }
                         ?>
-                        
-                            </div>
-
-                        </div>
-
                     </div>
+                </div>
+
+                <p> <?php echo $row['statut'] ?> </p>
+            </div>
+                    <?php
+                }
+            }
+            ?>
                 </div>
                 <div class="right">
                     <div class="cart-item">
                         <h3 class="title">Customise your own bouquet</h3>
                         <br>
-                        <table class="bouquet-table">
-                            <tr>
-                                <th>Flower</th>
-                                <th>quantity</th>
-                                <th>Price per one</th>
-                                <th>remove</th>
-                            </tr>
-
-                            <tr>
-                                <td class="flower-o"><img src="css/whiteOrchid.jpeg"> White Orchid</td>
-                                <td> <input type="number" value="1" min="1"> </td>
-                                <td>3$</td>
-                                <td><button class="remove">X</button></td>
-                            </tr>
+                        <table class="bouquet-table" id="bouquetTable">
                         </table>
 
 
@@ -235,16 +194,24 @@
 
     <!-- plants -->
     <div id="plants" class="product-section">
-        <div class="product">
-            <img src="css/ruffledFanPalm.jpeg">
-            <h4> Ruffled Fan Palm <button class="info-btn" onclick="toggleInfo(this)"> i </button></h4>
-            <p>15$</p>
-            <p class="description"> Bring a touch of the tropics indoors.</p>
-            <input type="number" min="1" value="1">
+        <?php
+            $sql = "SELECT * from plante where ID_Categorie = 1";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    ?>
+<div class="<?php echo $row['statut'] == 'Available' ? 'product' : 'product unavailable' ?>">
+                <img src="<?php echo $row['img'] ?>">
+                <h4> <?php echo $row['nom'] ?> <button class="info-btn" onclick="toggleInfo(this)"> i </button> </h4>
+                <p><?php echo $row['prix'] ?>$</p>
+                <p class="description"> <?php echo $row['details'] ?> </p>
 
-            <div class="buttons">
-                <div class="row">
-                    <?php
+                <input type="number" min="1" value="1">
+
+
+                <div class="buttons">
+                    <div class="row">
+                        <?php
                         if (isset($_SESSION['user_id'])) {
                             ?>
                                 <button class="buy"> Buy</button>
@@ -254,10 +221,16 @@
                             include "buyDisabled.php";
                         }
                         ?>
-                    <button class="plant"> Plant</button>
+                        <button class="plant" onclick="addToPlanting(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Plant</button>
+                    </div>
                 </div>
+
+                <p> <?php echo $row['statut'] ?> </p>
             </div>
-        </div>
+                    <?php
+                }
+            }
+            ?>
     </div>
 
 
@@ -373,7 +346,10 @@
             }
         }
     </script>
-    <script src="login.js?v=2"></script>
+    <script src="login.js?v=6"></script>
+    <script>
+displayBouquet();
+        </script>
 
 
 

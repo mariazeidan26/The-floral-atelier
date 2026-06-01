@@ -2,20 +2,17 @@ CREATE TABLE IF NOT EXISTS Panier (
     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ID_User INT UNSIGNED NOT NULL,
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
-    --ID_Plante_Promotion INT UNSIGNED NULL,
     est_actif BOOLEAN DEFAULT TRUE,
-    CONSTRAINT fk__Panier__User FOREIGN KEY (ID_User) REFERENCES User (ID) ON DELETE CASCADE,
-    --CONSTRAINT fk__Panier__Promotion FOREIGN KEY (ID_Plante_Promotion) REFERENCES Promotion (ID) ON DELETE SET NULL
+    CONSTRAINT fk__Panier__User FOREIGN KEY (ID_User) REFERENCES User (ID) ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Bouquets (
     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ID_Panier INT UNSIGNED NOT NULL,
     ID_Plante INT UNSIGNED NOT NULL,
-    --attention de categori 4!!!
     quantite INT UNSIGNED NOT NULL DEFAULT 1,
     prix_achat_historique DECIMAL(7, 2) UNSIGNED NOT NULL DEFAULT 0.00,
     CONSTRAINT fk__Bouquets__Plante FOREIGN KEY (ID_Plante) REFERENCES Plante (ID),
-    CONSTRAINT fk__Bouquets__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID) ON DELETE CASCADE,
+    CONSTRAINT fk__Bouquets__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID) ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Ligne_Panier (
     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -23,21 +20,19 @@ CREATE TABLE IF NOT EXISTS Ligne_Panier (
     ID_Plante INT UNSIGNED NULL,
     ID_Bouquets INT UNIQUE NULL,
     quantite INT UNSIGNED NOT NULL DEFAULT 1,
-    --ID_Promotion_Unitaire INT UNSIGNED NULL,
     prix_achat_historique DECIMAL(7, 2) UNSIGNED NOT NULL DEFAULT 0.00,
     CONSTRAINT chk__exclusion_mutuelle__Ligne_Panier CHECK (
         (ID_Bouquets IS NOT NULL OR ID_Panier IS NOT NULL)
     ),
     CONSTRAINT fk__Ligne_Panier__Plante FOREIGN KEY (ID_Plante) REFERENCES Plante (ID),
-    CONSTRAINT fk__Ligne_Panier__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID) ON DELETE CASCADE,
-    --CONSTRAINT fk__Ligne_Panier__Promotion FOREIGN KEY (ID_Promotion_Unitaire) REFERENCES Promotion (ID) ON DELETE SET NULL
+    CONSTRAINT fk__Ligne_Panier__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID) ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Commande (
     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     ID_Panier INT UNSIGNED,
     date_commande DATETIME DEFAULT CURRENT_TIMESTAMP,
     statut_global VARCHAR(255) DEFAULT 'Preparation',
-    CONSTRAINT fk__Commande__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID),
+    CONSTRAINT fk__Commande__Panier FOREIGN KEY (ID_Panier) REFERENCES Panier (ID)
 );
 CREATE TABLE IF NOT EXISTS Adresse (
     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -47,7 +42,6 @@ CREATE TABLE IF NOT EXISTS Adresse (
     ad_location TEXT,
     est_defaut BOOLEAN DEFAULT FALSE,
     preferred DATETIME,
-    -- OU est_defaut TINYINT(1) DEFAULT 0 en ca erreur
     CONSTRAINT fk__Adresse__User FOREIGN KEY (ID_user) REFERENCES User (ID) ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS Livraison (

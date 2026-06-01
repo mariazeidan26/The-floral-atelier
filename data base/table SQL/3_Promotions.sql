@@ -1,10 +1,9 @@
 CREATE TABLE IF NOT EXISTS Promotion(
     ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    code VARCHAR(255) NULL UNIQUE, -- a modifier a 191 selon la version de mysql ou mariadb
+    code VARCHAR(255) NULL UNIQUE,
     nom VARCHAR(100) NOT NULL,
     details TEXT,
     valeur_reduction DECIMAL(6, 2) DEFAULT 0.00,
-    --type_reduction ENUM('pourcentage', 'fixe') DEFAULT 'fixe',
     date_debut DATETIME DEFAULT CURRENT_TIMESTAMP,
     date_expiration DATETIME NOT NULL,
     usage_max INT UNSIGNED DEFAULT NULL,
