@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Planting(
     CONSTRAINT fk_Planting_Adresse FOREIGN KEY (ID_Adresse) REFERENCES Adresse(ID) ON DELETE CASCADE
 )
 
-CREATE TABLE IF NOT EXISTS MAINTENANCE(
+CREATE TABLE IF NOT EXISTS Maintenamce(
     ID_Adresse INT UNIQUE PRIMARY KEY,
     frequence VARCHAR(50), -- weekly,dayly,mothly,...
     week_day VARCHAR(50) NOT NULL,
