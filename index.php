@@ -110,7 +110,7 @@
             </div>
 
             <div class="item ">
-                <img src="css/planting.jpeg" alt=" planting and maintenance service " style="width:100% ; ">
+                <img src="css/planting.jpeg" alt="service " style="width:100% ; ">
                 <div class="carousel-caption ">
                     <h3> Where every petal tells a story </h3>
                 </div>
