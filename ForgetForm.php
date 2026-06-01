@@ -17,11 +17,11 @@
 </head>
 
 <body style="color:FFDBFD  ;">
-  <section style="background-image:url(daisy:jpg;); 
+  <section style="background-image:url(https://i.pinimg.com/1200x/72/6e/7f/726e7fa92b2976bcaa925914b8b5aa8a.jpg); 
 background-size: cover; 
 background-position: center; 
 background-repeat: no-repeat; 
-height: 100vh;">
+height: 100vh;"
     class="vh-100 gradient-custom">
     <div class="container py-5 h-100" style="color:FFDBFD;" >
       <div class="row d-flex justify-content-center align-items-center h-100" >
