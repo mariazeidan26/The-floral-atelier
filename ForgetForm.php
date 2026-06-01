@@ -1,0 +1,71 @@
+
+<head>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css" rel="stylesheet" />
+  <style>
+    .gradient-custom {
+      /* fallback for old browsers */
+      background: white;
+
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(to right, white);
+
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(to right, white)
+    }
+  </style>
+</head>
+
+<body style="color:FFDBFD  ;">
+  <section style="background-image:url(daisy:jpg;); 
+background-size: cover; 
+background-position: center; 
+background-repeat: no-repeat; 
+height: 100vh;">
+    class="vh-100 gradient-custom">
+    <div class="container py-5 h-100" style="color:FFDBFD;" >
+      <div class="row d-flex justify-content-center align-items-center h-100" >
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="background-color:FFDBFD;">
+          <div class="card bg-dark text-white" style="border-radius: 1rem; background-color: FFDBFD;">
+            <div class="card-body p-5 text-center" style="background-color:FFDBFD">
+
+              <div class="mb-md-5 mt-md-4 pb-5">
+
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                  <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                  <label class="form-label" for="typeEmailX">Email</label>
+                </div><br>
+
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                  <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                  <label class="form-label" for="typePasswordX"> New Password</label>
+                </div><br>
+                <div data-mdb-input-init class="form-outline form-white mb-4">
+                  <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                  <label class="form-label" for="typePasswordX">Confirm New Password</label>
+                </div>
+
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5"
+                  type="submit">Change password</button>
+
+                <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                  <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                  <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                  <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+</body>
+
+</html>
