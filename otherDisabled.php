@@ -1,0 +1,1 @@
+<button class="plant" onclick="confirmRedirectOther()">Plant</button>
