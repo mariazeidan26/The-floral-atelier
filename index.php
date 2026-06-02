@@ -111,7 +111,7 @@
                         <?php
                         if (isset($_SESSION['user_id'])) {
                             ?>
-                                <button class="buy"> Buy</button>
+                                <button class="buy" onclick="addToCart(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Buy</button>
                             <?php
                         }
                         else {
@@ -214,7 +214,7 @@
                         <?php
                         if (isset($_SESSION['user_id'])) {
                             ?>
-                                <button class="buy"> Buy</button>
+                                <button class="buy" onclick="addToCart(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Buy</button>
                             <?php
                         }
                         else {
@@ -346,7 +346,7 @@
             }
         }
     </script>
-    <script src="login.js?v=6"></script>
+    <script src="login.js?v=11"></script>
     <script>
 displayBouquet();
         </script>

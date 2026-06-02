@@ -1,3 +1,8 @@
+<?php
+include 'connection.php';
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -422,100 +427,8 @@
                                     <h5 class="font-size-16 mb-0">Order Summary <span class="float-end ms-2">#101</span></h5>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-centered mb-0 table-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th class="border-top-0" style="width: 110px;" scope="col">Product</th>
-                                                <th class="border-top-0" scope="col">Product Description</th>
-                                                <th class="border-top-0" scope="col">Price</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            include 'connection.php';
-                                            session_start();
-
-                                            $user_id = $_SESSION['user_id'];
-                                            $sql = "SELECT * FROM cart WHERE user_id = $user_id";
-                                            $result = $conn->query($sql);
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
-                                                    ?>
-                                                    <tr>
-                                                <th scope="row"><img src="css/whiteOrchid.jpeg" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
-                                                <td>
-                                                    <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark"> White
-                                                    Orchid</a></h5>
-
-
-                                                    <a href="#" class="text-muted px-1">
-                                                        <input type="number" min="1" value="1">
-
-                                                        <i class="mdi mdi-trash-can-outline" onclick="removeFromCart(1)"> </i>
-                                                    </a>
-                                                    <p class="text-muted mb-0 mt-1">$ 10 x 2</p>
-                                                </td>
-                                                <td>$ 20</td>
-
-
-                                            </tr>
-                                                    <?php
-                                                }
-                                            } else {
-                                                echo '<tr><td colspan="3">Your cart is empty.</td></tr>';
-                                            }
-                                            ?>
-                                            <tr>
-                                                <th scope="row"><img src="css/ruffledFanPalm.jpeg" alt="product-img" title="product-img" class="avatar-lg rounded"></th>
-                                                <td>
-                                                    <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Ruffled
-                                                    Fan Palm</a></h5>
-                                                    <a href="#" class="text-muted px-1">
-                                                        <input type="number" min="1" value="1">
-
-                                                        <i class="mdi mdi-trash-can-outline" onclick="removeFromCart(2)"> </i>
-                                                    </a>
-                                                    <p class="text-muted mb-0 mt-1">$ 15 x 2</p>
-
-
-                                                </td>
-
-                                                </td>
-                                                <td>$ 30</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <h5 class="font-size-14 m-0">Sub Total :</h5>
-                                                </td>
-                                                <td>
-                                                    $ 50
-                                                </td>
-                                            </tr>
-
-
-                                            <tr>
-                                                <td colspan="2">
-                                                    <h5 class="font-size-14 m-0">Shipping Charge :</h5>
-                                                </td>
-                                                <td>
-                                                    $ 3
-                                                </td>
-                                            </tr>
-
-
-                                            <tr class="bg-light">
-                                                <td colspan="2">
-                                                    <h5 class="font-size-14 m-0">Total:</h5>
-                                                </td>
-                                                <td>
-                                                    $ 53
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
+                                    <table id='cartTable' class="table table-centered mb-0 table-nowrap">
+</table>
                                 </div>
                             </div>
                         </div>
@@ -539,7 +452,7 @@
                                             <tr>
 
                                                 <td>
-                                                    <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Planting service</a></h5>
+                                                    <h5 class="font-size-16 text-truncate" ><a href="#" class="text-dark">Planting service</a></h5>
 
                                                     <a href="#" class="text-muted px-1">
 
@@ -595,6 +508,10 @@
                 <!-- end row -->
 
             </div>
+            <script src='login.js?v=10'></script>
+            <script>
+                displayCart();
+                </script>
 </body>
 
 </html>

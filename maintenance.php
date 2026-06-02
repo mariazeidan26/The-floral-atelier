@@ -466,7 +466,7 @@
                 <p>Total Cost: $<span id="totalPrice">0</span></p>
 
 
-                <button class="booking-btn" disabled>Confirm booking</button>
+                <button class="booking-btn">Confirm booking</button>
             </div>
 
 

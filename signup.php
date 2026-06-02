@@ -69,27 +69,27 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
                                 <form method="POST" action='signup.php' onsubmit="return validateSignUp()">
 
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <input type="text" name='name' id="form3Example1cg" class="form-control form-control-lg" />
+                                        <input type="text" name='name' id="form3Example1cg" class="form-control form-control-lg" required />
                                         <label class="form-label" for="form3Example1cg">Your Name</label>
                                     </div>
 
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <input type="email" name='email' id="email" class="form-control form-control-lg" />
+                                        <input type="email" name='email' id="email" class="form-control form-control-lg" required />
                                         <label class="form-label" for="email">Your Email</label>
                                     </div>
 
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <input type="password" name='password' id="pass" class="form-control form-control-lg" />
+                                        <input type="password" name='password' id="pass" class="form-control form-control-lg" required />
                                         <label class="form-label" for="pass">Password</label>
                                     </div>
 
                                     <div data-mdb-input-init class="form-outline mb-4">
-                                        <input type="password" id="confirmpass" class="form-control form-control-lg" />
+                                        <input type="password" id="confirmpass" class="form-control form-control-lg" required />
                                         <label class="form-label" for="confirmpass">Confirm your password</label>
                                     </div>
 
                                     <div class="d-flex justify-content-center">
-                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Signup</button>
+                                        <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Signup</button>
                                     </div>
                                     <div>
                                         <?php if (isset($alreadyExist)) { ?>

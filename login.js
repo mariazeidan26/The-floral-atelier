@@ -84,35 +84,39 @@ function goToMaintenance() {
     window.location.href = "maintenance.php";
 }
 function addToCart(productId) {
-    fetch("add_to_cart.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "id=" + productId
-    })
-        .then(response => response.text())
-        .then(data => {
-            alert("Product added to cart!");
-        })
-        .catch(error => {
-            console.error(error);
-        });
+
 }
 function removeFromCart(productId) {
-    fetch("remove_from_cart.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "id=" + productId
-    })
-        .then(res => res.text())
-        .then(data => {
-            alert("Removed from cart!");
-            console.log(data);
-        })
-        .catch(err => console.error(err));
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "cartFrame";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "removeFromCart.php";
+    form.target = ifr.name;
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "product_id";
+    input.value = productId;
+    form.append(input);
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
+
+    displayCart();
+}
+
+function displayCart() {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "cartFrame2";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "cartTable.php";
+    form.target = ifr.name;
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
 }
 
 function addToBouquet(id, quantity) {
@@ -138,6 +142,7 @@ function addToBouquet(id, quantity) {
     form.submit();
 
     displayBouquet();
+    alert("Added to bouquet!");
 }
 
 function removeFromBouquet(bouquet_id) {
@@ -174,6 +179,31 @@ function displayBouquet() {
     form.submit();
 }
 
+function addToCart(id, quantity) {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "cartFrame";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "addToCart.php";
+    form.target = ifr.name;
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "id";
+    input.value = id;
+    form.append(input);
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "quantity";
+    input.value = quantity;
+    form.append(input);
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
+
+    alert("Added to cart!");
+}
+
 function addToPlanting(id, quantity) {
     ifr = document.createElement("iframe");
     ifr.hidden = true;
@@ -195,6 +225,8 @@ function addToPlanting(id, quantity) {
     ifr.appendChild(form);
     document.body.appendChild(ifr);
     form.submit();
+
+    alert("Added to planting!");
 }
 
 function removeFromPlanting(planting_id) {
@@ -229,4 +261,10 @@ function displayPlanting() {
     ifr.appendChild(form);
     document.body.appendChild(ifr);
     form.submit();
+}
+
+function displayBooking(doc) {
+    priceP = doc.getElementById("totalPricePlantingService");
+    countPlants = doc.getElementsByClassName("planting-row").length;
+    priceP.textContent = (parseFloat(doc.querySelector('#plantingTotal').textContent.replace('$', '')) + countPlants * 15) || 0;
 }

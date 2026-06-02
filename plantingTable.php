@@ -19,7 +19,7 @@ session_start();
                                     $total += $prix_unitaire * $row['quantite'];
                                 }
                                         ?>
-                                                            <tr>
+                                                            <tr class="planting-row">
                         <td><img class="product-img" src="<?php echo $img ?>"></td>
                         <td><?php echo $nom ?></td>
                         <td> <?php echo $row['quantite'] ?> </td>

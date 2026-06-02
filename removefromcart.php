@@ -1,26 +1,12 @@
 <?php
+include 'connection.php';
 session_start();
 
-$product_id = $_POST["id"] ?? null;
+if (isset($_POST['product_id'])) {
+    $product_id = $_POST['product_id'];
+    $user_id = $_SESSION['user_id'];
 
-if (!$product_id) {
-    echo "No product ID received";
-    exit;
+    $sql = "DELETE FROM cart WHERE ID = $product_id";
+    $conn->query($sql);
 }
-
-if (!isset($_SESSION["cart"])) {
-    $_SESSION["cart"] = [];
-}
-
-// remove only one match
-foreach ($_SESSION["cart"] as $key => $id) {
-    if ($id == $product_id) {
-        unset($_SESSION["cart"][$key]);
-        break; // IMPORTANT: stop after removing one
-    }
-}
-
-$_SESSION["cart"] = array_values($_SESSION["cart"]);
-
-echo "removed";
 ?>

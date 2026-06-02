@@ -447,7 +447,6 @@
         </div>
 
     </form>
-    <form method="POST" action="booking.php" id="booking-form">
         <div class="booking-section">
             <div class="booking-step locked" id="step2">
                 <span class="steps">Step 2</span>
@@ -484,14 +483,13 @@
                 </div>
 
 
-                <p>Total Cost: $<span id="totalPrice">0</span></p>
-                <button class="booking-btn" type="submit" disabled>Confirm booking</button>
+                <p>Total Cost: $<span id="totalPricePlantingService">0</span></p>
+                <button class="booking-btn" onclick="confirmBooking()">Confirm booking</button>
             </div>
 
 
 
         </div>
-    </form>
 
 
 
@@ -507,7 +505,7 @@
         </div>
     </footer>
 
-<script src="login.js?v=6"></script>
+<script src="login.js?v=12"></script>
 <script>
 displayPlanting();
     </script>

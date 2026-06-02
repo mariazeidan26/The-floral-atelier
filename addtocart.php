@@ -1,22 +1,13 @@
 <?php
+include "connection.php";
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    echo "Invalid request";
-    exit;
+if (isset($_POST['id'], $_POST['quantity'])) {
+    $id = $_POST['id'];
+    $quantity = $_POST['quantity'];
+    $user_id = $_SESSION['user_id'];
+
+    $sql = "insert into cart (ID_item, item_type, ID_user, quantite) values ('$id', 'Plante', '$user_id', '$quantity')";
+    $conn->query($sql);
 }
-
-$product_id = $_POST["id"] ?? null;
-
-if (!$product_id) {
-    echo "No product ID received";
-    exit;
-}
-
-if (!isset($_SESSION["cart"])) {
-    $_SESSION["cart"] = [];
-}
-$_SESSION["cart"][] = $product_id;
-
-echo "Product added successfully";
 ?>
