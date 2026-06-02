@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2026 at 04:46 PM
+-- Generation Time: Jun 02, 2026 at 05:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,13 +48,32 @@ CREATE TABLE `bouquets` (
   `quantite` int(10) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `bouquets`
+-- Table structure for table `cart`
 --
 
-INSERT INTO `bouquets` (`ID`, `ID_User`, `ID_Plante`, `quantite`) VALUES
-(29, 2, 16, 1),
-(30, 2, 11, 1);
+CREATE TABLE `cart` (
+  `ID` int(10) UNSIGNED NOT NULL,
+  `ID_item` int(10) UNSIGNED NOT NULL,
+  `item_type` enum('Plante') DEFAULT NULL,
+  `ID_user` int(11) DEFAULT NULL,
+  `quantite` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`ID`, `ID_item`, `item_type`, `ID_user`, `quantite`) VALUES
+(5, 3, 'Plante', 4, 3),
+(6, 11, 'Plante', 4, 1),
+(7, 11, 'Plante', 4, 13),
+(8, 7, 'Plante', 4, 1),
+(9, 7, 'Plante', 4, 1),
+(10, 1, 'Plante', 4, 1),
+(14, 6, 'Plante', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -77,6 +96,25 @@ INSERT INTO `categorie` (`ID`, `nom`, `details`) VALUES
 (2, 'bouquet', 'Looking to express your feelings? This beautiful cocktail of colors will be absolutely perfect.'),
 (3, 'flower', 'Why perfume your apartment if Mother Nature can do it for you? Perfect for your living room, bedroom, or balcony.'),
 (4, 'flower custom', 'for custom bouquet');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `code`
+--
+
+CREATE TABLE `code` (
+  `ID` int(10) UNSIGNED NOT NULL,
+  `code` text NOT NULL,
+  `discount` decimal(10,0) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `code`
+--
+
+INSERT INTO `code` (`ID`, `code`, `discount`) VALUES
+(1, 'planting2026', 10);
 
 -- --------------------------------------------------------
 
@@ -106,16 +144,22 @@ CREATE TABLE `consultation` (
   `preferred` text DEFAULT NULL,
   `date_chosen` date DEFAULT NULL,
   `type` enum('planting','maintenance') DEFAULT NULL,
-  `number_plants` int(10) UNSIGNED DEFAULT NULL
+  `number_plants` int(10) UNSIGNED DEFAULT NULL,
+  `confirmed` enum('Oui','Non') DEFAULT 'Non'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `consultation`
 --
 
-INSERT INTO `consultation` (`ID`, `ID_User`, `telephone_contact`, `ad_location`, `est_defaut`, `preferred`, `date_chosen`, `type`, `number_plants`) VALUES
-(3, 2, NULL, '', 0, '8:00 AM', '0000-00-00', 'planting', NULL),
-(5, 2, NULL, 'test', 0, '8:00 AM', '2026-06-24', 'maintenance', 12);
+INSERT INTO `consultation` (`ID`, `ID_User`, `telephone_contact`, `ad_location`, `est_defaut`, `preferred`, `date_chosen`, `type`, `number_plants`, `confirmed`) VALUES
+(3, 2, NULL, '', 0, '8:00 AM', '0000-00-00', 'planting', NULL, 'Non'),
+(5, 2, NULL, 'test', 0, '8:00 AM', '2026-06-24', 'maintenance', 12, 'Non'),
+(7, 0, NULL, 'test', 0, '8:00 AM', '2026-06-24', 'planting', NULL, 'Non'),
+(8, 0, NULL, 'test', 0, '8:00 AM', '2026-06-24', 'planting', NULL, 'Non'),
+(9, 2, NULL, '', 0, '8:00 AM', '0000-00-00', 'planting', NULL, 'Non'),
+(10, 4, NULL, 'test', 0, '8:00 AM', '2026-06-24', 'planting', NULL, 'Non'),
+(11, 5, NULL, 'ghadir jounieh ', 0, '12:00 PM', '2026-06-09', 'planting', NULL, 'Non');
 
 -- --------------------------------------------------------
 
@@ -211,7 +255,7 @@ CREATE TABLE `plante` (
 INSERT INTO `plante` (`ID`, `nom`, `ID_Categorie`, `details`, `prix`, `statut`, `quantite`, `img`, `prix_unitaire`) VALUES
 (1, 'Areca Palm', 1, 'Graceful fronds instantly bring a tropical breeze into your home. Perfect for creating a light, exotic vibe in interiors or patios.', 66.52, 'Available', 1082, 'assets/img/plant/Areca Palm.jpeg', 66.52),
 (2, 'Bamboo', 1, 'Minimalist and calming. You can use it as a natural room divider or garden element - bamboo brings harmony and lightness.', 98.54, 'Out of Stock', 3216, 'assets/img/plant/Bamboo.jpeg', 98.54),
-(3, 'Blooming charm', 2, ' ', 27.35, 'Available', 172, 'assets/img/plant/Blooming charm.jpeg', NULL),
+(3, 'Blooming charm', 2, ' ', 27.35, 'Available', 172, 'assets/img/plant/Blooming charm.jpeg', 3.00),
 (4, 'Blue hydrangea', 3, 'it brings a calming and serene beauty to any room, symbolizing gratitude and grace.', 52.74, 'Out of Stock', 732, 'assets/img/plant/Blue hydrangea.jpeg', 3.00),
 (6, 'Cactus flower', 1, 'it symbolizes endurance and strength. When in bloom, these resilient plants surprise with incredibly vibrant and often fragrant blossoms.', 18.53, 'Available', 3846, 'assets/img/plant/Cactus flower.jpeg', 18.53),
 (7, 'Dendrobium', 3, 'known for its starry, cascading blossoms. It symbolizes beauty and wisdom.', 34.95, 'Available', 1344, 'assets/img/plant/Dendrobium.jpeg', 3.00),
@@ -232,9 +276,8 @@ INSERT INTO `plante` (`ID`, `nom`, `ID_Categorie`, `details`, `prix`, `statut`, 
 CREATE TABLE `planting` (
   `ID_Adresse` int(10) UNSIGNED NOT NULL,
   `date_visit` date NOT NULL,
-  `number_plantes` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `quantite` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `ID_Plante` int(10) UNSIGNED DEFAULT NULL,
-  `quantite` int(10) UNSIGNED DEFAULT NULL,
   `ID_User` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -242,8 +285,9 @@ CREATE TABLE `planting` (
 -- Dumping data for table `planting`
 --
 
-INSERT INTO `planting` (`ID_Adresse`, `date_visit`, `number_plantes`, `ID_Plante`, `quantite`, `ID_User`) VALUES
-(6, '0000-00-00', 1, 6, 14, 2);
+INSERT INTO `planting` (`ID_Adresse`, `date_visit`, `quantite`, `ID_Plante`, `ID_User`) VALUES
+(20, '0000-00-00', 1, 1, 5),
+(22, '0000-00-00', 1, 7, 5);
 
 -- --------------------------------------------------------
 
@@ -359,7 +403,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `nom`, `email`, `mot_de_passe`, `date_inscription`, `statut`, `remember`) VALUES
-(2, 'test', 'test@gmail.com', '$2y$10$tdPodSOS8kN.Y1pChf25Iu8P6qrtGDae4ydq3xVexc8aDlQMv7/vy', '2026-06-01 13:53:13', 'client', NULL);
+(5, 'kelly', 'kellykaram06@gmail.com', '$2y$10$LE.qdF9Mhwv/.d.OQq3HIuGKWVovOKwhJ03xGiFZvv42X6I1zToKG', '2026-06-02 18:12:45', 'client', NULL);
 
 --
 -- Indexes for dumped tables
@@ -381,11 +425,24 @@ ALTER TABLE `bouquets`
   ADD KEY `fk_bouquet_user` (`ID_User`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`ID`,`ID_item`);
+
+--
 -- Indexes for table `categorie`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `nom` (`nom`);
+
+--
+-- Indexes for table `code`
+--
+ALTER TABLE `code`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `code` (`code`) USING HASH;
 
 --
 -- Indexes for table `commande`
@@ -457,8 +514,7 @@ ALTER TABLE `planting`
 -- Indexes for table `promotion`
 --
 ALTER TABLE `promotion`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `code` (`code`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `remboursement_plante`
@@ -519,13 +575,25 @@ ALTER TABLE `avis`
 -- AUTO_INCREMENT for table `bouquets`
 --
 ALTER TABLE `bouquets`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `categorie`
 --
 ALTER TABLE `categorie`
   MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `code`
+--
+ALTER TABLE `code`
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `commande`
@@ -537,7 +605,7 @@ ALTER TABLE `commande`
 -- AUTO_INCREMENT for table `consultation`
 --
 ALTER TABLE `consultation`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `ligne_panier`
@@ -573,7 +641,7 @@ ALTER TABLE `plante`
 -- AUTO_INCREMENT for table `planting`
 --
 ALTER TABLE `planting`
-  MODIFY `ID_Adresse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID_Adresse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `promotion`
@@ -615,7 +683,7 @@ ALTER TABLE `statistique_stock`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -639,12 +707,6 @@ ALTER TABLE `bouquets`
 --
 ALTER TABLE `commande`
   ADD CONSTRAINT `fk__Commande__Panier` FOREIGN KEY (`ID_Panier`) REFERENCES `panier` (`ID`);
-
---
--- Constraints for table `consultation`
---
-ALTER TABLE `consultation`
-  ADD CONSTRAINT `fk__Adresse__User` FOREIGN KEY (`ID_User`) REFERENCES `users` (`ID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `ligne_panier`

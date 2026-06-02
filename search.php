@@ -62,35 +62,47 @@ if (isset($_GET['search'])) {
 
                 <input type="number" min="1" value="1">
 
-
-                <div class="buttons">
+ <div class="buttons">
                     <div class="row">
                         <?php
                         if (isset($_SESSION['user_id'])) {
                             ?>
-                                <button class="buy"> Buy</button>
+                                <button class="buy" onclick="addToCart(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Buy</button>
                             <?php
                         }
                         else {
-                            include "buyDisabled.php";
+                            ?>
+                            <button class="buy" onclick="confirmRedirect()"> Buy</button>
+                            <?php
                         }
-                        if ($row['ID_Categorie'] != 2) {
                         ?>
-                        <button class="plant"> Plant</button>
-                        <?php
+                          <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                        <button class="plant" onclick="addToPlanting(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Plant</button>
+                            <?php
+                        }
+                        else {
+                            ?>
+                            <button class="plant" onclick="confirmRedirect()">Plant</button>
+                            <?php
                         }
                         ?>
                     </div>
-                    <?php
-                    if ($row['ID_Categorie'] == 3) {
+                     <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                        <button class="customize" onclick="addToBouquet(<?php echo $row['ID'] ?>, this.parentNode.parentNode.querySelector('input[type=number]').value)"> Add to your bouquet</button>
+                            <?php
+                        }
+                        else {
+                            ?>
+                            <button class="customize" onclick="confirmRedirect()">Add to your bouquet</button>
+                            <?php
+                        }
                         ?>
-                    <button class="customize"> Add to your bouquet</button>
-                    <?php
-                    }
-                    ?>
                 </div>
-
-                <p> <?php echo $row['statut'] ?> </p>
+                 <p> <?php echo $row['statut'] ?> </p>
             </div>
             <?php
         }
@@ -100,6 +112,6 @@ if (isset($_GET['search'])) {
         <?php
     }
 }
-?>
+             ?>
 </body>
 </html>

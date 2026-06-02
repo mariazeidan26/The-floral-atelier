@@ -12,13 +12,13 @@ function logout() {
         window.location.href = "logout.php";
     }
 }
-function confirmRedirectBuy() {
+/*function confirmRedirectBuy() {
     var sure = confirm("Please log in to make a purchase, do you want to go to login now?");
     if (sure) {
         window.location.href = "login.php";
     }
-}
-function confirmRedirectOther() {
+}*/
+function confirmRedirect() {
     var sure = confirm("Please log in to proceed, do you want to go to login now?");
     if (sure) {
         window.location.href = "login.php";

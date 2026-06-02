@@ -115,7 +115,9 @@
                             <?php
                         }
                         else {
-                            include "buyDisabled.php";
+                            ?>
+                            <button class="buy" onclick="confirmRedirect()"> Buy</button>
+                            <?php
                         }
                         ?>
                           <?php
@@ -125,12 +127,24 @@
                             <?php
                         }
                         else {
-                            <button class="plant" onclick="confirmRedirectOther()">Plant</button>
+                            ?>
+                            <button class="plant" onclick="confirmRedirect()">Plant</button>
+                            <?php
                         }
                         ?>
-                       <!-- <button class="plant" onclick="addToPlanting(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Plant</button>-->
                     </div>
-                    <button class="customize" onclick="addToBouquet(<?php echo $row['ID'] ?>, this.parentNode.parentNode.querySelector('input[type=number]').value)"> Add to your bouquet</button>
+                     <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                        <button class="customize" onclick="addToBouquet(<?php echo $row['ID'] ?>, this.parentNode.parentNode.querySelector('input[type=number]').value)"> Add to your bouquet</button>
+                            <?php
+                        }
+                        else {
+                            ?>
+                            <button class="customize" onclick="confirmRedirect()">Add to your bouquet</button>
+                            <?php
+                        }
+                        ?>
                 </div>
 
                 <p> <?php echo $row['statut'] ?> </p>

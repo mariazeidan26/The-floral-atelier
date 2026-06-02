@@ -406,7 +406,7 @@ session_start();
 
                         <div class="row my-4">
                             <div class="col">
-                                <a href="index.html" class="btn btn-link text-muted">
+                                <a href="index.php" class="btn btn-link text-muted">
                                     <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
                             </div>
                             <!-- end col -->
