@@ -125,7 +125,7 @@
                             <?php
                         }
                         else {
-                            include "otherDisabled.php";
+                            <button class="plant" onclick="confirmRedirectOther()">Plant</button>
                         }
                         ?>
                        <!-- <button class="plant" onclick="addToPlanting(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Plant</button>-->
