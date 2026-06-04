@@ -1,6 +1,15 @@
 <?php
     include 'connection.php';
     session_start();
+
+    if (isset($_POST['rating'], $_POST['feedback'])) {
+        $rating = $_POST['rating'];
+        $feedback = $_POST['feedback'];
+        $user_id = $_SESSION['user_id'];
+
+        $sql = "insert into avis (ID_User, commentaire, note) values ('$user_id', '$feedback', '$rating')";
+        $conn->query($sql);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -180,11 +189,13 @@
                         <?php
                         if (isset($_SESSION['user_id'])) {
                             ?>
-                                <button class="buy"> Buy</button>
+                                <button class="buy" onclick="addToCart(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Buy</button>
                             <?php
                         }
                         else {
-                            include "buyDisabled.php";
+                            ?>
+                            <button class="buy" onclick="confirmRedirect()"> Buy</button>
+                            <?php
                         }
                         ?>
                     </div>
@@ -206,7 +217,7 @@
 
 
                     </div>
-                    <button class="buy">create bouquet</button>
+                    <button class="buy" onclick="addToCustomBouquets();">create bouquet</button>
 
                 </div>
             </div>
@@ -283,7 +294,7 @@
 
 
     <section class="rate-contact">
-        <form>
+        <form method="POST" action="index.php">
         <h2 class="section-title">Rate your experience</h2>
 
         <select class="rating" name="rating">
@@ -370,7 +381,7 @@
             }
         }
     </script>
-    <script src="login.js?v=11"></script>
+    <script src="login.js?v=13"></script>
     <script>
 displayBouquet();
         </script>

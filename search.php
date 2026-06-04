@@ -77,6 +77,7 @@ if (isset($_GET['search'])) {
                         }
                         ?>
                           <?php
+                          if ($row['ID_Categorie'] != 2) {
                         if (isset($_SESSION['user_id'])) {
                             ?>
                         <button class="plant" onclick="addToPlanting(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Plant</button>
@@ -87,9 +88,11 @@ if (isset($_GET['search'])) {
                             <button class="plant" onclick="confirmRedirect()">Plant</button>
                             <?php
                         }
+                          }
                         ?>
                     </div>
                      <?php
+                     if ($row['ID_Categorie'] == 3) {
                         if (isset($_SESSION['user_id'])) {
                             ?>
                         <button class="customize" onclick="addToBouquet(<?php echo $row['ID'] ?>, this.parentNode.parentNode.querySelector('input[type=number]').value)"> Add to your bouquet</button>
@@ -100,6 +103,7 @@ if (isset($_GET['search'])) {
                             <button class="customize" onclick="confirmRedirect()">Add to your bouquet</button>
                             <?php
                         }
+        }
                         ?>
                 </div>
                  <p> <?php echo $row['statut'] ?> </p>
@@ -113,5 +117,7 @@ if (isset($_GET['search'])) {
     }
 }
              ?>
+
+<script src="login.js?v=9"></script>
 </body>
 </html>

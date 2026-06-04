@@ -4,7 +4,7 @@ include "connection.php";
 if (session_status() == PHP_SESSION_NONE) {
 session_start();
 }
-                                $sql = "SELECT * from bouquets where ID_User = ".$_SESSION['user_id'];
+                                $sql = "SELECT * from bouquetcart where ID_User = ".$_SESSION['user_id'];
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {

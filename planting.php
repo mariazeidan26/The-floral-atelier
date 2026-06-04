@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+    include "connection.php";
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
+
 <head>
     <meta charset="UTF-8">
     <title>Planting Service Booking</title>
@@ -184,7 +191,7 @@
             margin-bottom: 24px;
             margin-top: 10px;
             font-style: italic;
-            margin-left: 80px;
+            margin-left: 160px;
         }
         
         .form-row {
@@ -245,6 +252,7 @@
         
         .booking-step.locked {
             opacity: 0.5;
+            pointer-events: none;
         }
         
         .footer-bottom {
@@ -296,35 +304,9 @@
 
 <body>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                <p class="navbar-brand"> The floral atelier </p>
-            </div>
-
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.php"> Home </a> </li>
-                    <li><a href="index.php#categories"> Categories </a> </li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li> <a class="nav-link" href="cart.php"> 🛒 <span id="cartcount">0</span> </a> </li>
-                    <li>
-                        <a href="signup.php"> <span class="glyphicon glyphicon-user"></span> Sign up </a>
-                    </li>
-                    <li>
-                        <a href="login.php"> <span class="glyphicon glyphicon-log-in"></span> Login </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php
+    include 'nav.php';
+    ?>
     <header>
         <h1> <br>PLANTING <br> SERVICE </h1>
     </header>
@@ -404,9 +386,24 @@
     </section>
 
     <form method="POST" action="consultation.php" id="consultation-form">
-
         <div class="booking-section">
-            <div class="booking-step" id="step1">
+            <div class="booking-step <?php
+        include 'connection.php';
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (isset($_SESSION['user_id'])) {
+        $sql = 'select * from consultation where ID_User = '.$_SESSION['user_id'];
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            echo "locked";
+            $locked = true;
+        }
+        } else {
+            echo "locked";
+            $locked = true;
+        }
+        ?>" id="step1">
                 <span class="steps">Step 1</span>
                 <h2>Book your free consultation</h2>
                 <p class="t">Our team will visit your space and plan the perfect planting design --all for free.</p>
@@ -441,14 +438,31 @@
                         </select>
                     </div>
                 </div>
-                <input class="booking-btn" type="submit" value="Book free consultation">
+                <input class="booking-btn" type="submit" value="Book free consultation" <?php if (isset($locked)) { echo 'disabled'; } ?>>
 
             </div>
         </div>
 
     </form>
-        <div class="booking-section">
-            <div class="booking-step locked" id="step2">
+        <form class="booking-section" method="POST" action="booking.php">
+            <div class="booking-step <?php
+            include "connection.php";
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            if (isset($_SESSION['user_id'])) {
+        $sql = 'select * from consultation where ID_User = '.$_SESSION['user_id'].' and confirmed = "Oui"';
+            $result = $conn->query($sql);
+        if ($result->num_rows == 0) {
+            echo "locked";
+            $locked = true;
+        }
+        } else {
+            echo "locked";
+            $locked = true;
+        }
+            ?>" id="step2">
                 <span class="steps">Step 2</span>
                 <h2>Book a planting service</h2>
                 <p class="t">Available after your consultation is confirmed</p>
@@ -457,17 +471,21 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Address</label>
-                        <input type="text" id="p-address" disabled placeholder="Auto-filled from consultation">
+                        <input type="text" id="p-address" name="address" placeholder="Auto-filled from consultation" value="<?php
+                        if (isset($result)) {
+                        echo $result->fetch_assoc()['ad_location'];
+                        }
+                        ?>">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label>Pick a date</label>
-                        <input type="date" id="p-date" disabled>
+                        <input type="date" id="p-date" name="date" required>
                     </div>
                     <div class="form-group">
                         <label>Preferred time</label>
-                        <select id="p-time" disabled>
+                        <select id="p-time" name="time" required>
                             <option>8:00 AM</option>
                             <option>9:00 AM</option>
                             <option>10:00 AM</option>
@@ -483,13 +501,14 @@
                 </div>
 
 
-                <p>Total Cost: $<span id="totalPricePlantingService">0</span></p>
-                <button class="booking-btn" onclick="confirmBooking()">Confirm booking</button>
+                <p>Total Cost (+ Planting fees): $<span id="totalPricePlantingService">0</span></p>
+                <input type='hidden' name='total' id='totalPriceInput'>
+                <input class="booking-btn" type='submit' value='Confirm booking'>
             </div>
 
 
 
-        </div>
+</form>
 
 
 

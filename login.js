@@ -145,6 +145,22 @@ function addToBouquet(id, quantity) {
     alert("Added to bouquet!");
 }
 
+function addToCustomBouquets() {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "bouquetFrame";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "addToCustomBouquets.php";
+    form.target = ifr.name;
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
+
+    displayBouquet();
+    alert("Added bouquet to cart!");
+}
+
 function removeFromBouquet(bouquet_id) {
     ifr = document.createElement("iframe");
     ifr.hidden = true;
@@ -266,5 +282,8 @@ function displayPlanting() {
 function displayBooking(doc) {
     priceP = doc.getElementById("totalPricePlantingService");
     countPlants = doc.getElementsByClassName("planting-row").length;
-    priceP.textContent = (parseFloat(doc.querySelector('#plantingTotal').textContent.replace('$', '')) + countPlants * 15) || 0;
+    priceP.textContent = (parseFloat(doc.querySelector('#plantingTotal').textContent.replace('$', '')) + 15) || 0;
+    priceP.textContent = priceP.textContent.substring(0, priceP.textContent.indexOf(".") + 3);
+    priceI = doc.getElementById("totalPriceInput");
+    priceI.value = priceP.textContent;
 }

@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 session_start();
 }
                                 $total = 0;
-                                $sql = "SELECT * from planting where ID_User = ".$_SESSION['user_id'];
+                                $sql = "SELECT * from plantingcart where ID_User = ".$_SESSION['user_id'];
                                 $result = $conn->query($sql);
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
@@ -24,7 +24,7 @@ session_start();
                         <td><?php echo $nom ?></td>
                         <td> <?php echo $row['quantite'] ?> </td>
                         <td class="subtotal"><?php echo $prix_unitaire * $row['quantite'] ?>$</td>
-                        <td><button class="remove" onclick="removeFromPlanting(<?php echo $row['ID_Adresse'] ?>)">X</button></td>
+                        <td><button class="remove" onclick="removeFromPlanting(<?php echo $row['ID_PCart'] ?>)">X</button></td>
                     </tr>
                                         <?php
                                     }
@@ -37,8 +37,10 @@ session_start();
                                 }
                                 ?>
                                 </table>
+                                <script src='login.js?V=11'></script>
                                 <script>
                                     var htmlToAdd = document.querySelector('tbody').innerHTML;
                                     window.parent.document.querySelector('#plantingTableBody').innerHTML = htmlToAdd;
                                     window.parent.document.querySelector('#plantingTotal').innerText = "$<?php echo $total ?>";
+                                    displayBooking(window.parent.document);
                                     </script>

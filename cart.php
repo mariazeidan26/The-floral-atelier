@@ -13,13 +13,13 @@ session_start();
             margin-top: 20px;
             background-color: antiquewhite;
         }
-        
+
         .card {
             margin-bottom: 24px;
             -webkit-box-shadow: 0 2px 3px #e4e8f0;
             box-shadow: 0 2px 3px #e4e8f0;
         }
-        
+
         .card {
             position: relative;
             display: -webkit-box;
@@ -36,76 +36,76 @@ session_start();
             border: 1px solid #eff0f2;
             border-radius: 1rem;
         }
-        
+
         .activity-checkout {
             list-style: none
         }
-        
+
         .activity-checkout .checkout-icon {
             position: absolute;
             top: -4px;
             left: -24px
         }
-        
+
         .activity-checkout .checkout-item {
             position: relative;
             padding-bottom: 24px;
             padding-left: 35px;
             border-left: 2px solid #f5f6f8
         }
-        
+
         .activity-checkout .checkout-item:first-child {
             border-color: red;
         }
-        
+
         .activity-checkout .checkout-item:first-child:after {
             background-color: red;
         }
-        
+
         .activity-checkout .checkout-item:last-child {
             border-color: red
         }
-        
+
         .activity-checkout .checkout-item.crypto-activity {
             margin-left: 50px
         }
-        
+
         .activity-checkout .checkout-item .crypto-date {
             position: absolute;
             top: 3px;
             left: -65px
         }
-        
+
         .avatar-xs {
             height: 1rem;
             width: 1rem
         }
-        
+
         .avatar-sm {
             height: 2rem;
             width: 2rem
         }
-        
+
         .avatar {
             height: 3rem;
             width: 3rem
         }
-        
+
         .avatar-md {
             height: 4rem;
             width: 4rem
         }
-        
+
         .avatar-lg {
             height: 5rem;
             width: 5rem
         }
-        
+
         .avatar-xl {
             height: 6rem;
             width: 6rem
         }
-        
+
         .avatar-title {
             -webkit-box-align: center;
             -ms-flex-align: center;
@@ -122,7 +122,7 @@ session_start();
             justify-content: center;
             width: 100%
         }
-        
+
         .avatar-group {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -131,7 +131,7 @@ session_start();
             flex-wrap: wrap;
             padding-left: 8px
         }
-        
+
         .avatar-group .avatar-group-item {
             margin-left: -8px;
             border: 2px solid #fff;
@@ -139,13 +139,13 @@ session_start();
             -webkit-transition: all .2s;
             transition: all .2s
         }
-        
+
         .avatar-group .avatar-group-item:hover {
             position: relative;
             -webkit-transform: translateY(-2px);
             transform: translateY(-2px)
         }
-        
+
         .card-radio {
             background-color: whitesmoke;
             border: 2px solid #eff0f2;
@@ -156,15 +156,15 @@ session_start();
             white-space: nowrap;
             display: block
         }
-        
+
         .card-radio:hover {
             cursor: pointer
         }
-        
+
         .card-radio-label {
             display: block
         }
-        
+
         .edit-btn {
             width: 35px;
             height: 35px;
@@ -174,29 +174,29 @@ session_start();
             right: 25px;
             margin-top: -50px
         }
-        
+
         .card-radio-input {
             display: none
         }
-        
+
         .card-radio-input:checked+.card-radio {
             border-color: #3b76e1 !important
         }
-        
+
         .font-size-16 {
             font-size: 16px !important;
         }
-        
+
         .text-truncate {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        
+
         a {
             text-decoration: none !important;
         }
-        
+
         .form-control {
             display: block;
             width: 100%;
@@ -217,7 +217,7 @@ session_start();
             transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
             transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
         }
-        
+
         .edit-btn {
             width: 35px;
             height: 35px;
@@ -227,7 +227,7 @@ session_start();
             right: 25px;
             margin-top: -50px;
         }
-        
+
         .ribbon {
             position: absolute;
             right: -26px;
@@ -245,7 +245,9 @@ session_start();
 </head>
 
 <body>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css"
+        integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <div class="container">
@@ -272,31 +274,88 @@ session_start();
                                                     <div class="row">
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
-                                                                <label class="form-label" for="billing-name">Name</label>
-                                                                <input type="text" class="form-control" id="billing-name" placeholder="Enter name">
+                                                                <label class="form-label"
+                                                                    for="billing-name">Name</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="billing-name" placeholder="Enter name">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
-                                                                <label class="form-label" for="billing-email-address">Email Address</label>
-                                                                <input type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
+                                                                <label class="form-label"
+                                                                    for="billing-email-address">Email Address</label>
+                                                                <input type="email" class="form-control"
+                                                                    id="billing-email-address"
+                                                                    placeholder="Enter email">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
-                                                                <label class="form-label" for="billing-phone">Phone</label>
-                                                                <input type="text" class="form-control" id="billing-phone" placeholder="Enter Phone number">
+                                                                <label class="form-label"
+                                                                    for="billing-phone">Phone</label>
+                                                                <input type="text" class="form-control"
+                                                                    id="billing-phone" placeholder="Enter Phone number">
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="mb-3">
                                                         <label class="form-label" for="billing-address">Address</label>
-                                                        <textarea class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
+                                                        <textarea class="form-control" id="billing-address" rows="3"
+                                                            placeholder="Enter full address"></textarea>
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="billing-name">Discount code</label>
+                                                            Total cost: <?php
+                                                            include "connection.php";
+                                                            if (session_status() == PHP_SESSION_NONE) {
+                                                                session_start();
+                                                            }
+
+                                                            $user_id = $_SESSION['user_id'];
+                                                            $sql = "SELECT * FROM cart WHERE ID_user = $user_id";
+                                                            $result = $conn->query($sql);
+                                                            $subTotal = 0;
+                                                            if ($result->num_rows > 0) {
+                                                                while ($row = $result->fetch_assoc()) {
+                                                                    $product_type = $row['item_type'];
+                                                                    $sql = "";
+                                                                    if ($product_type == 'Plante') {
+                                                                        $sql = "select * from plante where ID = " . $row['ID_item'];
+                                                                    }
+                                                                    if ($product_type == 'Bouquet') {
+                                                                        $sql = "select * from bouquet where ID = " . $row['ID_item'];
+                                                                    }
+                                                                    $result2 = $conn->query($sql);
+                                                                    if ($result2->num_rows > 0) {
+                                                                        $product = $result2->fetch_assoc();
+                                                                        if ($product_type == 'Plante') {
+                                                                            if ($product['ID_Categorie'] == 2) {
+                                                                                $subTotal += $product['prix_unitaire'] * $row['quantite'];
+                                                                            } else {
+                                                                                $subTotal += $product['prix'] * $row['quantite'];
+                                                                            }
+                                                                        } else if ($product_type == 'Bouquet') {
+                                                                            $subTotal += $product['total'];
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            $total2 = $subTotal + 3;
+                                                            $user_id = $_SESSION['user_id'];
+                                                            $sql = "select total from planting where ID_User = '$user_id' and is_paid = 'Non' group by ID_Planting";
+                                                            $result = $conn->query($sql);
+                                                            if ($result->num_rows > 0) {
+                                                                while ($row = $result->fetch_assoc()) {
+                                                                    $total2 += $row['total'];
+                                                                }
+                                                            }
+                                                            echo "$ " . $total2;
+                                                            ?>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="billing-name">Discount
+                                                                code</label>
                                                             <input type="text" class="form-control">
                                                         </div>
                                                     </div>
@@ -318,9 +377,9 @@ session_start();
                                                             </div>
                                                         </div>
                                             </form>
-                                            </div>
-                                            </div>
                                         </div>
+                                    </div>
+                                </div>
                             </li>
                             <li class="checkout-item">
                                 <div class="avatar checkout-icon p-1">
@@ -334,7 +393,8 @@ session_start();
                                                     <div data-bs-toggle="collapse">
 
                                                         <div class="edit-btn bg-light  rounded">
-                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit">
+                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top"
+                                                                title="" data-bs-original-title="Edit">
                                                                 <i class="bx bx-pencil font-size-16"></i>
                                                             </a>
                                                         </div>
@@ -345,7 +405,8 @@ session_start();
                                                     <div>
 
                                                         <div class="edit-btn bg-light  rounded">
-                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top" title="" data-bs-original-title="Edit">
+                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top"
+                                                                title="" data-bs-original-title="Edit">
                                                                 <i class="bx bx-pencil font-size-16"></i>
                                                             </a>
                                                         </div>
@@ -401,117 +462,131 @@ session_start();
                                 </div>
                             </li>
                         </ol>
-                        </div>
-                        </div>
-
-                        <div class="row my-4">
-                            <div class="col">
-                                <a href="index.php" class="btn btn-link text-muted">
-                                    <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
-                            </div>
-                            <!-- end col -->
-                            <div class="col">
-                                <div class="text-end mt-2 mt-sm-0">
-                                    <a href="#" class="btn btn-success">
-                                        <i class="mdi mdi-cart-outline me-1"></i> Proceed </a>
-                                </div>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row-->
                     </div>
-                    <div class="col-xl-4">
-                        <div class="card checkout-order-summary">
-                            <div class="card-body">
-                                <div class="p-3 bg-light mb-3">
-                                    <h5 class="font-size-16 mb-0">Order Summary <span class="float-end ms-2">#101</span></h5>
-                                </div>
-                                <div class="table-responsive">
-                                    <table id='cartTable' class="table table-centered mb-0 table-nowrap">
-</table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card checkout-order-summary">
-                            <div class="card-body">
-                                <div class="p-3 bg-light mb-3">
-                                    <h5 class="font-size-16 mb-0"> Services booking Summary </h5>
-
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-centered mb-0 table-nowrap">
-                                        <thead>
-                                            <tr>
-                                                <th class="border-top-0" style="width: 110px;" scope="col">service</th>
-
-                                                <th class="border-top-0" scope="col">Price</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-
-                                                <td>
-                                                    <h5 class="font-size-16 text-truncate" ><a href="#" class="text-dark">Planting service</a></h5>
-
-                                                    <a href="#" class="text-muted px-1">
-
-
-                                                        <i class="mdi mdi-trash-can-outline"> </i>
-                                                    </a>
-
-                                                </td>
-                                                <td>$ 15</td>
-
-
-                                            </tr>
-                                            <tr>
-
-                                                <td>
-                                                    <h5 class="font-size-16 text-truncate"><a href="#" class="text-dark">Maintenance service </a></h5>
-                                                    <a href="#" class="text-muted px-1">
-
-
-                                                        <i class="mdi mdi-trash-can-outline"> </i>
-                                                    </a>
-
-                                                </td>
-                                                <td>$ 40</td>
-
-
-                                                </td>
-
-                                            </tr>
-
-
-
-
-
-                                            <tr class="bg-light">
-                                                <td colspan="2">
-                                                    <h5 class="font-size-14 m-0">Total:</h5>
-                                                </td>
-                                                <td>
-                                                    55 $
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
                 </div>
-                <!-- end row -->
+
+                <div class="row my-4">
+                    <div class="col">
+                        <a href="index.php" class="btn btn-link text-muted">
+                            <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping </a>
+                    </div>
+                    <!-- end col -->
+                    <div class="col">
+                        <div class="text-end mt-2 mt-sm-0">
+                            <a href="#" class="btn btn-success">
+                                <i class="mdi mdi-cart-outline me-1"></i> Proceed </a>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row-->
+            </div>
+            <div class="col-xl-4">
+                <div class="card checkout-order-summary">
+                    <div class="card-body">
+                        <div class="p-3 bg-light mb-3">
+                            <h5 class="font-size-16 mb-0">Order Summary <span class="float-end ms-2">#101</span></h5>
+                        </div>
+                        <div class="table-responsive">
+                            <table id='cartTable' class="table table-centered mb-0 table-nowrap">
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card checkout-order-summary">
+                    <div class="card-body">
+                        <div class="p-3 bg-light mb-3">
+                            <h5 class="mb-0"> Services booking Summary </h5>
+                            <i class="font-size-4 mb-0">For any changes please email us</i>
+
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-centered mb-0 table-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0" style="width: 110px;" scope="col">service</th>
+
+                                        <th class="border-top-0" scope="col">Price</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+
+                                        <td>
+                                            <h5 class="font-size-16 text-truncate"><a href="#"
+                                                    class="text-dark">Planting service</a></h5>
+
+                                            <a href="#" class="text-muted px-1">
+                                            </a>
+
+                                        </td>
+                                        <td><?php
+                                        include "connection.php";
+                                        if (session_status() == PHP_SESSION_NONE) {
+                                            session_start();
+                                        }
+
+                                        $user_id = $_SESSION['user_id'];
+                                        $sql = "select total from planting where ID_User = '$user_id' and is_paid = 'Non' group by ID_Planting";
+                                        $result = $conn->query($sql);
+                                        $total = 0;
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                $total += $row['total'];
+                                            }
+                                        }
+                                        echo "$ " . $total;
+                                        $totalAll = $total;
+                                        ?></td>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            <h5 class="font-size-16 text-truncate"><a href="#"
+                                                    class="text-dark">Maintenance service </a></h5>
+                                            <a href="#" class="text-muted px-1">
+                                            </a>
+
+                                        </td>
+                                        <td>$ 0</td>
+
+
+                                        </td>
+
+                                    </tr>
+
+
+
+
+
+                                    <tr class="bg-light">
+                                        <td colspan="2">
+                                            <h5 class="font-size-14 m-0">Total:</h5>
+                                        </td>
+                                        <td>
+                                            <?php echo $totalAll ?> $
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
-            <script src='login.js?v=10'></script>
-            <script>
-                displayCart();
-                </script>
+
+        </div>
+        <!-- end row -->
+
+    </div>
+    <script src='login.js?v=10'></script>
+    <script>
+        displayCart();
+    </script>
 </body>
 
 </html>

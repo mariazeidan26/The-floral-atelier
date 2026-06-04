@@ -7,7 +7,7 @@ if (isset($_POST['id'], $_POST['quantity'])) {
     $quantity = $_POST['quantity'];
     $user_id = $_SESSION['user_id'];
 
-    $sql = "insert into planting (ID_User, ID_Plante, quantite) values ('$user_id', '$id', '$quantity')";
+    $sql = "insert into plantingcart (ID_User, ID_Plante, quantite) values ('$user_id', '$id', '$quantity')";
     $conn->query($sql);
 }
 ?>
