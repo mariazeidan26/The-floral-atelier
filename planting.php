@@ -393,7 +393,7 @@
             session_start();
         }
         if (isset($_SESSION['user_id'])) {
-        $sql = 'select * from consultation where ID_User = '.$_SESSION['user_id'];
+        $sql = 'select * from consultation where ID_User = '.$_SESSION['user_id'].' and type like "planting"';
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             echo "locked";
@@ -452,7 +452,7 @@
             }
 
             if (isset($_SESSION['user_id'])) {
-        $sql = 'select * from consultation where ID_User = '.$_SESSION['user_id'].' and confirmed = "Oui"';
+        $sql = 'select * from consultation where ID_User = '.$_SESSION['user_id'].' and type like "planting" and confirmed = "Oui"';
             $result = $conn->query($sql);
         if ($result->num_rows == 0) {
             echo "locked";

@@ -1,3 +1,25 @@
+<?php
+include "connection.php";
+session_start();
+
+if (isset($_POST["address"], $_POST["date"], $_POST["time"])) {
+    $address = $_POST["address"];
+    $date = $_POST["date"];
+    $time = $_POST["time"];
+    $user_id = $_SESSION["user_id"];
+
+    $sql = "select number_plants from consultation where ID_User = '$user_id' and type = 'maintenance'";
+    $result = $conn->query($sql);
+    $num_plants = 1;
+    if ($result->num_rows > 0) {
+        $num_plants = $result->fetch_assoc()["number_plants"];
+    }
+
+    $sql = "insert into maintenance (adresse, m_date, time, ID_User, number_plantes) values ('$address', '$date', '$time', '$user_id', '$num_plants')";
+    $conn->query($sql);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -235,6 +257,7 @@
         
         .booking-step.locked {
             opacity: 0.5;
+            pointer-events: none;
         }
         
         .footer-bottom {
@@ -287,35 +310,9 @@
 
 <body>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                <p class="navbar-brand"> The floral atelier </p>
-            </div>
-
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.php"> Home </a> </li>
-                    <li><a href="index.php#categories"> Categories </a> </li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li> <a class="nav-link" href="cart.php"> 🛒 <span id="cartcount">0</span> </a> </li>
-                    <li>
-                        <a href="signup.php"> <span class="glyphicon glyphicon-user"></span> Sign up </a>
-                    </li>
-                    <li>
-                        <a href="login.php"> <span class="glyphicon glyphicon-log-in"></span> Login </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php
+    include "nav.php";
+    ?>
     <header>
         <h1> <br>MAINTENANCE <br> SERVICE </h1>
     </header>
@@ -368,7 +365,23 @@
     <form method="POST" action="maintenanceAdd.php">
 
         <div class="booking-section">
-            <div class="booking-step" id="step1">
+            <div class="booking-step <?php
+        include 'connection.php';
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (isset($_SESSION['user_id'])) {
+        $sql = 'select * from consultation where ID_User = '.$_SESSION['user_id'].' and type like "maintenance"';
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            echo "locked";
+            $locked = true;
+        }
+        } else {
+            echo "locked";
+            $locked = true;
+        }
+        ?>" id="step1">
                 <span class="steps">Step 1</span>
                 <h2>Book the first visit</h2>
                 <p class="t">Our team will visit your space, assess your plants, and recommend a care plan --all for free.</p>
@@ -416,9 +429,26 @@
         </div>
 
     </form>
-    <form method="POST" action="" id="">
+    <form method="POST" action="maintenance.php" id="maintenanceForm">
         <div class="booking-section">
-            <div class="booking-step locked" id="step2">
+            <div class="booking-step <?php
+            include "connection.php";
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            if (isset($_SESSION['user_id'])) {
+        $sql = 'select * from consultation where ID_User = '.$_SESSION['user_id'].' and type like "maintenance" and confirmed = "Oui"';
+            $result = $conn->query($sql);
+        if ($result->num_rows == 0) {
+            echo "locked";
+            $locked = true;
+        }
+        } else {
+            echo "locked";
+            $locked = true;
+        }
+            ?>" id="step2">
                 <span class="steps">Step 2</span>
                 <h2>Choose a plan and book</h2>
                 <br> <br>
@@ -427,29 +457,23 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Address</label>
-                        <input type="text" id="p-address" disabled placeholder="Auto-filled from consultation">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Frequency</label>
-                        <select id="p-frequency" disabled>
-                            <option>daily</option>
-                            <option>weekly</option>
-                            <option>monthly</option>
-                    
-                        </select>
+                        <input type="text" id="p-address" name="address" placeholder="Auto-filled from consultation" value="<?php
+                        if (isset($result)) {
+                        $result_fetch = $result->fetch_assoc();
+                        echo $result_fetch['ad_location'];
+                        }
+                        ?>">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Pick a starting date</label>
-                        <input type="date" id="p-date" disabled>
+                        <label>Pick a date</label>
+                        <input type="date" name="date" id="p-date">
                     </div>
                     <div class="form-group">
                         <label>Preferred time</label>
-                        <select id="p-time" disabled>
+                        <select id="p-time" name="time">
                             <option>8:00 AM</option>
                             <option>9:00 AM</option>
                             <option>10:00 AM</option>
@@ -463,7 +487,13 @@
                         </select>
                     </div>
                 </div>
-                <p>Total Cost: $<span id="totalPrice">0</span></p>
+                <p>Total Cost: $<span id="totalPrice"><?php
+                if (isset($result_fetch)) {
+                    echo $result_fetch["number_plants"] * 5;
+                } else {
+                    echo "0";
+                }
+                ?></span></p>
 
 
                 <button class="booking-btn">Confirm booking</button>

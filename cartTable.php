@@ -125,8 +125,8 @@ if (session_status() == PHP_SESSION_NONE) {
         </tr>
     </tbody>
 </table>
+<script src="login.js?v=13"></script>
 <script>
     var htmlToAdd = document.querySelector('table').innerHTML;
     window.parent.document.querySelector('#cartTable').innerHTML = htmlToAdd;
-    displayBooking(window.parent.document);
 </script>

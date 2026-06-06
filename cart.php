@@ -103,7 +103,7 @@ session_start();
 
         .avatar-xl {
             height: 6rem;
-            width: 6rem
+            width: 6rem;
         }
 
         .avatar-title {
@@ -269,7 +269,7 @@ session_start();
                                         <h5 class="font-size-16 mb-1">Billing Info</h5>
 
                                         <div class="mb-3">
-                                            <form>
+                                            <form id="billingForm" action="billing.php" method="POST">
                                                 <div>
                                                     <div class="row">
                                                         <div class="col-lg-4">
@@ -277,14 +277,14 @@ session_start();
                                                                 <label class="form-label"
                                                                     for="billing-name">Name</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="billing-name" placeholder="Enter name">
+                                                                    id="billing-name" name="name" placeholder="Enter name">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
                                                             <div class="mb-3">
                                                                 <label class="form-label"
                                                                     for="billing-email-address">Email Address</label>
-                                                                <input type="email" class="form-control"
+                                                                <input type="email" name="email" class="form-control"
                                                                     id="billing-email-address"
                                                                     placeholder="Enter email">
                                                             </div>
@@ -293,7 +293,7 @@ session_start();
                                                             <div class="mb-3">
                                                                 <label class="form-label"
                                                                     for="billing-phone">Phone</label>
-                                                                <input type="text" class="form-control"
+                                                                <input type="text" name="phone" class="form-control"
                                                                     id="billing-phone" placeholder="Enter Phone number">
                                                             </div>
                                                         </div>
@@ -301,12 +301,12 @@ session_start();
 
                                                     <div class="mb-3">
                                                         <label class="form-label" for="billing-address">Address</label>
-                                                        <textarea class="form-control" id="billing-address" rows="3"
+                                                        <textarea class="form-control" name="address" id="billing-address" rows="3"
                                                             placeholder="Enter full address"></textarea>
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
-                                                            Total cost: <?php
+                                                            Total cost: <span id="cartPriceTotal"><?php
                                                             include "connection.php";
                                                             if (session_status() == PHP_SESSION_NONE) {
                                                                 session_start();
@@ -350,13 +350,26 @@ session_start();
                                                                     $total2 += $row['total'];
                                                                 }
                                                             }
+
+                                                            $sql = "select number_plantes from maintenance where ID_User = '$user_id' and is_paid = 'Non'";
+                                                            $result = $conn->query($sql);
+                                                            $total3 = 0;
+                                                            if ($result->num_rows > 0) {
+                                                                while ($row = $result->fetch_assoc()) {
+                                                                    $total3 += $row['number_plantes'];
+                                                                }
+                                                            }
+                                                            $total2 += $total3;
+
                                                             echo "$ " . $total2;
-                                                            ?>
+                                                            ?></span> <span id="cartPriceTotalDiscount"></span>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label" for="billing-name">Discount
                                                                 code</label>
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="discountCode" onkeyup="checkDiscount(this.value);">
+                                                            <i class="text-danger" id="discountInfo"></i>
+                                                            <i class="text-success" id="discountInfoGreen"></i>
                                                         </div>
                                                     </div>
 
@@ -377,42 +390,6 @@ session_start();
                                                             </div>
                                                         </div>
                                             </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="checkout-item">
-                                <div class="avatar checkout-icon p-1">
-
-                                </div>
-                                <div class="feed-item-list">
-                                    <div>
-                                        <div class="mb-3">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-sm-6">
-                                                    <div data-bs-toggle="collapse">
-
-                                                        <div class="edit-btn bg-light  rounded">
-                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top"
-                                                                title="" data-bs-original-title="Edit">
-                                                                <i class="bx bx-pencil font-size-16"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-4 col-sm-6">
-                                                    <div>
-
-                                                        <div class="edit-btn bg-light  rounded">
-                                                            <a href="#" data-bs-toggle="tooltip" data-placement="top"
-                                                                title="" data-bs-original-title="Edit">
-                                                                <i class="bx bx-pencil font-size-16"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -473,7 +450,7 @@ session_start();
                     <!-- end col -->
                     <div class="col">
                         <div class="text-end mt-2 mt-sm-0">
-                            <a href="#" class="btn btn-success">
+                            <a onclick="document.getElementById('billingForm').submit()" class="btn btn-success">
                                 <i class="mdi mdi-cart-outline me-1"></i> Proceed </a>
                         </div>
                     </div>
@@ -551,7 +528,24 @@ session_start();
                                             </a>
 
                                         </td>
-                                        <td>$ 0</td>
+                                        <td><?php
+                                        include "connection.php";
+                                        if (session_status() == PHP_SESSION_NONE) {
+                                            session_start();
+                                        }
+
+                                        $user_id = $_SESSION['user_id'];
+                                        $sql = "select number_plantes from maintenance where ID_User = '$user_id' and is_paid = 'Non'";
+                                        $result = $conn->query($sql);
+                                        $total = 0;
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) {
+                                                $total += $row['number_plantes'];
+                                            }
+                                        }
+                                        echo "$ " . $total;
+                                        $totalAll += $total;
+                                        ?></td>
 
 
                                         </td>
@@ -583,7 +577,7 @@ session_start();
         <!-- end row -->
 
     </div>
-    <script src='login.js?v=10'></script>
+    <script src='login.js?v=14'></script>
     <script>
         displayCart();
     </script>

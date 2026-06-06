@@ -119,6 +119,24 @@ function displayCart() {
     form.submit();
 }
 
+function checkDiscount(code) {
+    ifr = document.createElement("iframe");
+    ifr.hidden = true;
+    ifr.name = "discountFrame";
+    form = document.createElement("form");
+    form.method = "POST";
+    form.action = "discount.php";
+    form.target = ifr.name;
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "code";
+    input.value = code;
+    form.append(input);
+    ifr.appendChild(form);
+    document.body.appendChild(ifr);
+    form.submit();
+}
+
 function addToBouquet(id, quantity) {
     ifr = document.createElement("iframe");
     ifr.hidden = true;
