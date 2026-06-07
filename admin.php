@@ -1,3 +1,66 @@
+<?php
+include "connection.php";
+session_start();
+
+$sql = "select ID from users where is_admin = 1";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        if ($row["ID"] == $_SESSION["user_id"]) {
+            $is_admin = true;
+        }
+    }
+}
+
+if (!isset($is_admin)) {
+    header("Location: index.php");
+}
+
+if (isset($_POST["table"])) {
+    $table = $_POST["table"];
+
+    if ($table == "plante") {
+        $nom = $_POST["nom"];
+        $prix = $_POST["prix"];
+        $statut = $_POST["statut"];
+        $ID_Categorie = $_POST["ID_Categorie"];
+        if (isset($_POST["prix_unitaire"]))
+            $prix_unitaire = $_POST["prix_unitaire"];
+        else
+            $prix_unitaire = $prix;
+        $details = $_POST["details"];
+        $quantite = $_POST["quantite"];
+        $img = $_POST["img"];
+
+        $sql = "insert into plante (nom, prix, statut, ID_Categorie, prix_unitaire, details, quantite, img) values ('$nom', '$prix', '$statut', '$ID_Categorie', '$prix_unitaire', '$details', '$quantite', '$img')";
+        $conn->query($sql);
+    } else if ($table == "plante_remove") {
+        $id = $_POST["ID"];
+
+        $sql = "delete from plante where ID = '$id'";
+        $conn->query($sql);
+    } else if ($table == "plante_edit") {
+        $id = $_POST["ID"];
+        $nom = $_POST["nom"];
+        $prix = $_POST["prix"];
+        $statut = $_POST["statut"];
+        $ID_Categorie = $_POST["ID_Categorie"];
+        if (isset($_POST["prix_unitaire"]))
+            $prix_unitaire = $_POST["prix_unitaire"];
+        else
+            $prix_unitaire = $prix;
+        $details = $_POST["details"];
+        $quantite = $_POST["quantite"];
+        $img = $_POST["img"];
+
+        $sql = "update plante set nom = '$nom', prix = '$prix', statut = '$statut', ID_Categorie = '$ID_Categorie', prix_unitaire = '$prix_unitaire', details = '$details', quantite = '$quantite', img = '$img' where ID = '$id'";
+        $conn->query($sql);
+    }
+
+    header("Location: admin.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,12 +76,12 @@
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-        
+
         body {
             display: flex;
             background-color: #f7f3ee;
         }
-        
+
         .sidebar {
             width: 240px;
             height: 100%;
@@ -27,12 +90,12 @@
             padding: 20px;
             position: fixed;
         }
-        
+
         .sidebar h2 {
             text-align: center;
             margin-bottom: 30px;
         }
-        
+
         .sidebar a {
             display: block;
             padding: 12px;
@@ -41,24 +104,24 @@
             border-radius: 6px;
             margin-bottom: 10px;
         }
-        
+
         .sidebar a:hover {
             background-color: #f7f3ee;
             color: black;
         }
-        
+
         .main {
             margin-left: 260px;
             padding: 20px;
             width: 100%;
         }
-        
+
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-        
+
         .card {
             background: white;
             padding: 20px;
@@ -66,47 +129,48 @@
             box-shadow: lightgrey;
             margin-bottom: 20px;
         }
-        
+
         .card h3 {
             margin-bottom: 15px;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        
+
         th,
         td {
             padding: 10px;
             border-bottom: 1px solid #ddd;
             font-size: 14px;
         }
-        
+
         .status {
             padding: 5px 10px;
             border-radius: 6px;
             color: white;
             font-size: 12px;
         }
-        
+
         .available {
             background: green;
         }
-        
+
         .out {
+            padding: 5px 0px;
             background: red;
         }
-        
+
         .pending {
             background: orange;
         }
-        
+
         .delivered,
         .completed {
             background: blue;
         }
-        
+
         .btn {
             padding: 6px 10px;
             border: none;
@@ -115,29 +179,29 @@
             font-size: 12px;
             margin: 2px;
         }
-        
+
         .add {
             background: #2ecc71;
             color: white;
         }
-        
+
         .edit {
             background: #3498db;
             color: white;
         }
-        
+
         .delete {
             background: #A10035;
             color: white;
         }
-        
+
         .card input,
         .card select {
             width: 100%;
             padding: 6px;
             margin: 5px 0;
         }
-        
+
         .details {
             background: #f1f2f6;
             padding: 10px;
@@ -145,20 +209,21 @@
             margin-top: 10px;
             font-size: 13px;
         }
-        
+
         @media (max-width:600px) {
             .grid {
                 grid-template-columns: 1fr;
             }
+
             .sidebar {
                 display: none;
             }
         }
-        
+
         .grid {
             display: block;
         }
-        
+
         th,
         td {
             text-align: center;
@@ -188,65 +253,121 @@
         <div class="grid">
 
             <!-- PRODUCTS -->
-            <div class="card">
+            <form class="card" method="POST">
                 <h3>Products</h3>
 
-                <input type="text" placeholder="Product name">
-                <input type="number" placeholder="Price">
-                <select>
+                <input type="text" id="plante_nom_i" name="nom" placeholder="Product name">
+                <select id="plante_categorie_i" name="ID_Categorie"
+                    onchange="document.querySelector('#plante_prix_u_i').disabled = this.value != '3'">
+                    <?php
+                    $sql = "select * from categorie";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $id = $row["ID"];
+                            $nom = $row["nom"];
+                            ?>
+                            <option value="<?php echo $id ?>"><?php echo $nom ?></option>
+                            <?php
+                        }
+                    }
+                    ?>
+                </select>
+                <input type="text" id="plante_prix_i" name="prix" placeholder="Price">
+                <input type="text" id="plante_prix_u_i" name="prix_unitaire" placeholder="Unitary Price" disabled>
+                <input type="text" id="plante_details_i" name="details" placeholder="Details">
+                <input type="number" id="plante_quantite_i" name="quantite" placeholder="Quantity">
+                <select name="statut" id="plante_statut_i">
                     <option>Available</option>
                     <option>Out of Stock</option>
                 </select>
+                <input type="text" id="plante_img_i" name="img" placeholder="Image Link"
+                    onchange="document.querySelector('#previewImg').src = this.value">
+                <img src="" id="previewImg" style="width: 150px; height:150px"><br>
 
-                <button class="btn add">Add Product</button>
+                <input type="hidden" name="table" id="planteTable" value="plante">
+                <input type="hidden" name="ID" id="plante_id" value="-1">
+                <button class="btn add" id="planteAdd" type="submit">Add Product</button>
 
                 <table>
                     <tr>
+                        <th>Image</th>
                         <th>Name</th>
-                        <th>details</th>
+                        <th>Details</th>
+                        <th>Category</th>
                         <th>Price</th>
-                        <th>Stock</th>
-                        <th>Stock</th>
+                        <th>Unitary Price</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Actions</th>
 
                     </tr>
 
-                    <tr>
-                        <td>White Orchid</td>
-                        <td>soft and graceful, the white orchid adds a peaceful charm to any setting.</td>
-                        <td>$10</td>
-                        <td><span class="status available">Available</span></td>
+                    <?php
+                    $sql = "select * from plante";
+                    $result = $conn->query($sql);
 
-                        <td>
-                            <button class="btn edit">Edit</button>
-                            <button class="btn delete">Remove</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Ruffled Fan Palm</td>
-                        <td></td>
-                        <td>$15</td>
-                        <td><span class="status available">Available</span></td>
-                        <td>
-                            <button class="btn edit">Edit</button>
-                            <button class="btn delete">Remove</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Pink Harmony</td>
-                        <td></td>
-                        <td>$40</td>
-                        <td><span class="status available">Available</span></td>
-
-                        <td>
-                            <button class="btn edit">Edit</button>
-                            <button class="btn delete">Remove</button>
-                        </td>
-                    </tr>
-
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            ?>
+                            <tr>
+                                <td id="plante_img"><img style="width: 50px; height: 50px"
+                                        src="<?php echo $row['img'] ?>"><br><?php echo $row['img'] ?></td>
+                                <td id="plante_nom"><?php echo $row["nom"] ?></td>
+                                <td id="plante_details"><?php echo $row["details"] ?></td>
+                                <td id="plante_categorie"><?php
+                                $id = $row["ID_Categorie"];
+                                $sql = "select nom from categorie where ID = '$id'";
+                                $result2 = $conn->query($sql);
+                                if ($result2->num_rows > 0) {
+                                    echo $result2->fetch_assoc()["nom"];
+                                }
+                                ?></td>
+                                <td id="plante_prix"><?php echo $row["prix"] ?></td>
+                                <td id="plante_prix_u"><?php echo $row["prix_unitaire"] != null ? $row["prix_unitaire"] : "-" ?>
+                                </td>
+                                <td id="plante_quantite"><?php echo $row["quantite"] ?></td>
+                                <?php
+                                if ($row["statut"] == "Available") {
+                                    ?>
+                                    <td id="plante_statut"><span class="status available">Available</span></td>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <td id="plante_statut"><span class="status out">Out of Stock</span></td>
+                                    <?php
+                                }
+                                ?>
+                                <td>
+                                    <button class="btn edit" type="button" id="<?php echo $row['ID'] ?>" onclick="document.querySelector('#planteTable').value = 'plante_edit';
+                                        document.querySelector('#plante_nom_i').value = this.parentNode.parentNode.querySelector('#plante_nom').textContent;
+                                        document.querySelector('#plante_details_i').value = this.parentNode.parentNode.querySelector('#plante_details').textContent;
+                                        for (var node of document.querySelector('#plante_categorie_i').childNodes) {
+                                        if (node.textContent == this.parentNode.parentNode.querySelector('#plante_categorie').textContent) {
+document.querySelector('#plante_categorie_i').value = node.value;
+document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
+}
+                                        }
+                                        document.querySelector('#plante_prix_i').value = this.parentNode.parentNode.querySelector('#plante_prix').textContent;
+                                        document.querySelector('#plante_prix_u_i').value = this.parentNode.parentNode.querySelector('#plante_prix_u').textContent.trim();
+                                        document.querySelector('#plante_quantite_i').value = this.parentNode.parentNode.querySelector('#plante_quantite').textContent;
+                                        document.querySelector('#plante_img_i').value = this.parentNode.parentNode.querySelector('#plante_img').textContent;
+                                        document.querySelector('#previewImg').src = document.querySelector('#plante_img_i').value;
+                                        document.querySelector('#planteAdd').className = 'btn edit';
+                                        document.querySelector('#planteAdd').textContent = 'Edit Product';
+                                        document.querySelector('#plante_id').value = this.id;
+                                        ">Edit</button>
+                                    <button class="btn delete" id="<?php echo $row['ID'] ?>" type="submit"
+                                        onclick="document.querySelector('#planteTable').value = 'plante_remove';
+                                        document.querySelector('#plante_id').value = this.id;">Remove</button>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
                 </table>
-            </div>
+            </form>
 
 
             <!-- SERVICES -->
@@ -308,7 +429,7 @@
                         <td>
                             <select>
                                 <option>Pending</option>
-                                
+
                                 <option>Delivered</option>
                             </select>
                             <button class="btn edit">Update</button>
@@ -322,7 +443,7 @@
                         <td>
                             <select>
                                 <option>Pending</option>
-                                
+
                                 <option>Delivered</option>
                             </select>
                             <button class="btn edit">Update</button>
@@ -385,7 +506,8 @@
                         <td>Staff50</td>
                         <td>50%</td>
                         <td>
-                            <button class="btn delete">Remove</button> </td>
+                            <button class="btn delete">Remove</button>
+                        </td>
 
                     </tr>
                 </table>
@@ -413,7 +535,7 @@
                             <select>
                                 <option>Pending</option>
                                 <option>completed</option>
-                                
+
                             </select>
                             <button class="btn edit">Update</button>
                         </td>
@@ -428,7 +550,7 @@
                             <select>
                                 <option>Pending</option>
                                 <option>completed</option>
-                                
+
                             </select>
                             <button class="btn edit">Update</button>
                         </td>
