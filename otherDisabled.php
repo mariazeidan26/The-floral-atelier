@@ -1,1 +1,1 @@
-<button class="plant" onclick="confirmRedirectOther()">Plant</button>
+<button class="buy" onclick="confirmRedirect()">Buy</button>

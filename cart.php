@@ -311,7 +311,9 @@ session_start();
                                                             if (session_status() == PHP_SESSION_NONE) {
                                                                 session_start();
                                                             }
-
+                                                            if(!isset($_SESSION["user_id"])) { 
+                                                                echo "0$";
+                                                            }else{
                                                             $user_id = $_SESSION['user_id'];
                                                             $sql = "SELECT * FROM cart WHERE ID_user = $user_id";
                                                             $result = $conn->query($sql);
@@ -362,6 +364,7 @@ session_start();
                                                             $total2 += $total3;
 
                                                             echo "$ " . $total2;
+                                                            }
                                                             ?></span> <span id="cartPriceTotalDiscount"></span>
                                                         </div>
                                                         <div class="mb-3">
@@ -503,7 +506,9 @@ session_start();
                                         if (session_status() == PHP_SESSION_NONE) {
                                             session_start();
                                         }
-
+                                         if(!isset($_SESSION["user_id"])){ 
+                                            echo "0$"; 
+                                            }else{
                                         $user_id = $_SESSION['user_id'];
                                         $sql = "select total from planting where ID_User = '$user_id' and is_paid = 'Non' group by ID_Planting";
                                         $result = $conn->query($sql);
@@ -515,6 +520,7 @@ session_start();
                                         }
                                         echo "$ " . $total;
                                         $totalAll = $total;
+                                            }
                                         ?></td>
 
 
@@ -533,7 +539,9 @@ session_start();
                                         if (session_status() == PHP_SESSION_NONE) {
                                             session_start();
                                         }
-
+                                        if(!isset($_SESSION["user_id"])){
+                                            echo "0$";
+                                            }else{
                                         $user_id = $_SESSION['user_id'];
                                         $sql = "select number_plantes from maintenance where ID_User = '$user_id' and is_paid = 'Non'";
                                         $result = $conn->query($sql);
@@ -545,6 +553,7 @@ session_start();
                                         }
                                         echo "$ " . $total;
                                         $totalAll += $total;
+}
                                         ?></td>
 
 
@@ -561,7 +570,13 @@ session_start();
                                             <h5 class="font-size-14 m-0">Total:</h5>
                                         </td>
                                         <td>
-                                            <?php echo $totalAll ?> $
+                                            <?php
+                                            if(isset($_SESSION["user_id"])){
+                                                echo $totalAll ;
+                                                } else{
+                                                    echo "0$";
+                                                }
+                                                ?> 
                                         </td>
                                     </tr>
                                 </tbody>
