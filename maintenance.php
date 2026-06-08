@@ -460,7 +460,9 @@ if (isset($_POST["address"], $_POST["date"], $_POST["time"])) {
                         <input type="text" id="p-address" name="address" placeholder="Auto-filled from consultation" value="<?php
                         if (isset($result)) {
                         $result_fetch = $result->fetch_assoc();
+                        if($result->num_rows>0){
                         echo $result_fetch['ad_location'];
+                        }
                         }
                         ?>">
                     </div>

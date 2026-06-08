@@ -470,10 +470,12 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Address</label>
+                        <label for="address">Address</label>
                         <input type="text" id="p-address" name="address" placeholder="Auto-filled from consultation" value="<?php
                         if (isset($result)) {
+                            if($result->num_rows>0){
                         echo $result->fetch_assoc()['ad_location'];
+                            }  
                         }
                         ?>">
                     </div>

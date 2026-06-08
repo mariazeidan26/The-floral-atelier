@@ -277,7 +277,7 @@ session_start();
                                                                 <label class="form-label"
                                                                     for="billing-name">Name</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="billing-name" name="name" placeholder="Enter name">
+                                                                    id="billing-name" name="name" placeholder="Enter name" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
@@ -286,7 +286,7 @@ session_start();
                                                                     for="billing-email-address">Email Address</label>
                                                                 <input type="email" name="email" class="form-control"
                                                                     id="billing-email-address"
-                                                                    placeholder="Enter email">
+                                                                    placeholder="Enter email" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
@@ -294,7 +294,7 @@ session_start();
                                                                 <label class="form-label"
                                                                     for="billing-phone">Phone</label>
                                                                 <input type="text" name="phone" class="form-control"
-                                                                    id="billing-phone" placeholder="Enter Phone number">
+                                                                    id="billing-phone" placeholder="Enter Phone number" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -302,7 +302,7 @@ session_start();
                                                     <div class="mb-3">
                                                         <label class="form-label" for="billing-address">Address</label>
                                                         <textarea class="form-control" name="address" id="billing-address" rows="3"
-                                                            placeholder="Enter full address"></textarea>
+                                                            placeholder="Enter full address" required></textarea>
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="mb-3">
@@ -453,8 +453,21 @@ session_start();
                     <!-- end col -->
                     <div class="col">
                         <div class="text-end mt-2 mt-sm-0">
-                            <a onclick="document.getElementById('billingForm').submit()" class="btn btn-success">
+        <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                                    <a onclick="document.getElementById('billingForm').submit()" class="btn btn-success">
                                 <i class="mdi mdi-cart-outline me-1"></i> Proceed </a>
+                            <?php
+                        }
+                        else {
+                            ?>
+                                    <a onclick="confirmRedirect()" class="btn btn-success">
+                                <i class="mdi mdi-cart-outline me-1"></i> Proceed </a>
+            <?php
+                        }
+                        ?>
+                           
                         </div>
                     </div>
                     <!-- end col -->
@@ -572,7 +585,7 @@ session_start();
                                         <td>
                                             <?php
                                             if(isset($_SESSION["user_id"])){
-                                                echo $totalAll ;
+                                                echo "$". $totalAll;
                                                 } else{
                                                     echo "0$";
                                                 }

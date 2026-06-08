@@ -220,12 +220,12 @@
                     <?php
                         if (isset($_SESSION['user_id'])) {
                             ?>
-                                <<button class="buy" onclick="addToCustomBouquets();">create bouquet</button>
+                                <button class="buy" onclick="addToCustomBouquets();">create bouquet</button>
                             <?php
                         }
                         else {
                             ?>
-                            <button class="buy" onclick="confirmRedirect()"> create bouquet</button>
+                            <button class="buy" onclick="confirmRedirect();"> create bouquet</button>
                             <?php
                         }
                         ?>

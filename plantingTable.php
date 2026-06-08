@@ -13,17 +13,17 @@ session_start();
                                 $result2 = $conn->query($sql);
                                 if ($result2->num_rows > 0) {
                                     $row2 = $result2->fetch_assoc();
-                                    $prix_unitaire = $row2['prix_unitaire'];
+                                    $prix = $row2['prix'];
                                     $img = $row2['img'];
                                     $nom = $row2['nom'];
-                                    $total += $prix_unitaire * $row['quantite'];
+                                    $total += $prix * $row['quantite'];
                                 }
                                         ?>
                                                             <tr class="planting-row">
                         <td><img class="product-img" src="<?php echo $img ?>"></td>
                         <td><?php echo $nom ?></td>
                         <td> <?php echo $row['quantite'] ?> </td>
-                        <td class="subtotal"><?php echo $prix_unitaire * $row['quantite'] ?>$</td>
+                        <td class="subtotal"><?php echo $prix * $row['quantite'] ?>$</td>
                         <td><button class="remove" onclick="removeFromPlanting(<?php echo $row['ID_PCart'] ?>)">X</button></td>
                     </tr>
                                         <?php

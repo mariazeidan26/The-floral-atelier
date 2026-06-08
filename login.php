@@ -3,33 +3,37 @@ session_start();
 include 'connection.php';
 require_once 'functions.php';
 if (isset($_POST['email'], $_POST['password'])) {
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
-
-    $sql = $conn->prepare("select * from users where email = ?");
-    $sql->bind_param("s", $email);
-    $sql->execute();
-    $result = $sql->get_result();
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        if (password_verify($password, $user['mot_de_passe'])) {
-            $_SESSION['user_id'] = $user['ID'];
-            $loggedIn = true;
+    $email = clean($_POST['email']);
+    $password = clean($_POST['password']);
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $sql = $conn->prepare("select * from users where email = ?");
+        $sql->bind_param("s", $email);
+        $sql->execute();
+        $result = $sql->get_result();
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+            if (password_verify($password, $user['mot_de_passe'])) {
+                $_SESSION['user_id'] = $user['ID'];
+                $loggedIn = true;
+            } else {
+                $loginerror = true;
+            }
         } else {
             $loginerror = true;
         }
-    } else {
-        $loginerror = true;
-    }
 
-    $sql = "select ID from users where is_admin = 1";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            if ($row["ID"] == $_SESSION["user_id"]) {
-                $is_admin = true;
+        $sql = "select ID from users where is_admin = 1";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if ($row["ID"] == $_SESSION["user_id"]) {
+                    $is_admin = true;
+                }
             }
         }
+    } else{
+        $loginerror = true;
     }
 }
 ?>

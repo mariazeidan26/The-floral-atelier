@@ -33,14 +33,14 @@ if (isset($_POST["code"])) {
                 $amount_used = $result->num_rows;
             }
 
-            if ($row["usage_max"] < $amount_used) {
+            if ($row["usage_max"] > $amount_used) {
                 ?>
                 <script>
                     window.parent.document.querySelector('#discountInfoGreen').textContent = "Code is valid: " + Math.round(<?php echo $reduction; ?>) + "% Discount";
                     window.parent.document.querySelector('#cartPriceTotal').style.textDecoration = "line-through";
                     window.parent.document.querySelector('#cartPriceTotal').style.opacity = "0.5";
                     var targetString = ("" + (parseFloat(window.parent.document.querySelector('#cartPriceTotal').textContent.replace("$", "")) * <?php echo (100 - $reduction) / 100.0; ?>));
-                    window.parent.document.querySelector('#cartPriceTotalDiscount').textContent = "$ " + targetString.substring(0, targetString.indexOf(".") + 3);
+                    window.parent.document.querySelector('#cartPriceTotalDiscount').textContent = "$ " +(targetString.indexOf('.')==-1?targetString:targetString.substring(0,targetString.indexOf('.')+3));
                 </script>
                 <?php
             } else {
