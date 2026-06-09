@@ -1,4 +1,9 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'Exception.php';
+require 'PHPMailer.php';
+require 'SMTP.php';
 include "connection.php";
 session_start();
 $user_id = $_SESSION['user_id'];
@@ -146,16 +151,35 @@ if (isset($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['address'])) 
 
     $sql = "update maintenance set is_paid = 'Oui' where ID_User = '$user_id'";
     $conn->query($sql);
+   
+   $mail = new PHPMailer(true);
 
-    if (isset($inserted_once)) {
-        $to = "<" . $email . ">";
-        $subject = "Order Confirmed";
-        $message = "Dear customer,\nThank you for ordering from The floral Atelier, your order has been confirmed and is now being prepared. The delivery will be within 2 to 3 days\nBest regards; The floral Atelier";
-        $headers = "from: <TheFloralAtelier2026@gmail.com>";
+try {
 
-        mail($to, $subject, $message, $headers);
-    }
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
 
-    header("Location: index.php");
+    $mail->Username = 'thefloralatelier2026@gmail.com';
+    $mail->Password = 'roua xkkk zjbx kgmp';
+
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = 587;
+
+    $mail->setFrom('thefloralatelier2026@gmail.com', 'Order Confirmed!');
+    $mail->addAddress($email);
+
+    $mail->Subject = 'Dear '.$name;
+    $mail->Body = 'Thank you for ordering from The Floral Atelier , your order has been confirmed and is now being prepared. The delivery will me within 2 to 3 days.
+Best regards,
+The Floral Atelier: where every petal tells a story.';
+
+    $mail->send();
+    header('location:index.php');
+
+
+} catch (Exception $e) {
+    $mail->ErrorInfo = $e->getMessage();
+}
 }
 ?>

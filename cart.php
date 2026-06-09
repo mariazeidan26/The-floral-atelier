@@ -479,7 +479,34 @@ session_start();
                 <div class="card checkout-order-summary">
                     <div class="card-body">
                         <div class="p-3 bg-light mb-3">
-                            <h5 class="font-size-16 mb-0">Order Summary <span class="float-end ms-2">#101</span></h5>
+                            <h5 class="font-size-16 mb-0">Order Summary <span class="float-end ms-2">
+                                <?php 
+                                $sql = "SHOW TABLE STATUS LIKE 'commande'";
+                                $result = $conn->query($sql);
+                                if ($row = $result->fetch_assoc()) {
+                                echo $row['Auto_increment'];
+                                }
+                                ?> 
+                                <!--if (isset($_SESSION['user_id'])) {
+                                    $id= $_SESSION['user_id'];
+                                    $sql='SELECT ID FROM commande where is_paid="Non" and ID_User=?';
+                                    $stmt = $conn->prepare($sql);
+                                    if (!$stmt) {
+                                    die($conn->error);
+                                    }
+                                    $stmt->bind_param('i', $id);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
+                                    if ($result->num_rows > 0) {
+                                    $row = $result->fetch_assoc();
+                                    $idcommande=$row['ID'];
+                                    echo $idcommande;
+                                    }else{
+                                        $idcommande="1";
+                                    }
+                                }
+                                ?>-->
+                            </span></h5>
                         </div>
                         <div class="table-responsive">
                             <table id='cartTable' class="table table-centered mb-0 table-nowrap">
