@@ -54,7 +54,7 @@ if (isset($_POST['name'], $_POST['email'], $_POST['password'])) {
 
 <body>
     <section class="vh-100 bg-image" .gradient-custom-3 style="
-    background-image: url(css/login.png);
+    background-image: url(css/signup.jpeg);
     background-size: cover;
     background-position: center;
     height: 400px;">

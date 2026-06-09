@@ -56,7 +56,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 </head>
 
 <body style="color: black;">
-    <section style="background-image: url('css/signup.jpeg'); 
+    <section style="background-image: url('css/login.png'); 
 background-size: cover; 
 background-position: center; 
 background-repeat: no-repeat; 

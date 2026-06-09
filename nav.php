@@ -38,15 +38,15 @@
                     <li>
                         <a href="login.php"> <span class="glyphicon glyphicon-log-in"></span> Login </a>
                     </li>
-                    <li>
+                    
                     <?php
                     } else {
                         ?>
-                        <a onclick='logout()'> <span class="glyphicon glyphicon-log-out"></span> Logout </a>
+                        <li><a onclick='logout()'> <span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
                         <?php
                     }
                     ?>
-                    </li>
+                    
                 </ul>
             </div>
         </div>

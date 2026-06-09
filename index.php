@@ -174,12 +174,12 @@
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    ?>
+                    ?>  
 <div class="<?php echo $row['statut'] == 'Available' ? 'product' : 'product unavailable' ?>">
                 <img src="<?php echo $row['img'] ?>">
-                <h4> <?php echo $row['nom'] ?> <button class="info-btn" onclick="toggleInfo(this)"> i </button> </h4>
+                <h4> <?php echo $row['nom'] ?></h4>
                 <p><?php echo $row['prix'] ?>$</p>
-                <p class="description"> <?php echo $row['details'] ?> </p>
+                
 
                 <input type="number" min="1" value="1">
 
@@ -335,7 +335,7 @@
 
         <h2 class="section-title">Contact us</h2>
         <a href="https://wa.me/" target="_blank" class="whatsapp-btn"> Whatsapp</a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=example@gmail.com" target="_blank" class="gmail-btn">Gmail</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=thefloralatelier2026@gmail.com" target="_blank" class="gmail-btn">Gmail</a>
 
     </section>
 
