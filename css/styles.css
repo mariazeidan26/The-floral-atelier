@@ -2,16 +2,17 @@
     background-color: #A10035;
 }
 
+.navbar-inverse {
+    background-color: #A10035 !important;
+    outline: none !important;
+}
+
 body {
     background-color: #f7f3ee !important;
 }
 
 nav a {
-    color: #FFFDEB !important;
-}
-
-nav a:hover {
-    color: antiquewhite !important;
+    color: #fff !important;
 }
 
 .navbar-brand {
@@ -20,6 +21,7 @@ nav a:hover {
     letter-spacing: 2px;
     font-weight: 400;
     font-size: 23px !important;
+    color: #fff !important;
 }
 
 .navbar-form .form-control:focus {
@@ -55,7 +57,6 @@ nav a:hover {
 
 .categories {
     text-align: center !important;
-    margin: 60px 0 !important;
 }
 
 .categories-container {
@@ -63,6 +64,7 @@ nav a:hover {
     justify-content: center !important;
     gap: 30px !important;
     flex-wrap: wrap !important;
+    margin: 60px 0
 }
 
 .category-btn {
@@ -147,7 +149,7 @@ nav a:hover {
     color: #A10035 !important;
 }
 
-.buttons :hover {
+.buttons:hover {
     background-color: #f7f3ee!important;
     color: #A10035 !important;
     transition-duration: 0.3s;
@@ -246,7 +248,7 @@ nav a:hover {
     color: #A10035 !important;
 }
 
-.btn :hover {
+.btn:hover {
     background-color: #f7f3ee!important;
     color: #A10035 !important;
     transition-duration: 0.3s;
