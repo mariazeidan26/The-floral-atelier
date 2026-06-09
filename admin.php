@@ -236,21 +236,21 @@ if (isset($_POST["table"])) {
 
     <div class="sidebar">
         <h2>Admin</h2>
-        <a href="#">Products</a>
-        <a href="#">Services</a>
-        <a href="#">Order fullfilment</a>
-        <a href="#">Customer database</a>
-        <a href="#">Discounts</a>
-        <a href="#">Payments</a>
-        <a href="#">Returns and refunds</a>
-        <a href="#">Reviews and feedbacks</a>
-        <a href="#">Security</a>
+        <a href="#products">Products</a>
+        <a href="#services">Services</a>
+        <a href="#order">Order fullfilment</a>
+        <a href="#users">Customer database</a>
+        <a href="#discount">Discounts</a>
+        <a href="#payments">Payments</a>
+        <a href="#returns">Returns and refunds</a>
+        <a href="#reviews">Reviews and feedbacks</a>
+        <a href="#security">Security</a>
     </div>
 
 
     <div class="main">
 
-        <div class="grid">
+        <div class="grid" id="products">
 
             <!-- PRODUCTS -->
             <form class="card" method="POST">
@@ -344,9 +344,9 @@ if (isset($_POST["table"])) {
                                         document.querySelector('#plante_details_i').value = this.parentNode.parentNode.querySelector('#plante_details').textContent;
                                         for (var node of document.querySelector('#plante_categorie_i').childNodes) {
                                         if (node.textContent == this.parentNode.parentNode.querySelector('#plante_categorie').textContent) {
-document.querySelector('#plante_categorie_i').value = node.value;
-document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
-}
+                                        document.querySelector('#plante_categorie_i').value = node.value;
+                                        document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
+                                        }
                                         }
                                         document.querySelector('#plante_prix_i').value = this.parentNode.parentNode.querySelector('#plante_prix').textContent;
                                         document.querySelector('#plante_prix_u_i').value = this.parentNode.parentNode.querySelector('#plante_prix_u').textContent.trim();
@@ -357,8 +357,7 @@ document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
                                         document.querySelector('#planteAdd').textContent = 'Edit Product';
                                         document.querySelector('#plante_id').value = this.id;
                                         ">Edit</button>
-                                    <button class="btn delete" id="<?php echo $row['ID'] ?>" type="submit"
-                                        onclick="document.querySelector('#planteTable').value = 'plante_remove';
+                                    <button class="btn delete" id="<?php echo $row['ID'] ?>" type="submit" onclick="document.querySelector('#planteTable').value = 'plante_remove';
                                         document.querySelector('#plante_id').value = this.id;">Remove</button>
                                 </td>
                             </tr>
@@ -371,7 +370,7 @@ document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
 
 
             <!-- SERVICES -->
-            <div class="card">
+            <div class="card" id="services">
                 <h3>Services</h3>
 
 
@@ -411,7 +410,7 @@ document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
 
 
             <!-- ORDERS -->
-            <div class="card">
+            <div class="card" id="order">
                 <h3>Order Fulfilment</h3>
 
                 <table>
@@ -453,7 +452,7 @@ document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
             </div>
 
             <!-- CUSTOMERS -->
-            <div class="card">
+            <div class="card" id="users">
                 <h3>Customer database</h3>
                 <input type="text" placeholder="Name">
                 <input type="email" placeholder="Email">
@@ -489,7 +488,7 @@ document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
             </div>
 
             <!-- MARKETING -->
-            <div class="card">
+            <div class="card" id="discount">
                 <h3>Discounts</h3>
                 <input type="text" placeholder="Discount code">
                 <input type="number" placeholder="%">
@@ -514,7 +513,7 @@ document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
             </div>
 
             <!-- PAYMENTS -->
-            <div class="card">
+            <div class="card" id="payments">
                 <h3>Payments</h3>
 
                 <table>
@@ -561,7 +560,7 @@ document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
             </div>
 
             <!-- RETURNS -->
-            <div class="card">
+            <div class="card" id="returns">
                 <h3>Returns and refunds</h3>
 
                 <table>
@@ -610,7 +609,7 @@ document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
             </div>
 
             <!--Reviews and feedbacks-->
-            <div class="card">
+            <div class="card" id="reviews">
 
                 <h3>Reviews and feedbacks</h3>
                 <table>
@@ -630,7 +629,7 @@ document.querySelector('#plante_prix_u_i').disabled = node.value != '3';
             </div>
 
             <!-- SECURITY -->
-            <div class="card">
+            <div class="card" id="security">
                 <h3>Security</h3>
                 <p><strong>Access:</strong>Admin</p>
                 <br>
