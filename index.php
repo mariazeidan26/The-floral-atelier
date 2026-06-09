@@ -270,7 +270,19 @@
                             <?php
                         }
                         ?>
-                        <button class="plant" onclick="addToPlanting(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Plant</button>
+                        <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                                <button class="plant" onclick="addToPlanting(<?php echo $row['ID'] ?>, this.parentNode.parentNode.parentNode.querySelector('input[type=\'number\']').value)"> Plant</button>
+                            <?php
+                        }
+                        else {
+                            ?>
+                            <button class="plant" onclick="confirmRedirect()">Plant</button>
+                            <?php
+                        }
+                        ?>
+                        
                     </div>
                 </div>
 
@@ -335,7 +347,7 @@
         </form>
 
         <h2 class="section-title">Contact us</h2>
-        <a href="https://wa.me/" target="_blank" class="whatsapp-btn"> Whatsapp</a>
+        <a href="https://wa.me/70431110" target="_blank" class="whatsapp-btn"> Whatsapp</a>
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=thefloralatelier2026@gmail.com" target="_blank" class="gmail-btn">Gmail</a>
 
     </section>
