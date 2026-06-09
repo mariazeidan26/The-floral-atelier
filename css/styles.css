@@ -4,7 +4,7 @@
 
 .navbar-inverse {
     background-color: #A10035 !important;
-    outline: none !important;
+    border: none !important;
 }
 
 body {
