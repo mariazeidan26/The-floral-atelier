@@ -60,7 +60,6 @@ if (isset($_POST["table"])) {
     header("Location: admin.php");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,26 +75,26 @@ if (isset($_POST["table"])) {
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-
+        
         body {
             display: flex;
             background-color: #f7f3ee;
         }
-
+        
         .sidebar {
-            width: 240px;
+            width: 250px;
             height: 100%;
-            background: lightcoral;
+            background: #A10035;
             color: white;
             padding: 20px;
             position: fixed;
         }
-
+        
         .sidebar h2 {
             text-align: center;
             margin-bottom: 30px;
         }
-
+        
         .sidebar a {
             display: block;
             padding: 12px;
@@ -104,73 +103,72 @@ if (isset($_POST["table"])) {
             border-radius: 6px;
             margin-bottom: 10px;
         }
-
+        
         .sidebar a:hover {
             background-color: #f7f3ee;
             color: black;
         }
-
+        
         .main {
-            margin-left: 260px;
+            margin-left: 250px;
             padding: 20px;
             width: 100%;
         }
-
+        
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-
+        
         .card {
             background: white;
             padding: 20px;
             border-radius: 12px;
-            box-shadow: lightgrey;
+            overflow-x: auto;
             margin-bottom: 20px;
         }
-
+        
         .card h3 {
             margin-bottom: 15px;
         }
-
+        
         table {
             width: 100%;
             border-collapse: collapse;
         }
-
+        
         th,
         td {
             padding: 10px;
             border-bottom: 1px solid #ddd;
             font-size: 14px;
         }
-
+        
         .status {
             padding: 5px 10px;
             border-radius: 6px;
             color: white;
             font-size: 12px;
         }
-
+        
         .available {
             background: green;
         }
-
+        
         .out {
-            padding: 5px 0px;
             background: red;
         }
-
+        
         .pending {
             background: orange;
         }
-
+        
         .delivered,
         .completed {
             background: blue;
         }
-
+        
         .btn {
             padding: 6px 10px;
             border: none;
@@ -179,29 +177,29 @@ if (isset($_POST["table"])) {
             font-size: 12px;
             margin: 2px;
         }
-
+        
         .add {
             background: #2ecc71;
             color: white;
         }
-
+        
         .edit {
             background: #3498db;
             color: white;
         }
-
+        
         .delete {
             background: #A10035;
             color: white;
         }
-
+        
         .card input,
         .card select {
             width: 100%;
             padding: 6px;
             margin: 5px 0;
         }
-
+        
         .details {
             background: #f1f2f6;
             padding: 10px;
@@ -209,21 +207,23 @@ if (isset($_POST["table"])) {
             margin-top: 10px;
             font-size: 13px;
         }
-
+        
         @media (max-width:600px) {
             .grid {
                 grid-template-columns: 1fr;
             }
-
             .sidebar {
                 display: none;
             }
+            .main {
+                margin-left: 0;
+            }
         }
-
+        
         .grid {
             display: block;
         }
-
+        
         th,
         td {
             text-align: center;
@@ -236,21 +236,23 @@ if (isset($_POST["table"])) {
 
     <div class="sidebar">
         <h2>Admin</h2>
-        <a href="#products">Products</a>
-        <a href="#services">Services</a>
-        <a href="#order">Order fullfilment</a>
+        <a href="#prod">Products</a>
+        <a href="#pc">Planting Consultations</a>
+        <a href="#mc">Maintenance Consultations</a>
+        <a href="#pb">Planting bookings</a>
+        <a href="#mb">Maintenance bookings</a>
+        <a href="#of">Order fullfilment</a>
         <a href="#users">Customer database</a>
         <a href="#discount">Discounts</a>
-        <a href="#payments">Payments</a>
-        <a href="#returns">Returns and refunds</a>
-        <a href="#reviews">Reviews and feedbacks</a>
+        <a href="#payment">Payments</a>
+        <a href="#rnr">Returns and refunds</a>
+        <a href="#rnf">Reviews and feedbacks</a>
         <a href="#security">Security</a>
     </div>
 
+<div class="main">
 
-    <div class="main">
-
-        <div class="grid" id="products">
+        <div class="grid" id="prod">
 
             <!-- PRODUCTS -->
             <form class="card" method="POST">
@@ -368,54 +370,208 @@ if (isset($_POST["table"])) {
                 </table>
             </form>
 
-
-            <!-- SERVICES -->
-            <div class="card" id="services">
-                <h3>Services</h3>
-
+            <!--Consultations-->
+            <div class="card" id="pc">
+                <h3>Planting consultations</h3>
 
                 <table>
                     <tr>
-                        <th>Type</th>
-                        <th>Price</th>
+                        <th>Order ID</th>
+                        <th>User</th>
 
-                        <th>Actions</th>
+                        <th>Address</th>
+                        <th>Date</th>
+                        <th>Time</th>
+
+                        <th>status</th>
+
+                        <th>Action</th>
                     </tr>
 
                     <tr>
-                        <td>Planting service</td>
-                        <td>$15</td>
+                        <td>#101</td>
+                        <td>Lea</td>
+
+                        <td>Jounieh</td>
+                        <td>2026-06-15</td>
+                        <td>10:00AM</td>
+                        <td><span class="status pending">Pending</span></td>
 
                         <td>
-                            <button class="btn edit">Edit</button>
-                            <button class="btn delete">Remove</button>
+                            <select>
+                                <option>Pending</option>
+                                
+                                <option>Confirm</option>
+                            </select>
+                            <button class="btn edit">Update</button>
                         </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="card" id="mc">
+                <h3>Maintenance consultations</h3>
+
+                <table>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+
+                        <th>Address</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Plants number</th>
+
+                        <th>status</th>
+
+                        <th>Action</th>
                     </tr>
 
                     <tr>
-                        <td>Maintenance service</td>
-                        <td>$40</td>
+                        <td>#101</td>
+                        <td>Lea</td>
+
+                        <td>Jounieh</td>
+                        <td>2026-06-20</td>
+                        <td>10:00AM</td>
+                        <td>30</td>
+                        <td><span class="status pending">Pending</span></td>
 
                         <td>
-                            <button class="btn edit">Edit</button>
-                            <button class="btn delete">Remove</button>
+                            <select>
+                                <option>Pending</option>
+                                
+                                <option>Confirm</option>
+                            </select>
+                            <button class="btn edit">Update</button>
                         </td>
                     </tr>
-
-
-
                 </table>
             </div>
 
 
 
+
+
+            <!--Planting service booking-->
+            <div class="card" id="pb">
+                <h3>Planting service booking</h3>
+
+                <table>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+
+                        <th>Address</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Total ($)</th>
+
+                        <th>status</th>
+
+                        <th>Action</th>
+                    </tr>
+
+                    <tr>
+                        <td>#101</td>
+                        <td>Lea</td>
+
+                        <td>Jounieh</td>
+                        <td>2026-06-15</td>
+                        <td>10:00AM</td>
+                        <td>150$</td>
+                        <td><span class="status pending">Pending</span></td>
+
+                        <td>
+                            <select>
+                                <option>Pending</option>
+                                
+                                <option>Confirm</option>
+                            </select>
+                            <button class="btn edit">Update</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <!--Maintenance service booking-->
+            <div class="card" id="mb">
+                <h3>Maintenance service booking</h3>
+
+                <table>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>User</th>
+
+                        <th>Address</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Plants number</th>
+                        <th>Total ($)</th>
+
+                        <th>status</th>
+
+                        <th>Action</th>
+                    </tr>
+
+                    <tr>
+                        <td>#101</td>
+                        <td>Lea</td>
+
+                        <td>Jounieh</td>
+                        <td>2026-06-15</td>
+                        <td>10:00AM</td>
+                        <td>30</td>
+                        <td>150$</td>
+                        <td><span class="status pending">Pending</span></td>
+
+                        <td>
+                            <select>
+                                <option>Pending</option>
+                                
+                                <option>Confirm</option>
+                            </select>
+                            <button class="btn edit">Update</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <!-- ORDERS -->
-            <div class="card" id="order">
+            <div class="card" id="of">
                 <h3>Order Fulfilment</h3>
 
                 <table>
                     <tr>
-                        <th>ID</th>
+                        <th>Order ID</th>
                         <th>User</th>
                         <th>Status</th>
                         <th>Update</th>
@@ -428,7 +584,7 @@ if (isset($_POST["table"])) {
                         <td>
                             <select>
                                 <option>Pending</option>
-
+                                
                                 <option>Delivered</option>
                             </select>
                             <button class="btn edit">Update</button>
@@ -442,7 +598,7 @@ if (isset($_POST["table"])) {
                         <td>
                             <select>
                                 <option>Pending</option>
-
+                                
                                 <option>Delivered</option>
                             </select>
                             <button class="btn edit">Update</button>
@@ -461,12 +617,14 @@ if (isset($_POST["table"])) {
 
                 <table>
                     <tr>
-                        <th>Name</th>
+                        <th>Order ID</th>
+                        <th>User</th>
                         <th>Email</th>
                         <th>Actions</th>
                     </tr>
 
                     <tr>
+                        <td>#101</td>
                         <td>Lea</td>
                         <td>Lea@gmail.com</td>
                         <td>
@@ -505,15 +663,14 @@ if (isset($_POST["table"])) {
                         <td>Staff50</td>
                         <td>50%</td>
                         <td>
-                            <button class="btn delete">Remove</button>
-                        </td>
+                            <button class="btn delete">Remove</button> </td>
 
                     </tr>
                 </table>
             </div>
 
             <!-- PAYMENTS -->
-            <div class="card" id="payments">
+            <div class="card" id="payment">
                 <h3>Payments</h3>
 
                 <table>
@@ -534,7 +691,7 @@ if (isset($_POST["table"])) {
                             <select>
                                 <option>Pending</option>
                                 <option>completed</option>
-
+                                
                             </select>
                             <button class="btn edit">Update</button>
                         </td>
@@ -549,7 +706,7 @@ if (isset($_POST["table"])) {
                             <select>
                                 <option>Pending</option>
                                 <option>completed</option>
-
+                                
                             </select>
                             <button class="btn edit">Update</button>
                         </td>
@@ -560,7 +717,7 @@ if (isset($_POST["table"])) {
             </div>
 
             <!-- RETURNS -->
-            <div class="card" id="returns">
+            <div class="card" id="rnr">
                 <h3>Returns and refunds</h3>
 
                 <table>
@@ -609,7 +766,7 @@ if (isset($_POST["table"])) {
             </div>
 
             <!--Reviews and feedbacks-->
-            <div class="card" id="reviews">
+            <div class="card" id="rnf">
 
                 <h3>Reviews and feedbacks</h3>
                 <table>
@@ -641,6 +798,7 @@ if (isset($_POST["table"])) {
 
         </div>
     </div>
+
 
 </body>
 
